@@ -1,0 +1,20 @@
+{
+  "sequence_counter": 5,
+  "forefront_sequence_counter": 0,
+  "forefront_requests": {},
+  "regular_requests": {
+    "https://www.hubspot.com/pricing/marketing": 0,
+    "https://www.notion.so/pricing": 1,
+    "https://linear.app/pricing": 2,
+    "https://clickup.com/pricing": 3,
+    "https://stripe.com/pricing": 4
+  },
+  "in_progress_requests": [],
+  "handled_requests": [
+    "https://www.notion.so/pricing",
+    "https://clickup.com/pricing",
+    "https://www.hubspot.com/pricing/marketing",
+    "https://stripe.com/pricing",
+    "https://linear.app/pricing"
+  ]
+}

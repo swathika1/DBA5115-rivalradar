@@ -93,7 +93,11 @@ _XPATHS: dict[str, list[str]] = {
 
 # Price regex: require the numeric part to be 1–7 digits (filters out CSS counter
 # animation strings like $01234567890123...).
-_PRICE_AMOUNT_RE = re.compile(r"\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?(?!\d)")
+_PRICE_AMOUNT_RE = re.compile(
+    r"(?:\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?(?!\d)"
+    r"|\b\d{1,3}(?:,\d{3})*(?:\.\d{2})?/mo\b"
+    r"|\b\d{1,3}(?:,\d{3})*(?:\.\d{2})?\s*per\s*mo(?:nth)?\b)"
+)
 _PRICE_CYCLE_RE = re.compile(r"[\d,]+\s*(?:per|/)\s*(?:month|year|mo|yr)", re.IGNORECASE)
 _PLAN_NAME_RE = re.compile(
     r"\b(free|starter|basic|pro|professional|business|enterprise|team|growth|plus|premium)\b",

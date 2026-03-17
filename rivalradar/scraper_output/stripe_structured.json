@@ -1,0 +1,31 @@
+{
+  "company": "Stripe",
+  "url": "https://stripe.com/pricing",
+  "scraped_at": "2026-03-17T14:00:06.800860+00:00",
+  "pricing_model": "transaction_based",
+  "note": "This provider uses per-transaction / usage-based pricing rather than fixed plan tiers.",
+  "sample_rates": [
+    "$0.02",
+    "$0.03",
+    "$0.07",
+    "$0.08",
+    "$0.10",
+    "$0.15",
+    "$0.35",
+    "$0.50",
+    "$0.70",
+    "$1",
+    "$2.00",
+    "$10",
+    "$10.00",
+    "$13.00",
+    "$15.00"
+  ],
+  "pricing_summary": {
+    "free_tier": false,
+    "enterprise_tier": false,
+    "plan_names": [],
+    "price_range": "$0.02 – $500.00"
+  },
+  "raw_char_count": 19012
+}

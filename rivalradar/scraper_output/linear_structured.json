@@ -1,0 +1,59 @@
+{
+  "company": "Linear",
+  "url": "https://linear.app/pricing",
+  "scraped_at": "2026-03-17T13:59:47.986625+00:00",
+  "plans": [
+    {
+      "name": "Free",
+      "price": "$0",
+      "billing": "free",
+      "features": [
+        "members 2",
+        "teams 250"
+      ]
+    },
+    {
+      "name": "Basic",
+      "price": "$10",
+      "billing": "per user/month",
+      "features": []
+    },
+    {
+      "name": "Business",
+      "price": "$16",
+      "billing": "per user/month",
+      "features": []
+    },
+    {
+      "name": "Enterprise",
+      "price": "Contact sales",
+      "billing": "custom",
+      "features": [
+        "support  ’s",
+        "members 10MB",
+        "uploads 250",
+        "issues 2",
+        "teams 5",
+        "Issues, projects, cycles, and",
+        "Issues, projects, cycles, and",
+        "Issues, projects, cycles, and",
+        "Issues, projects, cycles, and",
+        "integration* Salesforce",
+        "integration* Salesforce",
+        "integration* Salesforce"
+      ]
+    }
+  ],
+  "pricing_summary": {
+    "free_tier": true,
+    "enterprise_tier": true,
+    "plan_names": [
+      "Free",
+      "Basic",
+      "Business",
+      "Enterprise"
+    ],
+    "price_range": "$0 – $16"
+  },
+  "raw_char_count": 4887
+}
