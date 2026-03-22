@@ -1,161 +1,96 @@
 {
-  "generated_at": "2026-03-22T13:49:10.742458+00:00",
-  "model": "action_recommendation_explainable_v1",
+  "generated_at": "2026-03-22T15:21:54.696447+00:00",
+  "model": "openai_action_recommendation_v1",
   "results": [
     {
       "company": "ClickUp",
-      "priority": "P0",
+      "priority": "P1",
       "recommendation_type": "pricing_response",
-      "owner": "Portfolio Operations Lead",
-      "due_window": "48 hours",
-      "action_title": "Run pricing defense sprint against ClickUp",
-      "action_detail": "Convene pricing council, map competitor tier overlap, and model three response options (discount fence, packaging shift, value-add bundle) before 0-30 days.",
-      "rationale": "ClickUp is critical risk with vulnerability score 0.965; predicted pricing change probability is 0.910 (0-30 days).",
+      "owner": "Pricing Strategy Team",
+      "due_window": "1-2 months",
+      "action_title": "Evaluate Pricing Structure for Enterprise Market",
+      "action_detail": "Conduct a comprehensive review of ClickUp's current pricing model and feature offerings, focusing on the enterprise segment to identify potential adjustments that could mitigate pricing pressure.",
+      "rationale": "Given the medium vulnerability risk and the likelihood of pricing changes, it is crucial to proactively assess and adapt the pricing strategy to maintain competitiveness in the enterprise market.",
       "evidence": {
-        "vulnerability_score": 0.965,
-        "vulnerability_rank": 1,
-        "pricing_change_probability": 0.91,
-        "predicted_timeline": "0-30 days",
-        "signal_hits": 13,
-        "price_range": "$0 – $28"
+        "vulnerability_score": 1.0,
+        "pricing_change_probability": 0.6
       },
       "decision_trace": [
-        "input.vulnerability_score=0.965",
-        "input.change_probability=0.910",
-        "input.confidence=0.919",
-        "input.signal_hits=13",
-        "decision_score=0.46*0.965 + 0.42*0.910 + 0.12*0.919",
-        "output.decision_score=0.936",
-        "output.recommendation_type=pricing_response",
-        "output.priority=P0",
-        "output.owner=Portfolio Operations Lead",
-        "output.due_window=48 hours"
+        "This recommendation is based on the current pricing risk assessment and the company's strong AI momentum, which may influence customer expectations and willingness to pay."
       ],
-      "generated_at": "2026-03-22T13:49:10.740391+00:00"
+      "generated_at": "2026-03-22T15:21:38.573062+00:00"
     },
     {
-      "company": "Notion",
-      "priority": "P0",
-      "recommendation_type": "product_response",
-      "owner": "Product Advisor / CTO Partner",
-      "due_window": "48 hours",
-      "action_title": "Launch feature-gap closure plan for Notion",
-      "action_detail": "Escalate top 3 feature gaps to portfolio CTO and define a 30-60 day roadmap patch with explicit customer retention targets.",
-      "rationale": "Notion is critical risk with vulnerability score 0.891; predicted pricing change probability is 0.762 (1-2 months).",
+      "company": "HubSpot",
+      "priority": "P1",
+      "recommendation_type": "pricing_response",
+      "owner": "Pricing Strategy Team",
+      "due_window": "1-2 months",
+      "action_title": "Evaluate and Adjust Pricing Strategy",
+      "action_detail": "Conduct a comprehensive review of HubSpot's current pricing strategy in light of competitive pressures and market signals. Identify potential adjustments to pricing tiers or feature offerings to mitigate vulnerabilities and enhance competitiveness.",
+      "rationale": "Given the medium vulnerability score and the potential for market saturation, it is crucial to proactively address pricing strategies to maintain market position and customer retention.",
       "evidence": {
-        "vulnerability_score": 0.891,
-        "vulnerability_rank": 2,
-        "pricing_change_probability": 0.762,
-        "predicted_timeline": "1-2 months",
-        "signal_hits": 7,
-        "price_range": "$0 – $20"
+        "vulnerability_score": 1.0,
+        "pricing_change_probability": 0.6
       },
       "decision_trace": [
-        "input.vulnerability_score=0.891",
-        "input.change_probability=0.762",
-        "input.confidence=0.811",
-        "input.signal_hits=7",
-        "decision_score=0.46*0.891 + 0.42*0.762 + 0.12*0.811",
-        "output.decision_score=0.827",
-        "output.recommendation_type=product_response",
-        "output.priority=P0",
-        "output.owner=Product Advisor / CTO Partner",
-        "output.due_window=48 hours"
+        "This recommendation is based on the analysis of HubSpot's vulnerability score and market conditions, indicating a need for strategic pricing adjustments to remain competitive."
       ],
-      "generated_at": "2026-03-22T13:49:10.740418+00:00"
+      "generated_at": "2026-03-22T15:21:43.081761+00:00"
     },
     {
       "company": "Linear",
       "priority": "P1",
-      "recommendation_type": "product_response",
-      "owner": "Product Advisor / CTO Partner",
-      "due_window": "7 days",
-      "action_title": "Launch feature-gap closure plan for Linear",
-      "action_detail": "Escalate top 3 feature gaps to portfolio CTO and define a 30-60 day roadmap patch with explicit customer retention targets.",
-      "rationale": "Linear is high risk with vulnerability score 0.703; predicted pricing change probability is 0.688 (1-2 months).",
+      "recommendation_type": "pricing_response",
+      "owner": "Product Management Team",
+      "due_window": "1-2 months",
+      "action_title": "Review and Optimize Pricing Structure",
+      "action_detail": "Conduct a thorough analysis of the current pricing tiers and feature offerings to identify opportunities for enhancement, especially in lower tiers, to mitigate potential pricing pressure.",
+      "rationale": "Given the medium vulnerability score and the potential for pricing pressure, optimizing the pricing structure can help maintain competitiveness and customer satisfaction.",
       "evidence": {
-        "vulnerability_score": 0.703,
-        "vulnerability_rank": 3,
-        "pricing_change_probability": 0.688,
-        "predicted_timeline": "1-2 months",
-        "signal_hits": 6,
-        "price_range": "$0 – $16"
+        "vulnerability_score": 1.0,
+        "pricing_change_probability": 0.6
       },
       "decision_trace": [
-        "input.vulnerability_score=0.703",
-        "input.change_probability=0.688",
-        "input.confidence=0.782",
-        "input.signal_hits=6",
-        "decision_score=0.46*0.703 + 0.42*0.688 + 0.12*0.782",
-        "output.decision_score=0.706",
-        "output.recommendation_type=product_response",
-        "output.priority=P1",
-        "output.owner=Product Advisor / CTO Partner",
-        "output.due_window=7 days"
+        "Based on the vulnerability summary and pricing change probability, a proactive approach to pricing optimization is warranted to address potential risks."
       ],
-      "generated_at": "2026-03-22T13:49:10.740432+00:00"
+      "generated_at": "2026-03-22T15:21:47.795220+00:00"
     },
     {
-      "company": "HubSpot",
-      "priority": "P2",
-      "recommendation_type": "gtm_response",
-      "owner": "GTM Advisor",
-      "due_window": "14 days",
-      "action_title": "Prepare GTM counter-messaging against HubSpot",
-      "action_detail": "Arm sales and customer success with objection-handling for likely pricing/features moves and deploy retention outreach to at-risk segments.",
-      "rationale": "HubSpot is high risk with vulnerability score 0.655; predicted pricing change probability is 0.588 (2-3 months).",
+      "company": "Notion",
+      "priority": "P1",
+      "recommendation_type": "pricing_response",
+      "owner": "Product Management Team",
+      "due_window": "1-2 months",
+      "action_title": "Review and Adjust Pricing Strategy",
+      "action_detail": "Conduct a comprehensive analysis of current pricing structure and feature offerings to identify areas for adjustment in response to competitive pressures and enterprise segment needs.",
+      "rationale": "To mitigate potential pricing pressure from competitors and enhance segment coverage, it is crucial to proactively adjust the pricing strategy.",
       "evidence": {
-        "vulnerability_score": 0.655,
-        "vulnerability_rank": 4,
-        "pricing_change_probability": 0.588,
-        "predicted_timeline": "2-3 months",
-        "signal_hits": 3,
-        "price_range": "N/A"
+        "vulnerability_score": 1.0,
+        "pricing_change_probability": 0.6
       },
       "decision_trace": [
-        "input.vulnerability_score=0.655",
-        "input.change_probability=0.588",
-        "input.confidence=0.750",
-        "input.signal_hits=3",
-        "decision_score=0.46*0.655 + 0.42*0.588 + 0.12*0.750",
-        "output.decision_score=0.638",
-        "output.recommendation_type=gtm_response",
-        "output.priority=P2",
-        "output.owner=GTM Advisor",
-        "output.due_window=14 days"
+        "The decision to recommend a pricing response is based on the current market signals and the identified vulnerabilities in Notion's pricing structure."
       ],
-      "generated_at": "2026-03-22T13:49:10.740441+00:00"
+      "generated_at": "2026-03-22T15:21:51.175186+00:00"
     },
     {
       "company": "Stripe",
-      "priority": "P3",
-      "recommendation_type": "monitor_only",
-      "owner": "Analyst",
-      "due_window": "30 days",
-      "action_title": "Continue structured monitoring for Stripe",
-      "action_detail": "No immediate intervention needed. Keep weekly watchlist tracking active and auto-alert on score jumps.",
-      "rationale": "Stripe is low risk with vulnerability score 0.040; predicted pricing change probability is 0.182 (3+ months).",
+      "priority": "P1",
+      "recommendation_type": "pricing_response",
+      "owner": "Product Management Team",
+      "due_window": "1-2 months",
+      "action_title": "Evaluate Fixed Pricing Model Options",
+      "action_detail": "Conduct a thorough analysis of the potential implementation of a fixed pricing model to address customer dissatisfaction during high transaction volumes.",
+      "rationale": "To mitigate the risk of losing customers to competitors with fixed pricing models, it is essential to explore alternative pricing strategies that could enhance customer satisfaction and retention.",
       "evidence": {
-        "vulnerability_score": 0.04,
-        "vulnerability_rank": 5,
-        "pricing_change_probability": 0.182,
-        "predicted_timeline": "3+ months",
-        "signal_hits": 0,
-        "price_range": "$0.02 – $500.00"
+        "vulnerability_score": 1.0,
+        "pricing_change_probability": 0.6
       },
       "decision_trace": [
-        "input.vulnerability_score=0.040",
-        "input.change_probability=0.182",
-        "input.confidence=0.400",
-        "input.signal_hits=0",
-        "decision_score=0.46*0.040 + 0.42*0.182 + 0.12*0.400",
-        "output.decision_score=0.143",
-        "output.recommendation_type=monitor_only",
-        "output.priority=P3",
-        "output.owner=Analyst",
-        "output.due_window=30 days"
+        "The recommendation is based on the analysis of Stripe's current pricing structure, customer feedback, and competitor pricing strategies, highlighting the need for proactive measures to maintain market position."
       ],
-      "generated_at": "2026-03-22T13:49:10.740450+00:00"
+      "generated_at": "2026-03-22T15:21:54.690260+00:00"
     }
   ]
 }
