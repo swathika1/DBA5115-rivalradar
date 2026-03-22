@@ -1,7 +1,7 @@
 {
   "company": "Linear",
   "url": "https://linear.app/pricing",
-  "scraped_at": "2026-03-17T13:59:47.986625+00:00",
+  "scraped_at": "2026-03-22T17:57:05.638251+00:00",
   "plans": [
     {
       "name": "Free",
@@ -9,7 +9,8 @@
       "billing": "free",
       "features": [
         "members 2",
-        "teams 250"
+        "teams 250",
+        "Slack & GitHub"
       ]
     },
     {
@@ -29,18 +30,18 @@
       "price": "Contact sales",
       "billing": "custom",
       "features": [
-        "support  ’s",
-        "members 10MB",
-        "uploads 250",
-        "issues 2",
+        "Migration & onboarding",
+        "than 25,000",
+        "stories → Features",
+        "upload 10MB",
+        "Issues 250",
+        "Teams 2",
         "teams 5",
-        "Issues, projects, cycles, and",
-        "Issues, projects, cycles, and",
-        "Issues, projects, cycles, and",
-        "Issues, projects, cycles, and",
-        "integration* Salesforce",
-        "integration* Salesforce",
-        "integration* Salesforce"
+        "Issues, projects, cycles, initiatives",
+        "integration* Team",
+        "Analytics & Reporting",
+        "manager* Custom  * Uptime",
+        "SLA* or"
       ]
     }
   ],
@@ -55,5 +56,5 @@
     ],
     "price_range": "$0 – $16"
   },
-  "raw_char_count": 4887
+  "raw_char_count": 2404
 }

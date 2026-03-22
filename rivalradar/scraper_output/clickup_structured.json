@@ -1,7 +1,7 @@
 {
   "company": "ClickUp",
   "url": "https://clickup.com/pricing",
-  "scraped_at": "2026-03-17T13:59:47.933340+00:00",
+  "scraped_at": "2026-03-22T17:57:12.382109+00:00",
   "plans": [
     {
       "name": "Free",
@@ -10,8 +10,14 @@
       "features": [
         "FEATURES: 60MB",
         "Recording 24/7",
-        "Support 1",
-        "ClickUp $7",
+        "Support 1"
+      ]
+    },
+    {
+      "name": "Unlimited",
+      "price": "$7",
+      "billing": "per user/month",
+      "features": [
         "user/month, billed",
         "ClickUp 3",
         "Teams (User",
@@ -34,7 +40,6 @@
       "price": "Contact sales",
       "billing": "custom",
       "features": [
-        "governed, scalable",
         "MSA &   Available",
         "Sign-On (SSO) SCIM",
         "US, EU, & APAC",
@@ -81,6 +86,7 @@
     "enterprise_tier": true,
     "plan_names": [
       "Free",
+      "Unlimited",
       "Business",
       "Enterprise",
       "Brain AI",
@@ -88,5 +94,5 @@
     ],
     "price_range": "$0 – $28"
   },
-  "raw_char_count": 6384
+  "raw_char_count": 6164
 }

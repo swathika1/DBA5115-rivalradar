@@ -1,0 +1,18 @@
+{
+  "unique_key": "https://www.hubspot.com/pricing/marketing",
+  "url": "https://www.hubspot.com/pricing/marketing",
+  "method": "GET",
+  "payload": null,
+  "headers": {},
+  "user_data": {
+    "__crawlee": {
+      "state": 4
+    },
+    "page_type": "pricing",
+    "name": "HubSpot"
+  },
+  "retry_count": 0,
+  "no_retry": false,
+  "loaded_url": null,
+  "handled_at": "2026-03-22 17:57:19.710422+00:00"
+}

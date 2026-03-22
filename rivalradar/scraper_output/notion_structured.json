@@ -1,7 +1,7 @@
 {
   "company": "Notion",
   "url": "https://www.notion.so/pricing",
-  "scraped_at": "2026-03-17T13:59:43.222649+00:00",
+  "scraped_at": "2026-03-22T17:57:05.522183+00:00",
   "plans": [
     {
       "name": "Free",
@@ -66,5 +66,5 @@
     ],
     "price_range": "$0 – $20"
   },
-  "raw_char_count": 5461
+  "raw_char_count": 5384
 }

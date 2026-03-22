@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T15:21:35.033683+00:00",
+  "generated_at": "2026-03-22T18:22:11.136652+00:00",
   "model": "openai_pricing_prediction_v1",
   "results": [
     {
@@ -7,30 +7,30 @@
       "change_probability": 0.6,
       "predicted_timeline": "1-2 months",
       "risk_level": "medium",
-      "reasoning_summary": "Given the current medium risk level and the company's strong AI momentum, a pricing change is likely but not imminent. The confidence level suggests a moderate likelihood of change within the next couple of months.",
+      "reasoning_summary": "Given the medium risk level and the current confidence in market signals, a pricing change is likely but not imminent. The company is under moderate pressure to adapt its pricing strategy due to competitive dynamics and market signals.",
       "drivers": {
-        "vulnerability_pressure": 0.8,
-        "strategic_signal_intensity": 0.7,
+        "vulnerability_pressure": 0.7,
+        "strategic_signal_intensity": 0.8,
         "plan_complexity": 0.5,
         "portfolio_competition_intensity": 0.6,
         "pricing_plan_volatility": 0.4,
         "analysis_confidence": 0.75
       },
       "decision_trace": [
-        "The analysis indicates that while there is pressure from competitors and strategic signals are strong, the complexity of the current pricing plans and the existing portfolio competition suggest a cautious approach to pricing changes."
+        "The decision to predict a pricing change is based on the company's vulnerability score, market signals indicating strong AI momentum, and the competitive landscape. The medium risk level suggests that while changes are likely, they are manageable."
       ],
       "evidence": {
         "price_range": "$0 – $28",
         "peer_rank": 1
       },
-      "generated_at": "2026-03-22T15:21:15.412123+00:00"
+      "generated_at": "2026-03-22T18:21:50.282899+00:00"
     },
     {
       "company": "HubSpot",
       "change_probability": 0.6,
       "predicted_timeline": "1-2 months",
       "risk_level": "medium",
-      "reasoning_summary": "The company is experiencing medium risk due to a high vulnerability score and moderate confidence in market signals. The likelihood of a pricing change is influenced by competitive pressures and strategic signals indicating a need for adjustment.",
+      "reasoning_summary": "Given the medium risk level and the current confidence in the analysis, there is a moderate likelihood of pricing changes within the next couple of months. The company's vulnerability score indicates some pressure, but the strategic signals suggest a stable environment for now.",
       "drivers": {
         "vulnerability_pressure": 0.8,
         "strategic_signal_intensity": 0.7,
@@ -40,97 +40,96 @@
         "analysis_confidence": 0.75
       },
       "decision_trace": [
-        "The decision to predict a pricing change is based on the company's current market positioning, competitive landscape, and internal metrics indicating a need for adjustment."
+        "The decision to predict a medium risk level and a 1-2 month timeline is based on the combination of the company's vulnerability score and the strategic signals indicating readiness and integration strength."
       ],
       "evidence": {
+        "vulnerability_score": 1.0,
+        "confidence": 0.75,
+        "signals": {
+          "ai_momentum": 5,
+          "enterprise_readiness": 7,
+          "integration_strength": 6
+        },
+        "metrics": {
+          "plan_count": 5,
+          "price_range": "N/A",
+          "avg_features_per_plan": 0.0,
+          "unique_feature_count": 0,
+          "numeric_price_count": 0
+        },
         "price_range": "N/A",
         "peer_rank": 2
       },
-      "generated_at": "2026-03-22T15:21:19.720232+00:00"
+      "generated_at": "2026-03-22T18:21:56.022509+00:00"
     },
     {
       "company": "Linear",
       "change_probability": 0.6,
       "predicted_timeline": "1-2 months",
       "risk_level": "medium",
-      "reasoning_summary": "The company has a medium risk level due to its current vulnerability score and market signals indicating strong enterprise readiness and integration strength. However, the pricing plans are stable with a low average feature count, suggesting limited immediate changes.",
+      "reasoning_summary": "The company has a medium risk level due to its current vulnerability score and competitive pricing structure. The signals indicate a strong readiness for enterprise solutions, which may lead to adjustments in pricing strategies.",
       "drivers": {
         "vulnerability_pressure": 0.8,
-        "strategic_signal_intensity": 0.9,
-        "plan_complexity": 0.2,
-        "portfolio_competition_intensity": 0.5,
-        "pricing_plan_volatility": 0.3,
+        "strategic_signal_intensity": 0.7,
+        "plan_complexity": 0.5,
+        "portfolio_competition_intensity": 0.6,
+        "pricing_plan_volatility": 0.4,
         "analysis_confidence": 0.8
       },
       "decision_trace": [
-        "The decision to predict a medium likelihood of price change is based on the company's strong market signals and moderate vulnerability score, balanced against the stability of its pricing plans."
+        "The decision to predict a medium likelihood of pricing change is based on the company's current vulnerability score and the strong signals indicating readiness for enterprise solutions. The competitive landscape and the existing pricing plans also contribute to this assessment."
       ],
       "evidence": {
         "price_range": "$0 – $16",
         "peer_rank": 3
       },
-      "generated_at": "2026-03-22T15:21:23.866990+00:00"
+      "generated_at": "2026-03-22T18:22:01.798831+00:00"
     },
     {
       "company": "Notion",
       "change_probability": 0.6,
       "predicted_timeline": "1-2 months",
       "risk_level": "medium",
-      "reasoning_summary": "Given the medium risk level and the current confidence in market signals, a moderate likelihood of pricing changes is expected within the next couple of months.",
+      "reasoning_summary": "The company is experiencing medium risk due to its current vulnerability score and competitive pricing plans. The likelihood of a pricing change is moderate, influenced by strategic signals and market competition.",
       "drivers": {
-        "vulnerability_pressure": 1.0,
-        "strategic_signal_intensity": 0.8,
+        "vulnerability_pressure": 0.8,
+        "strategic_signal_intensity": 0.7,
         "plan_complexity": 0.5,
         "portfolio_competition_intensity": 0.6,
         "pricing_plan_volatility": 0.4,
-        "analysis_confidence": 0.75
+        "analysis_confidence": 0.8
       },
       "decision_trace": [
-        "The analysis is based on the company's current pricing structure, market signals indicating strong AI momentum and enterprise readiness, and the overall competitive landscape."
+        "The analysis considered the company's vulnerability score, competitive landscape, and strategic signals indicating potential shifts in pricing strategy."
       ],
       "evidence": {
         "price_range": "$0 – $20",
         "peer_rank": 4
       },
-      "generated_at": "2026-03-22T15:21:29.480020+00:00"
+      "generated_at": "2026-03-22T18:22:06.493501+00:00"
     },
     {
       "company": "Stripe",
       "change_probability": 0.6,
       "predicted_timeline": "1-2 months",
       "risk_level": "medium",
-      "reasoning_summary": "Given the current medium risk level and high confidence in the analysis, there is a moderate likelihood of pricing changes within the next couple of months. The company's vulnerability score indicates some pressure, but the strong signals in enterprise readiness and integration strength suggest a stable pricing environment.",
+      "reasoning_summary": "Given the current medium risk level and high confidence in the analysis, there is a moderate likelihood of pricing changes within the next couple of months due to competitive pressures and strategic signals.",
       "drivers": {
         "vulnerability_pressure": 0.7,
         "strategic_signal_intensity": 0.8,
         "plan_complexity": 0.2,
-        "portfolio_competition_intensity": 0.5,
-        "pricing_plan_volatility": 0.3,
+        "portfolio_competition_intensity": 0.6,
+        "pricing_plan_volatility": 0.5,
         "analysis_confidence": 0.85
       },
       "decision_trace": [
-        "The decision to predict a medium change probability is based on the combination of the company's vulnerability score and the strong strategic signals observed. The lack of fixed plan tiers and the transaction-based pricing model also contribute to the uncertainty in pricing changes."
+        "The analysis considered the company's current pricing model, market signals, and competitive landscape, leading to a moderate probability of change."
       ],
       "evidence": {
-        "vulnerability_score": 1.0,
-        "confidence": 0.85,
-        "signals": {
-          "ai_momentum": 4,
-          "enterprise_readiness": 5,
-          "integration_strength": 6
-        },
-        "metrics": {
-          "plan_count": 0,
-          "price_range": "$0.02 – $500.00",
-          "raw_char_count": 19012,
-          "avg_features_per_plan": 0.0,
-          "unique_feature_count": 0,
-          "numeric_price_count": 0
-        },
         "price_range": "$0.02 – $500.00",
         "peer_rank": 5
       },
-      "generated_at": "2026-03-22T15:21:35.028769+00:00"
+      "generated_at": "2026-03-22T18:22:11.135871+00:00"
     }
   ]
 }

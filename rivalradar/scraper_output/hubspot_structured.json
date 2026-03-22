@@ -1,7 +1,7 @@
 {
   "company": "HubSpot",
   "url": "https://www.hubspot.com/pricing/marketing",
-  "scraped_at": "2026-03-17T13:59:55.289861+00:00",
+  "scraped_at": "2026-03-22T17:57:19.699238+00:00",
   "plans": [
     {
       "name": "Starter",
@@ -26,26 +26,18 @@
       "price": "0/mo",
       "billing": "/mo",
       "features": [
-        "to 2",
-        "users. No",
-        "required. free",
+        "Includes: Free",
         "marketing, sales, service, content, and",
         "SGD 13/mo/seat",
         "SGD 28/mo/seat",
         "now 500",
         "Credits 1,000",
-        "automation, analytics, and",
+        "limits, plus",
+        "from: feature",
+        "And: feature",
+        "campaigns, automation, and",
         "SGD 1,120/mo",
-        "SGD 1,246/mo",
-        "Includes 3"
-      ]
-    },
-    {
-      "name": "Enterprise",
-      "price": "Contact sales",
-      "billing": "custom",
-      "features": [
-        "automation, data, and"
+        "SGD 1,246/mo"
       ]
     },
     {
@@ -57,14 +49,39 @@
         "SGD 105/mo",
         "Sales 5,000",
         "Credits 10,000",
-        "contacts *Cost",
+        "Professional, plus: feature",
+        "Lists (Beta) feature",
+        "automation (Beta) feature",
+        "approvals *Cost",
         "required, one-time",
         "SGD 9,800. View",
         "Professional & Enterprise",
-        "choose? Starter",
-        "for: feature",
-        "when: feature",
-        "for: feature"
+        "Credits: Fuel"
+      ]
+    },
+    {
+      "name": "Professional",
+      "price": "1,120/mo",
+      "billing": "/mo",
+      "features": []
+    },
+    {
+      "name": "Enterprise",
+      "price": "5,100/mo",
+      "billing": "/mo",
+      "features": [
+        "types 2",
+        "types 2",
+        "types 5",
+        "types 15",
+        "to 50",
+        "to 100",
+        "type, country, referral",
+        "URL, etc. Includes",
+        "type, country, referral",
+        "URL, and",
+        "more. Includes",
+        "type, country, referral"
       ]
     }
   ],
@@ -74,10 +91,11 @@
     "plan_names": [
       "Starter",
       "Free",
-      "Enterprise",
-      "Growth"
+      "Growth",
+      "Professional",
+      "Enterprise"
     ],
     "price_range": "N/A"
   },
-  "raw_char_count": 9934
+  "raw_char_count": 13227
 }

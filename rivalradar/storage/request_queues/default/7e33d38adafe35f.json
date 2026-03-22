@@ -1,0 +1,18 @@
+{
+  "unique_key": "https://linear.app/pricing",
+  "url": "https://linear.app/pricing",
+  "method": "GET",
+  "payload": null,
+  "headers": {},
+  "user_data": {
+    "__crawlee": {
+      "state": 4
+    },
+    "page_type": "pricing",
+    "name": "Linear"
+  },
+  "retry_count": 0,
+  "no_retry": false,
+  "loaded_url": null,
+  "handled_at": "2026-03-22 17:57:05.645733+00:00"
+}
