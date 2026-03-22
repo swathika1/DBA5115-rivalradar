@@ -6,13 +6,13 @@
   "headers": {},
   "user_data": {
     "__crawlee": {
-      "state": 4
+      "state": 6
     },
     "page_type": "pricing",
     "name": "Stripe"
   },
-  "retry_count": 0,
+  "retry_count": 3,
   "no_retry": false,
   "loaded_url": null,
-  "handled_at": "2026-03-17 14:00:06.807954+00:00"
+  "handled_at": "2026-03-18 05:49:42.687722+00:00"
 }

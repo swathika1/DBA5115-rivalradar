@@ -1,0 +1,181 @@
+{
+  "generated_at": "2026-03-22T13:49:10.737474+00:00",
+  "model": "pricing_prediction_explainable_v1",
+  "results": [
+    {
+      "company": "ClickUp",
+      "change_probability": 0.91,
+      "predicted_timeline": "0-30 days",
+      "risk_level": "high",
+      "reasoning_summary": "ClickUp pricing-change probability=0.910 (high) in 0-30 days. Top driver: strategic_signal_intensity.",
+      "drivers": {
+        "vulnerability_pressure": 0.965,
+        "strategic_signal_intensity": 1.0,
+        "plan_complexity": 1.0,
+        "portfolio_competition_intensity": 0.572,
+        "pricing_plan_volatility": 0.915,
+        "analysis_confidence": 0.919
+      },
+      "decision_trace": [
+        "input.vulnerability_score=0.965",
+        "input.confidence=0.919",
+        "input.signal_hits=13 -> normalized=1.000",
+        "input.plan_count=5 -> normalized=1.000",
+        "input.plan_volatility=0.915",
+        "input.peer_competition_intensity=0.572",
+        "weighted_probability=0.34*0.965 + 0.18*1.000 + 0.12*1.000 + 0.14*0.572 + 0.16*0.915 + 0.06*0.919",
+        "output.change_probability=0.910",
+        "output.timeline=0-30 days",
+        "output.risk=high"
+      ],
+      "evidence": {
+        "price_range": "$0 – $28",
+        "plan_count": 5,
+        "signal_hits": 13,
+        "peer_rank": 1,
+        "peer_percentile": 1.0
+      },
+      "generated_at": "2026-03-22T13:49:10.734546+00:00"
+    },
+    {
+      "company": "Notion",
+      "change_probability": 0.762,
+      "predicted_timeline": "1-2 months",
+      "risk_level": "medium",
+      "reasoning_summary": "Notion pricing-change probability=0.762 (medium) in 1-2 months. Top driver: vulnerability_pressure.",
+      "drivers": {
+        "vulnerability_pressure": 0.891,
+        "strategic_signal_intensity": 0.583,
+        "plan_complexity": 0.8,
+        "portfolio_competition_intensity": 0.591,
+        "pricing_plan_volatility": 0.795,
+        "analysis_confidence": 0.811
+      },
+      "decision_trace": [
+        "input.vulnerability_score=0.891",
+        "input.confidence=0.811",
+        "input.signal_hits=7 -> normalized=0.583",
+        "input.plan_count=4 -> normalized=0.800",
+        "input.plan_volatility=0.795",
+        "input.peer_competition_intensity=0.591",
+        "weighted_probability=0.34*0.891 + 0.18*0.583 + 0.12*0.800 + 0.14*0.591 + 0.16*0.795 + 0.06*0.811",
+        "output.change_probability=0.762",
+        "output.timeline=1-2 months",
+        "output.risk=medium"
+      ],
+      "evidence": {
+        "price_range": "$0 – $20",
+        "plan_count": 4,
+        "signal_hits": 7,
+        "peer_rank": 2,
+        "peer_percentile": 0.75
+      },
+      "generated_at": "2026-03-22T13:49:10.734610+00:00"
+    },
+    {
+      "company": "Linear",
+      "change_probability": 0.688,
+      "predicted_timeline": "1-2 months",
+      "risk_level": "medium",
+      "reasoning_summary": "Linear pricing-change probability=0.688 (medium) in 1-2 months. Top driver: plan_complexity.",
+      "drivers": {
+        "vulnerability_pressure": 0.703,
+        "strategic_signal_intensity": 0.5,
+        "plan_complexity": 0.8,
+        "portfolio_competition_intensity": 0.638,
+        "pricing_plan_volatility": 0.79,
+        "analysis_confidence": 0.782
+      },
+      "decision_trace": [
+        "input.vulnerability_score=0.703",
+        "input.confidence=0.782",
+        "input.signal_hits=6 -> normalized=0.500",
+        "input.plan_count=4 -> normalized=0.800",
+        "input.plan_volatility=0.790",
+        "input.peer_competition_intensity=0.638",
+        "weighted_probability=0.34*0.703 + 0.18*0.500 + 0.12*0.800 + 0.14*0.638 + 0.16*0.790 + 0.06*0.782",
+        "output.change_probability=0.688",
+        "output.timeline=1-2 months",
+        "output.risk=medium"
+      ],
+      "evidence": {
+        "price_range": "$0 – $16",
+        "plan_count": 4,
+        "signal_hits": 6,
+        "peer_rank": 3,
+        "peer_percentile": 0.5
+      },
+      "generated_at": "2026-03-22T13:49:10.734659+00:00"
+    },
+    {
+      "company": "HubSpot",
+      "change_probability": 0.588,
+      "predicted_timeline": "2-3 months",
+      "risk_level": "medium",
+      "reasoning_summary": "HubSpot pricing-change probability=0.588 (medium) in 2-3 months. Top driver: plan_complexity.",
+      "drivers": {
+        "vulnerability_pressure": 0.655,
+        "strategic_signal_intensity": 0.25,
+        "plan_complexity": 0.8,
+        "portfolio_competition_intensity": 0.65,
+        "pricing_plan_volatility": 0.55,
+        "analysis_confidence": 0.75
+      },
+      "decision_trace": [
+        "input.vulnerability_score=0.655",
+        "input.confidence=0.750",
+        "input.signal_hits=3 -> normalized=0.250",
+        "input.plan_count=4 -> normalized=0.800",
+        "input.plan_volatility=0.550",
+        "input.peer_competition_intensity=0.650",
+        "weighted_probability=0.34*0.655 + 0.18*0.250 + 0.12*0.800 + 0.14*0.650 + 0.16*0.550 + 0.06*0.750",
+        "output.change_probability=0.588",
+        "output.timeline=2-3 months",
+        "output.risk=medium"
+      ],
+      "evidence": {
+        "price_range": "N/A",
+        "plan_count": 4,
+        "signal_hits": 3,
+        "peer_rank": 4,
+        "peer_percentile": 0.25
+      },
+      "generated_at": "2026-03-22T13:49:10.734695+00:00"
+    },
+    {
+      "company": "Stripe",
+      "change_probability": 0.182,
+      "predicted_timeline": "3+ months",
+      "risk_level": "low",
+      "reasoning_summary": "Stripe pricing-change probability=0.182 (low) in 3+ months. Top driver: portfolio_competition_intensity.",
+      "drivers": {
+        "vulnerability_pressure": 0.04,
+        "strategic_signal_intensity": 0.0,
+        "plan_complexity": 0.0,
+        "portfolio_competition_intensity": 0.803,
+        "pricing_plan_volatility": 0.2,
+        "analysis_confidence": 0.4
+      },
+      "decision_trace": [
+        "input.vulnerability_score=0.040",
+        "input.confidence=0.400",
+        "input.signal_hits=0 -> normalized=0.000",
+        "input.plan_count=0 -> normalized=0.000",
+        "input.plan_volatility=0.200",
+        "input.peer_competition_intensity=0.803",
+        "weighted_probability=0.34*0.040 + 0.18*0.000 + 0.12*0.000 + 0.14*0.803 + 0.16*0.200 + 0.06*0.400",
+        "output.change_probability=0.182",
+        "output.timeline=3+ months",
+        "output.risk=low"
+      ],
+      "evidence": {
+        "price_range": "$0.02 – $500.00",
+        "plan_count": 0,
+        "signal_hits": 0,
+        "peer_rank": 5,
+        "peer_percentile": 0.0
+      },
+      "generated_at": "2026-03-22T13:49:10.734727+00:00"
+    }
+  ]
+}

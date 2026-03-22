@@ -6,6 +6,7 @@ requests>=2.31.0
 sentence-transformers>=2.2.2
 python-dotenv>=1.0.0
 numpy>=1.24.0
+pandas>=2.0.0
 lxml>=4.9.0
 crawlee[playwright]>=1.5.0
-browserforge==1.1.2
+browserforge>=1.2.3
