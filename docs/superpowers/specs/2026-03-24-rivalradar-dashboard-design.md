@@ -14,11 +14,32 @@ Add an interactive dashboard cell at the bottom of `agentic_pipeline.ipynb` that
 
 ## Constraints
 
-- **No existing cell changes** — append only.
-- **No pipeline re-execution** — reads `pipeline_result` as-is.
+- **No existing cell changes except Cell 2** — only `get_openai_client()` in Cell 2 is updated to support `OPENAI_BASE_URL`; all other cells are untouched.
+- **No pipeline re-execution in dashboard cell** — reads `pipeline_result` as-is.
 - **Minimal new dependencies** — only `plotly` (graph_objects + subplots).
 - **MVP scope** — no filtering widgets, no server, no persistence.
 - **Fail fast** — guard at cell top raises `RuntimeError` if `pipeline_result` is not defined.
+
+---
+
+## Groq API Fix (prerequisite for pipeline)
+
+The pipeline currently uses `OpenAI(api_key=OPENAI_API_KEY)` with no `base_url`, which routes to OpenAI's endpoint. The project has switched to a Groq API key (`gsk_...`). Two changes are required:
+
+### 1. `.env.example`
+Set `OPENAI_BASE_URL=https://api.groq.com/openai/v1` and update `OPENAI_MODEL` to a Groq-compatible model (e.g. `llama-3.3-70b-versatile`). Keep `OPENAI_API_KEY` header name unchanged.
+
+### 2. Cell 2 — `get_openai_client()`
+Read `OPENAI_BASE_URL` from `_env` and pass it to the client if present:
+```python
+OPENAI_BASE_URL = _env.get("OPENAI_BASE_URL", "").strip() or None
+
+def get_openai_client() -> OpenAI:
+    return OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL)
+```
+This is backward-compatible: if `OPENAI_BASE_URL` is empty, `base_url=None` leaves OpenAI as the default.
+
+The dashboard cell itself makes no API calls and is unaffected by this change.
 
 ---
 
@@ -150,12 +171,14 @@ def fmt_pct(v) -> str:
 
 Each section calls `fig.show()` independently so sections render sequentially in the notebook output.
 
+At the end of the cell, all four figures are also written to a single self-contained HTML file using `plotly.io.write_html` with `include_plotlyjs="cdn"` (keeps file size small) and `full_html=True`. The file is saved to the same directory as the notebook as `rivalradar_dashboard.html`. A final `print()` confirms the path. Opening the file in any browser shows all four sections as interactive Plotly charts — no server required.
+
 ---
 
 ## Out of Scope (MVP)
 
 - Dropdown/filter widgets (ipywidgets)
-- Export to HTML or PDF
 - Real-time refresh
 - Responsive layout tuning
 - Drill-down modals
+- PDF export
