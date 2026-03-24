@@ -31,7 +31,31 @@ All data comes from `pipeline_result` already bound in the kernel:
 | `vulnerability_results` | `pipeline_result["agent2_output"]["vulnerability_results"]` | `list[VulnerabilityResult]` |
 | `pricing_predictions` | `pipeline_result["agent3_output"]["pricing_predictions"]` | `list[PricingPrediction]` |
 | `action_recommendations` | `pipeline_result["agent4_output"]["action_recommendations"]` | `list[ActionRecommendation]` |
-| `structured_profiles` | `pipeline_result["agent1_output"]["structured_profiles"]` | `list[dict]` |
+
+`structured_profiles` (Agent 1) is not needed — all required data is already embedded in `VulnerabilityResult` objects.
+
+---
+
+## Shared Helpers
+
+### Risk colour helper
+Used in Sections 1 and 3. Returns a fill colour string based on `risk_level`:
+```python
+def risk_colour(level: str) -> str:
+    return {
+        "critical": "#FFCCCC",
+        "high":     "#FFCCCC",
+        "medium":   "#FFF3CC",
+        "low":      "#CCFFCC",
+    }.get(str(level).lower(), "#FFFFFF")  # fallback: white for unrecognised values
+```
+
+### Peer percentile formatter
+Used in Section 1. Formats `peer_percentile` (a `float | None`):
+```python
+def fmt_pct(v) -> str:
+    return f"{v:.0%}" if v is not None else "N/A"
+```
 
 ---
 
@@ -39,34 +63,32 @@ All data comes from `pipeline_result` already bound in the kernel:
 
 **Chart type:** `plotly.graph_objects.Table`
 **Columns:** Rank | Company | Vulnerability Score | Risk Level | Confidence | Peer Percentile
-**Data source:** `vulnerability_results` sorted by `peer_rank`
-**Colour scheme (row fill):**
-- `critical` or `high` → `#FFCCCC` (red)
-- `medium` → `#FFF3CC` (amber)
-- `low` → `#CCFFCC` (green)
-
-Header row uses a dark grey (`#2C3E50`) with white text.
+**Data source:** `vulnerability_results` sorted by `peer_rank` (ascending)
+**Row fill:** `risk_colour(result.risk_level)` per row; fallback `#FFFFFF` for unrecognised values
+**Peer Percentile display:** `fmt_pct(result.peer_percentile)` — e.g. `75%` or `N/A`
+**Header row:** fill `#2C3E50`, font colour white
 
 ---
 
 ## Section 2 — Component Breakdown
 
 **Chart type:** `plotly.subplots.make_subplots` grid of horizontal bar charts
-**One subplot per company**, laid out in a 2-column grid (ceil(n/2) rows).
-**X-axis:** `weighted_score` (0–1 range)
+**One subplot per company**, laid out in a 2-column grid (`rows = math.ceil(n / 2)`).
+**X-axis:** `weighted_score` (fixed range `[0, 1]`); `shared_xaxes=False`
 **Y-axis:** component name (5 fixed names: `pricing_pressure`, `segment_coverage`, `feature_depth`, `strategic_signals`, `business_model_pressure`)
-**Bar colour:** single accent colour (`#3498DB`) — keeping MVP simple.
+**Bar colour:** single accent colour (`#3498DB`)
 **Data source:** `result.component_breakdown` for each `VulnerabilityResult`
+**Figure height:** `max(400, 300 * rows)` pixels — prevents cramped bars with many companies
 
 ---
 
 ## Section 3 — Pricing Prediction Summary
 
 **Chart type:** `plotly.graph_objects.Table`
-**Columns:** Company | Change Probability | Timeline | Risk Level | Top Driver
-**Top Driver:** key from `p.drivers` with the highest float value
+**Columns:** Company | Change Probability | Predicted Timeline (`p.predicted_timeline`) | Risk Level | Top Driver
+**Top Driver:** `max(p.drivers, key=p.drivers.get) if p.drivers else "N/A"` — key with highest float value; guard against empty dict (Agent 3 always writes 6 driver keys, but guarded for safety)
 **Data source:** `pricing_predictions` sorted by `change_probability` descending
-**Colour scheme (row fill):** same risk-level mapping as Section 1 (using `p.risk_level`)
+**Row fill:** `risk_colour(p.risk_level)` per row
 
 ---
 
@@ -74,12 +96,13 @@ Header row uses a dark grey (`#2C3E50`) with white text.
 
 **Chart type:** `plotly.graph_objects.Table`
 **Columns:** Priority | Company | Action Title | Owner | Due Window | Rationale
-**Data source:** `action_recommendations` sorted by priority order (P0→P3)
-**Colour scheme (row fill):**
+**Data source:** `action_recommendations` sorted by `int(a.priority[1]) if len(a.priority) >= 2 and a.priority[1].isdigit() else 99` — safe numeric key, falls back to 99 for any unrecognised priority string
+**Row fill colour by priority:**
 - `P0` → `#FF4C4C` (red)
 - `P1` → `#FFA500` (orange)
 - `P2` → `#FFD700` (yellow)
 - `P3` → `#EEEEEE` (light grey)
+- Unrecognised → `#FFFFFF` (white fallback)
 
 ---
 
@@ -88,30 +111,41 @@ Header row uses a dark grey (`#2C3E50`) with white text.
 ```python
 # %% [Dashboard] RivalRadar Interactive Dashboard
 
+import math
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import math
 
-# Guard
-if 'pipeline_result' not in dir():
+# Guard — use globals() for reliable Jupyter kernel variable check
+if 'pipeline_result' not in globals():
     raise RuntimeError("Run the pipeline cell first (pipeline_result not found).")
 
 # Extract data
-vulnerability_results = pipeline_result["agent2_output"]["vulnerability_results"]
-pricing_predictions   = pipeline_result["agent3_output"]["pricing_predictions"]
+vulnerability_results  = pipeline_result["agent2_output"]["vulnerability_results"]
+pricing_predictions    = pipeline_result["agent3_output"]["pricing_predictions"]
 action_recommendations = pipeline_result["agent4_output"]["action_recommendations"]
 
+# Shared helpers
+def risk_colour(level: str) -> str:
+    return {"critical": "#FFCCCC", "high": "#FFCCCC",
+            "medium": "#FFF3CC", "low": "#CCFFCC"}.get(str(level).lower(), "#FFFFFF")
+
+def fmt_pct(v) -> str:
+    return f"{v:.0%}" if v is not None else "N/A"
+
 # --- Section 1: Portfolio Heatmap ---
-# ... build and show fig1
+# ... build go.Table using vulnerability_results, call fig1.show()
 
 # --- Section 2: Component Breakdown ---
-# ... build subplots grid and show fig2
+# ... make_subplots grid, rows=math.ceil(n/2), cols=2, height=max(400, 300*rows)
+# ... call fig2.show()
 
 # --- Section 3: Pricing Prediction Summary ---
-# ... build and show fig3
+# ... build go.Table using pricing_predictions, call fig3.show()
 
 # --- Section 4: Action Recommendations ---
-# ... build and show fig4
+# ... build go.Table using action_recommendations sorted by:
+#     key=lambda a: int(a.priority[1]) if len(a.priority) >= 2 and a.priority[1].isdigit() else 99
+# ... call fig4.show()
 ```
 
 Each section calls `fig.show()` independently so sections render sequentially in the notebook output.
