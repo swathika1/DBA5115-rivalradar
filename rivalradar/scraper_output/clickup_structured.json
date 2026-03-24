@@ -1,7 +1,7 @@
 {
   "company": "ClickUp",
   "url": "https://clickup.com/pricing",
-  "scraped_at": "2026-03-22T17:57:12.382109+00:00",
+  "scraped_at": "2026-03-24T08:33:33.383330+00:00",
   "plans": [
     {
       "name": "Free",
@@ -19,10 +19,11 @@
       "billing": "per user/month",
       "features": [
         "user/month, billed",
-        "ClickUp 3",
-        "Teams (User",
-        "Group) Native",
-        "Goals & Portfol"
+        "FOREVER, PLUS: Unlimited",
+        "Spaces, Folders, and",
+        "Goals & Portfolio",
+        "Slack, Hubspot, Google",
+        "Drive, and"
       ]
     },
     {
@@ -31,8 +32,12 @@
       "billing": "per user/month",
       "features": [
         "user/month, billed",
+        "UNLIMITED, PLUS: Unlimited",
+        "Webhooks & Automation   5K",
         "Points & Reporting",
-        "SMS 2-Factor"
+        "SMS 2-Factor",
+        "more... Enterprise",
+        "BUSINESS, PLUS:"
       ]
     },
     {
@@ -40,9 +45,11 @@
       "price": "Contact sales",
       "billing": "custom",
       "features": [
+        "SSO & SCIM",
+        "API 250K",
         "MSA &   Available",
-        "Sign-On (SSO) SCIM",
-        "US, EU, & APAC",
+        "Automations &   Enterprise-Scale",
+        "more... THE",
         "list [ AI",
         "PRICING ] The",
         "to 20% with",
@@ -94,5 +101,5 @@
     ],
     "price_range": "$0 – $28"
   },
-  "raw_char_count": 6164
+  "raw_char_count": 6326
 }

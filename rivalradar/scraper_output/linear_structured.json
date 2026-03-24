@@ -1,7 +1,7 @@
 {
   "company": "Linear",
   "url": "https://linear.app/pricing",
-  "scraped_at": "2026-03-22T17:57:05.638251+00:00",
+  "scraped_at": "2026-03-24T08:33:28.863306+00:00",
   "plans": [
     {
       "name": "Free",
@@ -56,5 +56,5 @@
     ],
     "price_range": "$0 – $16"
   },
-  "raw_char_count": 2404
+  "raw_char_count": 2411
 }
