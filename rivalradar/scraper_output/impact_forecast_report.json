@@ -1,0 +1,212 @@
+{
+  "generated_at": "2026-03-23T12:33:06.669738+00:00",
+  "model": "groq_llama-3.3-70b-versatile_impact_forecast_v1",
+  "results": [
+    {
+      "company": "HubSpot",
+      "impact_probability": 0.85,
+      "predicted_timeline": "0-30 days",
+      "risk_level": "high",
+      "reasoning_summary": "The competitor, HubSpot, has announced a significant price reduction for its Starter plan, posing a substantial threat to the portfolio company's pricing power and customer retention. Given the price cut, customers may be more likely to switch to HubSpot, increasing the risk of customer churn and win/loss rate degradation. The portfolio company's key value propositions, such as AI-native workflow automation and cross-tool analytics, may not be enough to offset the price difference.",
+      "drivers": {
+        "vulnerability_pressure": 0.8,
+        "strategic_signal_intensity": 0.7,
+        "plan_complexity": 0.6,
+        "portfolio_competition_intensity": 0.9,
+        "pricing_plan_volatility": 0.85,
+        "analysis_confidence": 0.8
+      },
+      "decision_trace": [
+        "Identified competitor price cut",
+        "Assessed impact on portfolio company's pricing power",
+        "Evaluated customer churn risk and win/loss rate degradation",
+        "Considered strategic options for response"
+      ],
+      "evidence": {
+        "competitor_pricing": "HubSpot Starter plan price reduced from $45 to $29",
+        "customer_segment": "Mid-market and SMB teams (50-500 seats)",
+        "portfolio_company_key_value_props": "AI-native workflow automation, cross-tool analytics, and lightweight CRM integration layer",
+        "market_trend": "Increasing competition in the B2B SaaS market, with a focus on pricing and feature parity",
+        "price_range": "N/A",
+        "peer_rank": 1
+      },
+      "generated_at": "2026-03-23T12:32:52.659102+00:00"
+    },
+    {
+      "company": "Stripe",
+      "impact_probability": 0.8,
+      "predicted_timeline": "0-30 days",
+      "risk_level": "high",
+      "reasoning_summary": "The competitor's synthetic event, a PRICE_CUT, poses a significant threat to the portfolio company's revenue and pricing power. The price cut announcement by Stripe may trigger a rapid response from customers, potentially leading to increased churn risk and win/loss rate degradation. The portfolio company's key value propositions, such as AI-native workflow automation and cross-tool analytics, may not be enough to offset the pricing pressure.",
+      "drivers": {
+        "vulnerability_pressure": 0.7,
+        "strategic_signal_intensity": 0.6,
+        "plan_complexity": 0.4,
+        "portfolio_competition_intensity": 0.8,
+        "pricing_plan_volatility": 0.9,
+        "analysis_confidence": 0.85
+      },
+      "decision_trace": [
+        "Identified competitor's synthetic event as a PRICE_CUT",
+        "Assessed the impact on portfolio company's revenue and pricing power",
+        "Considered the competitor's pricing model and the potential response from customers",
+        "Evaluated the portfolio company's key value propositions and their ability to offset pricing pressure"
+      ],
+      "evidence": {
+        "competitor_pricing": {
+          "old_price": "$0.30 + 2.9%",
+          "new_price": "$0.20 + 2.5%",
+          "discount_pct": "15%"
+        },
+        "portfolio_company_metrics": {
+          "revenue": "$5M-$15M",
+          "customer_base": "mid-market and SMB",
+          "key_value_props": [
+            "AI-native workflow automation",
+            "cross-tool analytics and reporting",
+            "lightweight CRM integration layer"
+          ]
+        },
+        "market_trends": {
+          "pricing_pressure": "high",
+          "feature_parity": "medium",
+          "bundling_by_larger_platforms": "medium"
+        },
+        "price_range": "$0.02 – $500.00",
+        "peer_rank": 5
+      },
+      "generated_at": "2026-03-23T12:33:05.662412+00:00"
+    },
+    {
+      "company": "ClickUp",
+      "impact_probability": 0.75,
+      "predicted_timeline": "1-2 months",
+      "risk_level": "medium",
+      "reasoning_summary": "The portfolio company is at risk due to ClickUp's strong integration strength and AI momentum, which could lead to feature parity and pricing pressure. The competitor's pricing summary shows a wide range of plans, including a free tier, which could attract price-sensitive customers. The portfolio company's key value propositions, such as AI-native workflow automation and cross-tool analytics, may be replicated by ClickUp, increasing the risk of customer churn and win/loss rate degradation.",
+      "drivers": {
+        "vulnerability_pressure": 0.8,
+        "strategic_signal_intensity": 0.7,
+        "plan_complexity": 0.6,
+        "portfolio_competition_intensity": 0.9,
+        "pricing_plan_volatility": 0.5,
+        "analysis_confidence": 0.85
+      },
+      "decision_trace": [
+        "Assessed competitor profile and pricing structure",
+        "Evaluated portfolio company's key value propositions and competitive landscape",
+        "Considered potential impact of ClickUp's AI momentum and integration strength"
+      ],
+      "evidence": {
+        "competitor_pricing": {
+          "free_tier": true,
+          "enterprise_tier": true,
+          "plan_names": [
+            "Free",
+            "Business",
+            "Enterprise",
+            "Brain AI",
+            "Everything AI"
+          ],
+          "price_range": "$0 – $28"
+        },
+        "portfolio_company_metrics": {
+          "arr_range": "$5M-$15M",
+          "primary_segments": [
+            "mid-market",
+            "SMB"
+          ],
+          "key_value_props": [
+            "AI-native workflow automation",
+            "cross-tool analytics and reporting",
+            "lightweight CRM integration layer"
+          ]
+        },
+        "price_range": "$0 – $28",
+        "peer_rank": 2
+      },
+      "generated_at": "2026-03-23T12:32:54.755617+00:00"
+    },
+    {
+      "company": "Notion",
+      "impact_probability": 0.75,
+      "predicted_timeline": "1-2 months",
+      "risk_level": "medium",
+      "reasoning_summary": "The competitor Notion has a strong portfolio risk score and a medium risk level, indicating a potential threat to RivalRadar Portfolio Co's customer base. Notion's pricing structure and feature offerings could attract mid-market teams, increasing the risk of customer churn and win/loss rate degradation for RivalRadar Portfolio Co. The company's AI-native workflow automation and cross-tool analytics and reporting may not be enough to differentiate it from Notion's offerings, leading to pricing power compression.",
+      "drivers": {
+        "vulnerability_pressure": 0.8,
+        "strategic_signal_intensity": 0.7,
+        "plan_complexity": 0.6,
+        "portfolio_competition_intensity": 0.9,
+        "pricing_plan_volatility": 0.5,
+        "analysis_confidence": 0.85
+      },
+      "decision_trace": [
+        "Assessed competitor profile and portfolio risk score",
+        "Evaluated pricing structure and feature offerings",
+        "Considered potential impact on customer churn and win/loss rate",
+        "Analyzed differentiation factors and pricing power"
+      ],
+      "evidence": {
+        "competitor_pricing": {
+          "free_tier": true,
+          "enterprise_tier": true,
+          "price_range": "$0 – $20"
+        },
+        "competitor_features": {
+          "avg_features_per_plan": 5.0,
+          "unique_feature_count": 10
+        },
+        "portfolio_company_metrics": {
+          "arr_range": "$5M-$15M",
+          "primary_segments": [
+            "mid-market",
+            "SMB"
+          ]
+        },
+        "price_range": "$0 – $20",
+        "peer_rank": 4
+      },
+      "generated_at": "2026-03-23T12:32:59.315371+00:00"
+    },
+    {
+      "company": "Linear",
+      "impact_probability": 0.7,
+      "predicted_timeline": "1-2 months",
+      "risk_level": "medium",
+      "reasoning_summary": "The competitor Linear poses a medium risk to RivalRadar Portfolio Co, primarily due to its pricing structure and feature offerings. The presence of a free tier and competitive pricing for the Basic and Business plans may attract price-sensitive customers, potentially leading to customer churn risk and win/loss rate degradation for RivalRadar. However, the timeline for this impact is expected to be 1-2 months, as customers will need time to evaluate and adapt to Linear's offerings.",
+      "drivers": {
+        "vulnerability_pressure": 0.6,
+        "strategic_signal_intensity": 0.8,
+        "plan_complexity": 0.4,
+        "portfolio_competition_intensity": 0.7,
+        "pricing_plan_volatility": 0.5,
+        "analysis_confidence": 0.85
+      },
+      "decision_trace": [
+        "Assessed competitor Linear's pricing structure and feature offerings",
+        "Evaluated the potential impact on RivalRadar Portfolio Co's customer churn risk and win/loss rate",
+        "Considered the timeline for potential impact based on customer evaluation and adaptation time"
+      ],
+      "evidence": {
+        "competitor_pricing": {
+          "free_tier": true,
+          "price_range": "$0 – $16"
+        },
+        "competitor_features": {
+          "unique_feature_count": 10,
+          "avg_features_per_plan": 2.5
+        },
+        "portfolio_company_metrics": {
+          "arr_range": "$5M-$15M",
+          "primary_segments": [
+            "mid-market",
+            "SMB"
+          ]
+        },
+        "price_range": "$0 – $16",
+        "peer_rank": 3
+      },
+      "generated_at": "2026-03-23T12:32:56.907458+00:00"
+    }
+  ]
+}

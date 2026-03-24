@@ -1,7 +1,7 @@
 {
   "company": "Notion",
   "url": "https://www.notion.so/pricing",
-  "scraped_at": "2026-03-22T17:57:05.522183+00:00",
+  "scraped_at": "2026-03-23T12:28:34.251734+00:00",
   "plans": [
     {
       "name": "Free",
@@ -66,5 +66,11 @@
     ],
     "price_range": "$0 – $20"
   },
-  "raw_char_count": 5384
+  "raw_char_count": 5384,
+  "data_sufficiency": {
+    "sufficient": true,
+    "raw_char_count": 5384,
+    "plan_count": 4,
+    "reason": "Sufficient: profile contains pricing structure and plan data."
+  }
 }

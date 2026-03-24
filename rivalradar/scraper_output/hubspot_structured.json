@@ -1,7 +1,7 @@
 {
   "company": "HubSpot",
   "url": "https://www.hubspot.com/pricing/marketing",
-  "scraped_at": "2026-03-22T17:57:19.699238+00:00",
+  "scraped_at": "2026-03-23T12:28:51.134239+00:00",
   "plans": [
     {
       "name": "Starter",
@@ -97,5 +97,11 @@
     ],
     "price_range": "N/A"
   },
-  "raw_char_count": 13227
+  "raw_char_count": 13227,
+  "data_sufficiency": {
+    "sufficient": false,
+    "raw_char_count": 13227,
+    "plan_count": 5,
+    "reason": "Insufficient: scrape returned too little content for analysis."
+  }
 }

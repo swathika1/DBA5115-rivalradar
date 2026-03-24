@@ -1,135 +1,222 @@
 {
-  "generated_at": "2026-03-22T18:22:11.136652+00:00",
+  "generated_at": "2026-03-23T12:10:46.797556+00:00",
   "model": "openai_pricing_prediction_v1",
   "results": [
     {
-      "company": "ClickUp",
-      "change_probability": 0.6,
-      "predicted_timeline": "1-2 months",
-      "risk_level": "medium",
-      "reasoning_summary": "Given the medium risk level and the current confidence in market signals, a pricing change is likely but not imminent. The company is under moderate pressure to adapt its pricing strategy due to competitive dynamics and market signals.",
-      "drivers": {
-        "vulnerability_pressure": 0.7,
-        "strategic_signal_intensity": 0.8,
-        "plan_complexity": 0.5,
-        "portfolio_competition_intensity": 0.6,
-        "pricing_plan_volatility": 0.4,
-        "analysis_confidence": 0.75
-      },
-      "decision_trace": [
-        "The decision to predict a pricing change is based on the company's vulnerability score, market signals indicating strong AI momentum, and the competitive landscape. The medium risk level suggests that while changes are likely, they are manageable."
-      ],
-      "evidence": {
-        "price_range": "$0 – $28",
-        "peer_rank": 1
-      },
-      "generated_at": "2026-03-22T18:21:50.282899+00:00"
-    },
-    {
       "company": "HubSpot",
-      "change_probability": 0.6,
-      "predicted_timeline": "1-2 months",
-      "risk_level": "medium",
-      "reasoning_summary": "Given the medium risk level and the current confidence in the analysis, there is a moderate likelihood of pricing changes within the next couple of months. The company's vulnerability score indicates some pressure, but the strategic signals suggest a stable environment for now.",
+      "impact_probability": 0.85,
+      "predicted_timeline": "0-30 days",
+      "risk_level": "high",
+      "reasoning_summary": "The competitor's price cut event poses a significant threat to the portfolio company's customer churn risk, win/loss rate degradation, and pricing power compression. Given the event type is a PRICE_CUT, the impact is expected to be rapid, potentially within the next 0-30 days, especially considering the renewal cycles of existing customers. The portfolio company's key value propositions, such as AI-native workflow automation and cross-tool analytics, may not be enough to offset the price advantage offered by the competitor.",
       "drivers": {
         "vulnerability_pressure": 0.8,
         "strategic_signal_intensity": 0.7,
-        "plan_complexity": 0.5,
-        "portfolio_competition_intensity": 0.6,
-        "pricing_plan_volatility": 0.4,
-        "analysis_confidence": 0.75
+        "plan_complexity": 0.6,
+        "portfolio_competition_intensity": 0.9,
+        "pricing_plan_volatility": 0.85,
+        "analysis_confidence": 0.8
       },
       "decision_trace": [
-        "The decision to predict a medium risk level and a 1-2 month timeline is based on the combination of the company's vulnerability score and the strategic signals indicating readiness and integration strength."
+        "Competitor price cut analysis",
+        "Portfolio company value proposition assessment",
+        "Customer churn risk evaluation",
+        "Win/loss rate degradation analysis",
+        "Pricing power compression assessment"
       ],
       "evidence": {
-        "vulnerability_score": 1.0,
-        "confidence": 0.75,
-        "signals": {
-          "ai_momentum": 5,
-          "enterprise_readiness": 7,
-          "integration_strength": 6
+        "competitor_pricing": {
+          "old_price": 13,
+          "new_price": 9,
+          "discount_pct": 31
         },
-        "metrics": {
-          "plan_count": 5,
-          "price_range": "N/A",
-          "avg_features_per_plan": 0.0,
-          "unique_feature_count": 0,
-          "numeric_price_count": 0
+        "portfolio_company_metrics": {
+          "arr_range": "$5M-$15M",
+          "primary_segments": [
+            "mid-market",
+            "SMB"
+          ],
+          "key_value_props": [
+            "AI-native workflow automation",
+            "cross-tool analytics and reporting",
+            "lightweight CRM integration layer"
+          ]
+        },
+        "market_trends": {
+          "increasing_competition": true,
+          "growing_demand_for_saaS": true
         },
         "price_range": "N/A",
-        "peer_rank": 2
+        "peer_rank": 1
       },
-      "generated_at": "2026-03-22T18:21:56.022509+00:00"
-    },
-    {
-      "company": "Linear",
-      "change_probability": 0.6,
-      "predicted_timeline": "1-2 months",
-      "risk_level": "medium",
-      "reasoning_summary": "The company has a medium risk level due to its current vulnerability score and competitive pricing structure. The signals indicate a strong readiness for enterprise solutions, which may lead to adjustments in pricing strategies.",
-      "drivers": {
-        "vulnerability_pressure": 0.8,
-        "strategic_signal_intensity": 0.7,
-        "plan_complexity": 0.5,
-        "portfolio_competition_intensity": 0.6,
-        "pricing_plan_volatility": 0.4,
-        "analysis_confidence": 0.8
-      },
-      "decision_trace": [
-        "The decision to predict a medium likelihood of pricing change is based on the company's current vulnerability score and the strong signals indicating readiness for enterprise solutions. The competitive landscape and the existing pricing plans also contribute to this assessment."
-      ],
-      "evidence": {
-        "price_range": "$0 – $16",
-        "peer_rank": 3
-      },
-      "generated_at": "2026-03-22T18:22:01.798831+00:00"
-    },
-    {
-      "company": "Notion",
-      "change_probability": 0.6,
-      "predicted_timeline": "1-2 months",
-      "risk_level": "medium",
-      "reasoning_summary": "The company is experiencing medium risk due to its current vulnerability score and competitive pricing plans. The likelihood of a pricing change is moderate, influenced by strategic signals and market competition.",
-      "drivers": {
-        "vulnerability_pressure": 0.8,
-        "strategic_signal_intensity": 0.7,
-        "plan_complexity": 0.5,
-        "portfolio_competition_intensity": 0.6,
-        "pricing_plan_volatility": 0.4,
-        "analysis_confidence": 0.8
-      },
-      "decision_trace": [
-        "The analysis considered the company's vulnerability score, competitive landscape, and strategic signals indicating potential shifts in pricing strategy."
-      ],
-      "evidence": {
-        "price_range": "$0 – $20",
-        "peer_rank": 4
-      },
-      "generated_at": "2026-03-22T18:22:06.493501+00:00"
+      "generated_at": "2026-03-23T12:10:27.121720+00:00"
     },
     {
       "company": "Stripe",
-      "change_probability": 0.6,
+      "impact_probability": 0.8,
+      "predicted_timeline": "0-30 days",
+      "risk_level": "high",
+      "reasoning_summary": "The competitor's synthetic event, a PRICE_CUT, poses a significant threat to the portfolio company's pricing power and customer retention. The reduced per-transaction fee for US-based businesses could lead to a rapid decline in the portfolio company's revenue. The portfolio company's primary segments, mid-market and SMB, are particularly vulnerable to pricing pressure.",
+      "drivers": {
+        "vulnerability_pressure": 0.9,
+        "strategic_signal_intensity": 0.7,
+        "plan_complexity": 0.4,
+        "portfolio_competition_intensity": 0.8,
+        "pricing_plan_volatility": 0.9,
+        "analysis_confidence": 0.85
+      },
+      "decision_trace": [
+        "Identified competitor's synthetic event as a PRICE_CUT",
+        "Assessed the impact on portfolio company's pricing power and customer retention",
+        "Evaluated the competitor's pricing model and its potential to disrupt the market",
+        "Considered the portfolio company's primary segments and their vulnerability to pricing pressure"
+      ],
+      "evidence": {
+        "competitor_pricing": {
+          "old_price": "$0.29 + 2.9%",
+          "new_price": "$0.20 + 2.5%",
+          "discount_pct": "15.5%"
+        },
+        "portfolio_company_segments": [
+          "mid-market",
+          "SMB"
+        ],
+        "portfolio_company_key_value_props": [
+          "AI-native workflow automation",
+          "cross-tool analytics and reporting",
+          "lightweight CRM integration layer"
+        ],
+        "competitor_signals": {
+          "ai_momentum": 6,
+          "enterprise_readiness": 8,
+          "integration_strength": 7
+        },
+        "price_range": "$0.02 – $500.00",
+        "peer_rank": 5
+      },
+      "generated_at": "2026-03-23T12:10:46.795439+00:00"
+    },
+    {
+      "company": "ClickUp",
+      "impact_probability": 0.75,
       "predicted_timeline": "1-2 months",
       "risk_level": "medium",
-      "reasoning_summary": "Given the current medium risk level and high confidence in the analysis, there is a moderate likelihood of pricing changes within the next couple of months due to competitive pressures and strategic signals.",
+      "reasoning_summary": "The portfolio company is at risk due to ClickUp's competitive pricing and feature offerings, which could lead to customer churn and win/loss rate degradation. ClickUp's pricing strategy, including a free tier and a range of plans, may put pressure on the portfolio company's pricing power. The portfolio company's key value propositions, such as AI-native workflow automation and cross-tool analytics, may not be enough to differentiate it from ClickUp's offerings.",
       "drivers": {
-        "vulnerability_pressure": 0.7,
-        "strategic_signal_intensity": 0.8,
-        "plan_complexity": 0.2,
-        "portfolio_competition_intensity": 0.6,
+        "vulnerability_pressure": 0.8,
+        "strategic_signal_intensity": 0.7,
+        "plan_complexity": 0.6,
+        "portfolio_competition_intensity": 0.9,
         "pricing_plan_volatility": 0.5,
         "analysis_confidence": 0.85
       },
       "decision_trace": [
-        "The analysis considered the company's current pricing model, market signals, and competitive landscape, leading to a moderate probability of change."
+        "Assessed competitor profile and pricing strategy",
+        "Evaluated portfolio company's key value propositions and competitive positioning",
+        "Considered potential impact on customer churn, win/loss rate, and pricing power"
       ],
       "evidence": {
-        "price_range": "$0.02 – $500.00",
-        "peer_rank": 5
+        "competitor_pricing": {
+          "free_tier": true,
+          "price_range": "$0 – $28"
+        },
+        "portfolio_company_key_value_props": [
+          "AI-native workflow automation",
+          "cross-tool analytics and reporting",
+          "lightweight CRM integration layer"
+        ],
+        "competitor_signals": {
+          "ai_momentum": 8,
+          "enterprise_readiness": 6,
+          "integration_strength": 7
+        },
+        "price_range": "$0 – $28",
+        "peer_rank": 2
       },
-      "generated_at": "2026-03-22T18:22:11.135871+00:00"
+      "generated_at": "2026-03-23T12:10:28.364741+00:00"
+    },
+    {
+      "company": "Linear",
+      "impact_probability": 0.75,
+      "predicted_timeline": "1-2 months",
+      "risk_level": "medium",
+      "reasoning_summary": "The competitor Linear poses a moderate risk to RivalRadar Portfolio Co, primarily through pricing pressure and feature parity. Linear's free tier and competitive pricing for its paid plans could attract price-sensitive customers, potentially increasing customer churn risk for RivalRadar. Additionally, Linear's strong integration capabilities and feature set may degrade RivalRadar's win/loss rate and compress its pricing power.",
+      "drivers": {
+        "vulnerability_pressure": 0.7,
+        "strategic_signal_intensity": 0.6,
+        "plan_complexity": 0.4,
+        "portfolio_competition_intensity": 0.8,
+        "pricing_plan_volatility": 0.5,
+        "analysis_confidence": 0.85
+      },
+      "decision_trace": [
+        "Assessed competitor profile and pricing structure",
+        "Evaluated RivalRadar's key value propositions and competitive positioning",
+        "Considered potential impact of Linear's free tier and competitive pricing on RivalRadar's customer churn risk and win/loss rate"
+      ],
+      "evidence": {
+        "competitor_pricing": "$0 – $16",
+        "competitor_free_tier": true,
+        "competitor_enterprise_tier": true,
+        "rivalradar_key_value_props": [
+          "AI-native workflow automation",
+          "cross-tool analytics and reporting",
+          "lightweight CRM integration layer"
+        ],
+        "linear_signals": {
+          "ai_momentum": 6,
+          "enterprise_readiness": 8,
+          "integration_strength": 7
+        },
+        "price_range": "$0 – $16",
+        "peer_rank": 3
+      },
+      "generated_at": "2026-03-23T12:10:34.102437+00:00"
+    },
+    {
+      "company": "Notion",
+      "impact_probability": 0.75,
+      "predicted_timeline": "1-2 months",
+      "risk_level": "medium",
+      "reasoning_summary": "The competitor Notion has a strong portfolio risk score and a medium risk level, indicating a potential threat to RivalRadar Portfolio Co's customer churn risk, win/loss rate degradation, and pricing power compression. Notion's pricing summary shows a free tier and an enterprise tier, which could attract price-sensitive customers and large enterprises, respectively. The presence of a free tier and a wide range of features across plans may exert pricing pressure on RivalRadar Portfolio Co.",
+      "drivers": {
+        "vulnerability_pressure": 0.7,
+        "strategic_signal_intensity": 0.8,
+        "plan_complexity": 0.6,
+        "portfolio_competition_intensity": 0.9,
+        "pricing_plan_volatility": 0.5,
+        "analysis_confidence": 0.85
+      },
+      "decision_trace": [
+        "Assessed competitor profile and portfolio risk score",
+        "Evaluated pricing summary and plan features",
+        "Considered potential impact on customer churn risk, win/loss rate degradation, and pricing power compression"
+      ],
+      "evidence": {
+        "competitor_profile": {
+          "company": "Notion",
+          "portfolio_risk_score": 0.62,
+          "risk_level": "medium"
+        },
+        "pricing_summary": {
+          "free_tier": true,
+          "enterprise_tier": true,
+          "plan_names": [
+            "Free",
+            "Plus",
+            "Business",
+            "Enterprise"
+          ],
+          "price_range": "$0 – $20"
+        },
+        "key_value_props": [
+          "AI-native workflow automation",
+          "cross-tool analytics and reporting",
+          "lightweight CRM integration layer"
+        ],
+        "price_range": "$0 – $20",
+        "peer_rank": 4
+      },
+      "generated_at": "2026-03-23T12:10:40.468310+00:00"
     }
   ]
 }

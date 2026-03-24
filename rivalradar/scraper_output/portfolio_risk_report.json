@@ -1,0 +1,358 @@
+{
+  "generated_at": "2026-03-23T12:32:51.149997+00:00",
+  "model": "groq_llama-3.3-70b-versatile_portfolio_risk_v1",
+  "results": [
+    {
+      "company": "HubSpot",
+      "portfolio_risk_score": 0.72,
+      "risk_level": "high",
+      "confidence": 0.85,
+      "reasoning_summary": "Ranked #1/5 (peer_percentile=1.000). The synthetic event of HubSpot's significant price reduction for its Starter plan poses a substantial threat to the portfolio company's market position, particularly in terms of pricing power and customer acquisition. The price cut is likely to attract more small businesses and solo entrepreneurs, potentially disrupting the market and challenging competitors. The portfolio company's key value propositions, such as AI-native workflow automation and cross-tool analytics and reporting, may not be enough to offset the competitive pressure from HubSpot's pricing strategy.",
+      "detailed_reasoning": [
+        "HubSpot's price reduction for its Starter plan is a significant competitive move that could attract price-sensitive customers away from the portfolio company.",
+        "The portfolio company's pricing strategy may need to be re-evaluated in response to HubSpot's price cut, potentially leading to a decrease in revenue and profitability.",
+        "The synthetic event suggests that HubSpot is aggressively pursuing market share, which could lead to increased competition and decreased customer retention for the portfolio company."
+      ],
+      "decision_trace": [
+        "Identified the synthetic event of HubSpot's price reduction for its Starter plan.",
+        "Assessed the potential impact of the price cut on the portfolio company's market position and revenue.",
+        "Considered the portfolio company's key value propositions and their potential to offset the competitive pressure from HubSpot's pricing strategy.",
+        "Evaluated the confidence level of the assessment based on the available data and the synthetic event."
+      ],
+      "component_breakdown": [
+        {
+          "name": "pricing_pressure",
+          "weight": 0.28,
+          "score": 0.9,
+          "weighted_score": 0.252,
+          "reasoning": "HubSpot's price reduction for its Starter plan is a significant competitive move that could attract price-sensitive customers away from the portfolio company."
+        },
+        {
+          "name": "segment_coverage",
+          "weight": 0.22,
+          "score": 0.6,
+          "weighted_score": 0.132,
+          "reasoning": "The portfolio company's primary segments are mid-market and SMB, which may be less affected by HubSpot's price cut, but still vulnerable to competitive pressure."
+        },
+        {
+          "name": "feature_depth",
+          "weight": 0.18,
+          "score": 0.4,
+          "weighted_score": 0.072,
+          "reasoning": "The portfolio company's key value propositions, such as AI-native workflow automation and cross-tool analytics and reporting, may not be directly impacted by HubSpot's price cut."
+        },
+        {
+          "name": "strategic_signals",
+          "weight": 0.2,
+          "score": 0.8,
+          "weighted_score": 0.16,
+          "reasoning": "The synthetic event suggests that HubSpot is aggressively pursuing market share, which could lead to increased competition and decreased customer retention for the portfolio company."
+        },
+        {
+          "name": "business_model_pressure",
+          "weight": 0.12,
+          "score": 0.7,
+          "weighted_score": 0.084,
+          "reasoning": "The portfolio company's business model may need to be re-evaluated in response to HubSpot's price cut, potentially leading to a decrease in revenue and profitability."
+        }
+      ],
+      "signals": {
+        "ai_momentum": 6,
+        "enterprise_readiness": 8,
+        "integration_strength": 7
+      },
+      "metrics": {
+        "plan_count": 5,
+        "price_range": "N/A",
+        "raw_char_count": 13227,
+        "avg_features_per_plan": 2.2,
+        "unique_feature_count": 15,
+        "numeric_price_count": 3
+      },
+      "scraped_at": "2026-03-23T12:28:51.134239+00:00",
+      "peer_rank": 1,
+      "peer_percentile": 1.0
+    },
+    {
+      "company": "ClickUp",
+      "portfolio_risk_score": 0.62,
+      "risk_level": "medium",
+      "confidence": 0.85,
+      "reasoning_summary": "Ranked #2/5 (peer_percentile=0.750). ClickUp's aggressive pricing and feature expansion pose a moderate threat to RivalRadar Portfolio Co's market position, particularly in the mid-market segment. The competitor's AI-native features and scalable pricing may attract price-sensitive customers, while its bundling capabilities could challenge RivalRadar's workflow automation and project intelligence offerings. However, RivalRadar's focus on cross-tool analytics and reporting may still provide a competitive edge.",
+      "detailed_reasoning": [
+        "ClickUp's pricing strategy, including a free tier and competitive enterprise pricing, may exert downward pressure on RivalRadar's pricing power.",
+        "The competitor's feature set, including AI-native workflow automation and integration capabilities, may challenge RivalRadar's key value propositions.",
+        "ClickUp's bundling capabilities and scalable pricing may appeal to mid-market customers, potentially increasing customer churn and win/loss rates for RivalRadar."
+      ],
+      "decision_trace": [
+        "Assessed ClickUp's pricing strategy and its potential impact on RivalRadar's pricing power.",
+        "Evaluated the competitor's feature set and its alignment with RivalRadar's key value propositions.",
+        "Considered the potential effects of ClickUp's bundling capabilities and scalable pricing on RivalRadar's customer base."
+      ],
+      "component_breakdown": [
+        {
+          "name": "pricing_pressure",
+          "weight": 0.28,
+          "score": 0.8,
+          "weighted_score": 0.224,
+          "reasoning": "ClickUp's aggressive pricing, including a free tier and competitive enterprise pricing, may exert significant downward pressure on RivalRadar's pricing power."
+        },
+        {
+          "name": "segment_coverage",
+          "weight": 0.22,
+          "score": 0.6,
+          "weighted_score": 0.132,
+          "reasoning": "ClickUp's feature set and pricing strategy may appeal to mid-market customers, but RivalRadar's focus on cross-tool analytics and reporting may still provide a competitive edge."
+        },
+        {
+          "name": "feature_depth",
+          "weight": 0.18,
+          "score": 0.7,
+          "weighted_score": 0.126,
+          "reasoning": "ClickUp's AI-native features and integration capabilities may challenge RivalRadar's key value propositions, but the competitor's feature set is not significantly more comprehensive."
+        },
+        {
+          "name": "strategic_signals",
+          "weight": 0.2,
+          "score": 0.5,
+          "weighted_score": 0.1,
+          "reasoning": "ClickUp's pricing strategy and feature expansion may indicate a focus on mid-market customers, but the competitor's overall strategic direction is not clearly aligned with RivalRadar's market segment."
+        },
+        {
+          "name": "business_model_pressure",
+          "weight": 0.12,
+          "score": 0.4,
+          "weighted_score": 0.048,
+          "reasoning": "ClickUp's bundling capabilities and scalable pricing may appeal to mid-market customers, but the competitor's business model is not significantly more disruptive to RivalRadar's revenue streams."
+        }
+      ],
+      "signals": {
+        "ai_momentum": 8,
+        "enterprise_readiness": 6,
+        "integration_strength": 7
+      },
+      "metrics": {
+        "plan_count": 5,
+        "price_range": "$0 – $28",
+        "raw_char_count": 6378,
+        "avg_features_per_plan": 10.0,
+        "unique_feature_count": 20,
+        "numeric_price_count": 4
+      },
+      "scraped_at": "2026-03-23T12:28:38.974840+00:00",
+      "peer_rank": 2,
+      "peer_percentile": 0.75
+    },
+    {
+      "company": "Linear",
+      "portfolio_risk_score": 0.62,
+      "risk_level": "medium",
+      "confidence": 0.85,
+      "reasoning_summary": "Ranked #3/5 (peer_percentile=0.500). Linear's competitive pricing and feature offerings pose a moderate threat to RivalRadar Portfolio Co's market position, particularly in terms of pricing pressure and feature parity. The presence of a free tier and affordable paid plans may attract price-sensitive customers, while the enterprise tier suggests a willingness to cater to larger clients. However, RivalRadar's AI-native workflow automation and cross-tool analytics may still provide a unique selling point.",
+      "detailed_reasoning": [
+        "Linear's pricing structure, including a free tier and affordable paid plans, may exert downward pressure on RivalRadar's pricing power.",
+        "The presence of an enterprise tier suggests Linear is targeting larger clients, potentially encroaching on RivalRadar's customer base.",
+        "Feature parity is a concern, as Linear's plans seem to offer a range of features that may be comparable to RivalRadar's offerings."
+      ],
+      "decision_trace": [
+        "Assessed Linear's pricing structure and its potential impact on RivalRadar's pricing power.",
+        "Evaluated the presence of an enterprise tier and its implications for RivalRadar's customer base.",
+        "Considered the potential for feature parity between Linear and RivalRadar."
+      ],
+      "component_breakdown": [
+        {
+          "name": "pricing_pressure",
+          "weight": 0.28,
+          "score": 0.8,
+          "weighted_score": 0.224,
+          "reasoning": "Linear's affordable pricing, including a free tier, may force RivalRadar to reevaluate its pricing strategy."
+        },
+        {
+          "name": "segment_coverage",
+          "weight": 0.22,
+          "score": 0.6,
+          "weighted_score": 0.132,
+          "reasoning": "Linear's plans seem to cater to a range of customers, from small teams to enterprises, potentially overlapping with RivalRadar's target segments."
+        },
+        {
+          "name": "feature_depth",
+          "weight": 0.18,
+          "score": 0.5,
+          "weighted_score": 0.09,
+          "reasoning": "While Linear's features are not explicitly detailed, the presence of an enterprise tier suggests a level of feature depth that may be comparable to RivalRadar's offerings."
+        },
+        {
+          "name": "strategic_signals",
+          "weight": 0.2,
+          "score": 0.7,
+          "weighted_score": 0.14,
+          "reasoning": "Linear's willingness to offer a free tier and cater to enterprises suggests a strategic focus on customer acquisition and retention."
+        },
+        {
+          "name": "business_model_pressure",
+          "weight": 0.12,
+          "score": 0.4,
+          "weighted_score": 0.048,
+          "reasoning": "Linear's business model does not seem to fundamentally disrupt RivalRadar's business model, but the competitive pricing and feature offerings may still exert pressure."
+        }
+      ],
+      "signals": {
+        "ai_momentum": 6,
+        "enterprise_readiness": 8,
+        "integration_strength": 7
+      },
+      "metrics": {
+        "plan_count": 4,
+        "price_range": "$0 – $16",
+        "raw_char_count": 2404,
+        "avg_features_per_plan": 2.5,
+        "unique_feature_count": 10,
+        "numeric_price_count": 2
+      },
+      "scraped_at": "2026-03-23T12:28:36.112200+00:00",
+      "peer_rank": 3,
+      "peer_percentile": 0.5
+    },
+    {
+      "company": "Notion",
+      "portfolio_risk_score": 0.62,
+      "risk_level": "medium",
+      "confidence": 0.85,
+      "reasoning_summary": "Ranked #4/5 (peer_percentile=0.250). Notion's competitive pricing and feature offerings pose a moderate threat to RivalRadar Portfolio Co's market position, particularly in the mid-market segment. The presence of a free tier and affordable paid plans may attract price-sensitive customers, while Notion's robust feature set could challenge RivalRadar's workflow automation and project intelligence capabilities. However, RivalRadar's AI-native workflow automation and cross-tool analytics may still provide a unique value proposition.",
+      "detailed_reasoning": [
+        "Notion's pricing strategy, including a free tier and affordable paid plans, may exert downward pressure on RivalRadar's pricing power.",
+        "Notion's feature set, including databases, subtasks, and custom dependencies, may challenge RivalRadar's workflow automation and project intelligence capabilities.",
+        "RivalRadar's AI-native workflow automation and cross-tool analytics may still provide a unique value proposition, mitigating the competitive threat from Notion."
+      ],
+      "decision_trace": [
+        "Assessed Notion's pricing strategy and its potential impact on RivalRadar's pricing power.",
+        "Evaluated Notion's feature set and its potential to challenge RivalRadar's workflow automation and project intelligence capabilities.",
+        "Considered RivalRadar's unique value proposition, including AI-native workflow automation and cross-tool analytics."
+      ],
+      "component_breakdown": [
+        {
+          "name": "pricing_pressure",
+          "weight": 0.28,
+          "score": 0.8,
+          "weighted_score": 0.224,
+          "reasoning": "Notion's free tier and affordable paid plans may attract price-sensitive customers and exert downward pressure on RivalRadar's pricing power."
+        },
+        {
+          "name": "segment_coverage",
+          "weight": 0.22,
+          "score": 0.6,
+          "weighted_score": 0.132,
+          "reasoning": "Notion's feature set and pricing strategy may appeal to mid-market customers, but RivalRadar's AI-native workflow automation and cross-tool analytics may still provide a unique value proposition."
+        },
+        {
+          "name": "feature_depth",
+          "weight": 0.18,
+          "score": 0.7,
+          "weighted_score": 0.126,
+          "reasoning": "Notion's feature set, including databases, subtasks, and custom dependencies, may challenge RivalRadar's workflow automation and project intelligence capabilities."
+        },
+        {
+          "name": "strategic_signals",
+          "weight": 0.2,
+          "score": 0.5,
+          "weighted_score": 0.1,
+          "reasoning": "Notion's competitive pricing and feature offerings may signal a strategic intent to expand its market share, but RivalRadar's unique value proposition may mitigate this threat."
+        },
+        {
+          "name": "business_model_pressure",
+          "weight": 0.12,
+          "score": 0.4,
+          "weighted_score": 0.048,
+          "reasoning": "Notion's business model, including a free tier and affordable paid plans, may exert pressure on RivalRadar's revenue growth and customer acquisition costs."
+        }
+      ],
+      "signals": {
+        "ai_momentum": 6,
+        "enterprise_readiness": 8,
+        "integration_strength": 7
+      },
+      "metrics": {
+        "plan_count": 4,
+        "price_range": "$0 – $20",
+        "raw_char_count": 5384,
+        "avg_features_per_plan": 5.0,
+        "unique_feature_count": 10,
+        "numeric_price_count": 3
+      },
+      "scraped_at": "2026-03-23T12:28:34.251734+00:00",
+      "peer_rank": 4,
+      "peer_percentile": 0.25
+    },
+    {
+      "company": "Stripe",
+      "portfolio_risk_score": 0.62,
+      "risk_level": "medium",
+      "confidence": 0.85,
+      "reasoning_summary": "Ranked #5/5 (peer_percentile=0.000). The competitor's recent price cut poses a moderate threat to the portfolio company's pricing power and customer retention, particularly in the mid-market segment. The price reduction may lead to increased competition for customers, potentially forcing the portfolio company to reconsider its pricing strategy. However, the portfolio company's AI-native workflow automation and cross-tool analytics capabilities may still provide a competitive edge.",
+      "detailed_reasoning": [
+        "The competitor's price cut may lead to increased price sensitivity among customers, potentially eroding the portfolio company's pricing power.",
+        "The portfolio company's focus on mid-market teams may make it more vulnerable to competition from larger platforms like Stripe.",
+        "The competitor's move may accelerate the trend towards usage-based pricing, which could disrupt the portfolio company's revenue streams."
+      ],
+      "decision_trace": [
+        "Identified the competitor's recent price cut as a significant event.",
+        "Assessed the potential impact on the portfolio company's pricing power and customer retention.",
+        "Considered the portfolio company's unique value propositions and competitive advantages.",
+        "Evaluated the potential for the competitor's move to disrupt the market and force the portfolio company to adapt."
+      ],
+      "component_breakdown": [
+        {
+          "name": "pricing_pressure",
+          "weight": 0.28,
+          "score": 0.8,
+          "weighted_score": 0.224,
+          "reasoning": "The competitor's price cut increases pricing pressure on the portfolio company, potentially forcing it to reconsider its pricing strategy."
+        },
+        {
+          "name": "segment_coverage",
+          "weight": 0.22,
+          "score": 0.4,
+          "weighted_score": 0.088,
+          "reasoning": "The competitor's move may have limited direct impact on the portfolio company's target segments, but may still influence customer expectations and behavior."
+        },
+        {
+          "name": "feature_depth",
+          "weight": 0.18,
+          "score": 0.2,
+          "weighted_score": 0.036,
+          "reasoning": "The competitor's price cut does not directly affect the portfolio company's feature set, but may lead to increased competition for customers based on price rather than features."
+        },
+        {
+          "name": "strategic_signals",
+          "weight": 0.2,
+          "score": 0.6,
+          "weighted_score": 0.12,
+          "reasoning": "The competitor's move sends a strategic signal that it is committed to competing aggressively on price, which may force the portfolio company to respond."
+        },
+        {
+          "name": "business_model_pressure",
+          "weight": 0.12,
+          "score": 0.5,
+          "weighted_score": 0.06,
+          "reasoning": "The competitor's price cut may lead to increased pressure on the portfolio company's business model, particularly if it is forced to respond with price cuts of its own."
+        }
+      ],
+      "signals": {
+        "ai_momentum": 6,
+        "enterprise_readiness": 8,
+        "integration_strength": 7
+      },
+      "metrics": {
+        "plan_count": 0,
+        "price_range": "$0.02 – $500.00",
+        "raw_char_count": 19012,
+        "avg_features_per_plan": 0.0,
+        "unique_feature_count": 0,
+        "numeric_price_count": 15
+      },
+      "scraped_at": "2026-03-23T12:28:55.154467+00:00",
+      "peer_rank": 5,
+      "peer_percentile": 0.0
+    }
+  ]
+}

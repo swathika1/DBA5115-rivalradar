@@ -1,7 +1,7 @@
 {
   "company": "Linear",
   "url": "https://linear.app/pricing",
-  "scraped_at": "2026-03-22T17:57:05.638251+00:00",
+  "scraped_at": "2026-03-23T12:28:36.112200+00:00",
   "plans": [
     {
       "name": "Free",
@@ -56,5 +56,11 @@
     ],
     "price_range": "$0 – $16"
   },
-  "raw_char_count": 2404
+  "raw_char_count": 2404,
+  "data_sufficiency": {
+    "sufficient": true,
+    "raw_char_count": 2404,
+    "plan_count": 4,
+    "reason": "Sufficient: profile contains pricing structure and plan data."
+  }
 }
