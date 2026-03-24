@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-24T15:38:29.792708+00:00",
+  "generated_at": "2026-03-24T15:41:26.944289+00:00",
   "model": "openai_pricing_prediction_v1",
   "results": [
     {
@@ -17,9 +17,9 @@
         "analysis_confidence": 0.8
       },
       "decision_trace": [
-        "Assessed ClickUp's vulnerability score and risk level",
-        "Evaluated the company's AI momentum and integration strength",
-        "Considered the competitive landscape and market timing"
+        "Reviewed ClickUp's pricing plans and features",
+        "Assessed the company's vulnerability score and risk level",
+        "Evaluated the impact of competitive threats on revenue"
       ],
       "evidence": {
         "signals": {
@@ -38,14 +38,14 @@
         "price_range": "$0 – $28",
         "peer_rank": 1
       },
-      "generated_at": "2026-03-24T15:38:23.309889+00:00"
+      "generated_at": "2026-03-24T15:41:21.618885+00:00"
     },
     {
       "company": "HubSpot",
       "revenue_at_risk_pct": 0.25,
       "time_to_impact": "6-18 months",
       "risk_level": "low",
-      "reasoning_summary": "Competitive threats are moderate due to HubSpot's strong brand and customer stickiness, but vulnerability score indicates some weaknesses",
+      "reasoning_summary": "Competitive threats are moderate due to HubSpot's established market presence, but vulnerability score indicates some weaknesses",
       "impact_drivers": {
         "moat_weakness": 0.4,
         "competitive_pressure": 0.6,
@@ -55,10 +55,10 @@
         "analysis_confidence": 0.85
       },
       "decision_trace": [
-        "Reviewed company profile and pricing",
-        "Assessed vulnerability score and risk level",
-        "Evaluated competitive landscape and market trends",
-        "Considered customer stickiness and execution risk"
+        "Assessed company profile and pricing strategy",
+        "Evaluated vulnerability score and risk level",
+        "Considered competitive landscape and market trends",
+        "Analyzed customer stickiness and execution risk"
       ],
       "evidence": {
         "signals": {
@@ -77,7 +77,7 @@
         "price_range": "N/A",
         "peer_rank": 2
       },
-      "generated_at": "2026-03-24T15:38:24.554518+00:00"
+      "generated_at": "2026-03-24T15:41:22.878364+00:00"
     },
     {
       "company": "Linear",
@@ -94,9 +94,10 @@
         "analysis_confidence": 0.7
       },
       "decision_trace": [
-        "Reviewed company profile and vulnerability score",
-        "Assessed signals for ai momentum, enterprise readiness, and integration strength",
-        "Evaluated pricing summary and plan features"
+        "Reviewed company profile and pricing strategy",
+        "Assessed vulnerability score and risk level",
+        "Evaluated signals for ai momentum, enterprise readiness, and integration strength",
+        "Considered metrics for plan count, price range, and feature offerings"
       ],
       "evidence": {
         "signals": {
@@ -115,7 +116,7 @@
         "price_range": "$0 – $16",
         "peer_rank": 3
       },
-      "generated_at": "2026-03-24T15:38:25.768464+00:00"
+      "generated_at": "2026-03-24T15:41:24.286470+00:00"
     },
     {
       "company": "Notion",
@@ -132,15 +133,15 @@
         "analysis_confidence": 0.8
       },
       "decision_trace": [
-        "Reviewed Notion's pricing plans and features",
-        "Assessed the company's vulnerability score and risk level",
-        "Evaluated the competitive landscape and market trends",
-        "Considered the company's execution risk and customer stickiness"
+        "Reviewed Notion's pricing page and plans",
+        "Analyzed the company's vulnerability score and risk level",
+        "Assessed the competitive landscape and market trends",
+        "Evaluated the company's execution risk and customer stickiness"
       ],
       "evidence": {
         "signals": {
           "ai_momentum": 8,
-          "enterprise_readiness": 9,
+          "enterprise_readiness": 6,
           "integration_strength": 7
         },
         "metrics": {
@@ -154,14 +155,14 @@
         "price_range": "$0 – $20",
         "peer_rank": 4
       },
-      "generated_at": "2026-03-24T15:38:27.440669+00:00"
+      "generated_at": "2026-03-24T15:41:25.700758+00:00"
     },
     {
       "company": "Stripe",
       "revenue_at_risk_pct": 0.15,
       "time_to_impact": "6-18 months",
       "risk_level": "low",
-      "reasoning_summary": "Stripe's vulnerability score is 0.38 and risk level is low, indicating a relatively stable position. However, competitive pressure and execution risk are potential impact drivers.",
+      "reasoning_summary": "Stripe's vulnerability score is 0.38, indicating a relatively low risk. However, the company's reliance on transaction-based pricing and lack of fixed plan tiers may make it vulnerable to competitive pressure.",
       "impact_drivers": {
         "moat_weakness": 0.2,
         "competitive_pressure": 0.4,
@@ -171,15 +172,15 @@
         "analysis_confidence": 0.85
       },
       "decision_trace": [
-        "Reviewed company profile and vulnerability score",
+        "Reviewed Stripe's pricing model and vulnerability score",
         "Assessed competitive landscape and market trends",
-        "Evaluated execution risk and customer stickiness"
+        "Evaluated company's execution risk and customer stickiness"
       ],
       "evidence": {
         "signals": {
           "ai_momentum": 8,
-          "enterprise_readiness": 9,
-          "integration_strength": 8
+          "enterprise_readiness": 6,
+          "integration_strength": 7
         },
         "metrics": {
           "plan_count": 0,
@@ -192,7 +193,7 @@
         "price_range": "$0.02 – $500.00",
         "peer_rank": 5
       },
-      "generated_at": "2026-03-24T15:38:29.792187+00:00"
+      "generated_at": "2026-03-24T15:41:26.943637+00:00"
     }
   ]
 }
