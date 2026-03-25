@@ -231,7 +231,7 @@ Each competitor has `name` and `urls[]`, each URL tagged with `frequency` (daily
 
 ```python
 class DomainScraper:
-    def __init__(self, domain: str, frequency: str, db: Session):
+    def __init__(self, domain: str, frequency: str, db: Session, user_id: str):
         ...
     def get_due_urls(self) -> list[dict]:
         # filter DOMAIN_TARGETS[domain] by frequency
