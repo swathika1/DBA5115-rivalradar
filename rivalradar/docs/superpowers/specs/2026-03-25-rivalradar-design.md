@@ -79,12 +79,23 @@ rivalradar/
 ```
 POST /auth/signup
   → create User row
-  → enqueue pipeline background task
+  → enqueue pipeline via FastAPI BackgroundTasks (no job_id returned on signup)
+  → return JWT only
+  → frontend polls GET /dashboard and handles {"status": "pipeline_pending"}
 
-Background task: run_pipeline(user_id)
+POST /pipeline/run  (manual re-runs only)
+  → enqueue pipeline via FastAPI BackgroundTasks
+  → create pipeline_jobs row (UUID job_id, status=pending)
+  → return {job_id}
+  → frontend polls GET /pipeline/status/{job_id} every 3s until complete/failed
+
+Background task: run_pipeline(user_id, job_id=None)
+  → mark pipeline_job as running (if job_id provided)
   → Agent1.collect(domain, frequency, competitors)
-      → DomainScraper filters DOMAIN_TARGETS by frequency + scrape_cache DB
-      → CompetitorScraper.scrape_with_fallback() per URL
+      → DomainScraper.get_due_urls(): filter DOMAIN_TARGETS by frequency + check
+        scrape_cache(url, user_id) for last_scraped_at — tenant-isolated per user
+      → CompetitorScraper.scrape_with_fallback() wrapped in asyncio.run_in_executor
+        (keeps blocking requests/Playwright off the event loop)
       → returns structured_profiles[]
       → fallback: load last pipeline_run from DB if zero profiles
   → Agent2.analyze(structured_profiles)
@@ -96,8 +107,8 @@ Background task: run_pipeline(user_id)
   → Agent4.strategize(agent2_output, agent3_output)
       → chat_json → Groq
       → returns ActionRecommendation[] (P0–P3 board directives)
-  → save all 4 outputs as JSON blobs in pipeline_runs
-  → mark pipeline_job as complete
+  → save all 4 outputs as JSON blobs in pipeline_runs (with job_id FK if present)
+  → mark pipeline_job as complete (if job_id provided)
 
 GET /dashboard
   → return latest pipeline_run JSON or {"status": "pipeline_pending"}
@@ -115,11 +126,12 @@ POST /chat
 ### Shared: `chat_json` helper (`agents/__init__.py`)
 
 ```python
-def chat_json(client, messages, model="llama-3.3-70b-versatile", temperature=0.7, retries=1) -> dict:
+def chat_json(client, messages, model="llama-3.3-70b-versatile", temperature=0.7, max_retries=1) -> dict:
 ```
 
 - Calls `client.chat.completions.create()`
 - Parses JSON from response content
+- `max_retries=1` means **1 additional retry = 2 total attempts**
 - On `JSONDecodeError`: retries once with `temperature=0.0`
 - On second failure: raises `LLMParseError`
 
@@ -132,10 +144,10 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 ### Agent 1 — Collector (`agent1_collector.py`)
 
 - **Input:** `user_id`, domain key, frequency, optional custom competitor list
-- **Process:** Calls `DomainScraper` → `CompetitorScraper.scrape_with_fallback()` per URL
-- **Output:** `{"structured_profiles": [...]}`
+- **Process:** Calls `DomainScraper` → `CompetitorScraper.scrape_with_fallback()` per URL (wrapped in `asyncio.run_in_executor` to keep blocking I/O off the event loop). Raw HTML is converted to `structured_profiles` via `CompetitorScraper.extract_pricing_data()` (rule-based regex, no LLM).
+- **Output:** `{"structured_profiles": [...]}` — list of dicts with `name`, `plans`, `prices`, `raw_mentions`, `url`, `scraped_at`
 - **Fallback:** Zero profiles → load last cached `pipeline_run` from DB
-- **Temperature:** 0.0 (no LLM call; pure scraping)
+- **No LLM call.** Temperature field not applicable.
 
 ### Agent 2 — Analyzer (`agent2_analyzer.py`)
 
@@ -158,7 +170,7 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
   - `company`, `revenue_at_risk_pct` (float 0–1), `time_to_impact` (enum)
   - `risk_level`, `reasoning_summary`, `impact_drivers` (dict of 6 floats)
   - `decision_trace` (list), `evidence` (dict), `generated_at`
-- **`time_to_impact` values:** `"0-3 months"`, `"3-6 months"`, `"6-18 months"`, `"18+ months"`
+- **`time_to_impact`:** Python `Enum` class `TimeToImpact` with values `"0-3 months"`, `"3-6 months"`, `"6-18 months"`, `"18+ months"`. LLM output is validated against this enum after parsing; unrecognised values raise `LLMParseError` (triggering the retry).
 - **Driver fields:** `moat_weakness`, `competitive_pressure`, `market_timing`, `execution_risk`, `customer_stickiness`, `analysis_confidence`
 - **Temperature:** 0.3
 
@@ -249,9 +261,9 @@ class DomainScraper:
 ### DB Schemas (SQLAlchemy ORM)
 
 - **`users`:** id, email, hashed_password, company_name, domain, competitors (JSON), update_frequency, primary_concern, created_at
-- **`pipeline_runs`:** id, user_id, agent1_output (JSON), agent2_output (JSON), agent3_output (JSON), agent4_output (JSON), created_at
-- **`pipeline_jobs`:** id (UUID), user_id, status, created_at, completed_at, error
-- **`scrape_cache`:** url (PK), last_scraped_at, content_hash
+- **`pipeline_runs`:** id, user_id, job_id (FK → pipeline_jobs, nullable), agent1_output (JSON), agent2_output (JSON), agent3_output (JSON), agent4_output (JSON), created_at
+- **`pipeline_jobs`:** id (UUID), user_id, status (`pending/running/complete/failed`), created_at, completed_at, error
+- **`scrape_cache`:** composite PK (url, user_id), last_scraped_at, content_hash — tenant-isolated so each user's scrape schedule is independent
 
 ### Pydantic Models (`api/models.py`)
 Every route has typed request and response models. No raw dicts returned from any endpoint.
@@ -284,7 +296,7 @@ Every route has typed request and response models. No raw dicts returned from an
 - Full-width: `RiskTable` (expandable rows → 8-dim `BarChart` via Recharts)
 - Left: `ForecastTable` (revenue at risk %, time-to-impact, risk badge)
 - Right: `ActionTable` (P0–P3 sorted, priority badges colored)
-- Full-width: `PipelineStatusBar` (last run, next run, "Run Now" button, polling `setInterval` 3s)
+- Full-width: `PipelineStatusBar` (last run, next run, "Run Now" button, polls `GET /pipeline/status/{job_id}` via `setInterval` every 3s; interval cleared via `useEffect` cleanup on unmount or when status reaches `complete`/`failed`)
 - `ChatPanel`: collapsible side panel, message thread, input + send, calls `POST /chat`
 - If pending: full-width `RadarPulse` placeholder card
 
@@ -338,10 +350,12 @@ JWT_SECRET_KEY=
 DATABASE_URL=sqlite:///./rivalradar.db
 ```
 
+**Background tasks:** FastAPI's built-in `BackgroundTasks` (in-process, no extra infrastructure). Sufficient for SQLite dev setup; can be swapped for Celery+Redis in production.
+
 **`requirements.txt`:**
 ```
 fastapi
-uvicorn
+uvicorn[standard]
 sqlalchemy
 python-jose[cryptography]
 passlib[bcrypt]
@@ -354,6 +368,8 @@ requests
 lxml
 playwright
 ```
+
+**Frontend tooling note:** Frontend components will be developed using the `superpowers:frontend-design` plugin for visual design assistance.
 
 **Run:**
 ```bash
