@@ -181,24 +181,32 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
   - `company`, `priority` (P0/P1/P2/P3), `recommendation_type` (enum)
   - `owner` (board-level role), `due_window`, `action_title`, `action_detail`
   - `rationale`, `evidence` (dict), `decision_trace` (list), `generated_at`
-- **`recommendation_type` values:** `acquisition_target`, `product_pivot`, `pricing_defense`, `partnership_acceleration`, `monitor_only`
+- **`recommendation_type`:** Python `Enum` class `RecommendationType` with values `acquisition_target`, `product_pivot`, `pricing_defense`, `partnership_acceleration`, `monitor_only`. Validated after LLM parsing — unrecognised values raise `LLMParseError` (same pattern as `TimeToImpact`).
 - **Prompt constraint:** All recommendations framed as board-meeting directives, never product feature requests
 - **Temperature:** 0.4
 
 ### Orchestrator (`orchestrator.py`)
 
 ```python
-async def run_pipeline(user_id: str, db: Session) -> dict:
-    # 1. Load user profile from DB
-    # 2. Agent1.collect()
-    # 3. Agent2.analyze(agent1_out)
-    # 4. Agent3.forecast(agent2_out, agent1_out)
-    # 5. Agent4.strategize(agent2_out, agent3_out)
-    # 6. Save all outputs to pipeline_runs
-    # 7. Return combined result dict
+async def run_pipeline(user_id: str, job_id: str | None = None) -> dict:
+    # Creates its own SessionLocal() — NOT injected from a route handler.
+    # Route-scoped sessions close when the request ends; background tasks
+    # must own their own session lifecycle.
+    db = SessionLocal()
+    try:
+        # 1. Load user profile from DB
+        # 2. Agent1.collect()
+        # 3. Agent2.analyze(agent1_out)
+        # 4. Agent3.forecast(agent2_out, agent1_out)
+        # 5. Agent4.strategize(agent2_out, agent3_out)
+        # 6. Save all outputs to pipeline_runs (with job_id FK if provided)
+        # 7. Mark pipeline_job complete (if job_id provided)
+        # 8. Return combined result dict
+    finally:
+        db.close()
 ```
 
-Error handling: per-company try/except in Agents 2–4; on `LLMParseError` skip company and log. Agent 1 scrape failure → DB cache fallback.
+Error handling: per-company try/except in Agents 2–4; on `LLMParseError` skip company and log. Agent 1 scrape failure → DB cache fallback. On any unhandled exception: mark `pipeline_job` as `failed` and store error string.
 
 ---
 
@@ -227,12 +235,17 @@ class DomainScraper:
         ...
     def get_due_urls(self) -> list[dict]:
         # filter DOMAIN_TARGETS[domain] by frequency
-        # check scrape_cache for last_scraped_at
+        # check scrape_cache (url, user_id) for last_scraped_at
         # return only URLs due for this run
+
     async def scrape(self) -> list[dict]:
-        # call CompetitorScraper.scrape_with_fallback() per due URL
-        # update scrape_cache timestamps
-        # return structured profiles
+        # async def — orchestrator awaits this directly.
+        # Each blocking CompetitorScraper.scrape_with_fallback() call is
+        # dispatched via: await asyncio.get_event_loop().run_in_executor(None, scraper.scrape_with_fallback, url, page_type)
+        # This keeps requests/Playwright off the event loop without making
+        # scrape() itself synchronous.
+        # Updates scrape_cache timestamps after each URL.
+        # Returns list of structured profile dicts.
 ```
 
 ---
@@ -296,7 +309,7 @@ Every route has typed request and response models. No raw dicts returned from an
 - Full-width: `RiskTable` (expandable rows → 8-dim `BarChart` via Recharts)
 - Left: `ForecastTable` (revenue at risk %, time-to-impact, risk badge)
 - Right: `ActionTable` (P0–P3 sorted, priority badges colored)
-- Full-width: `PipelineStatusBar` (last run, next run, "Run Now" button, polls `GET /pipeline/status/{job_id}` via `setInterval` every 3s; interval cleared via `useEffect` cleanup on unmount or when status reaches `complete`/`failed`)
+- Full-width: `PipelineStatusBar` (last run, next run, "Run Now" button, polls `GET /pipeline/status/{job_id}` via `setInterval` every 3s; polling **only starts when `job_id` is non-null** — i.e., only after a manual `POST /pipeline/run`, never on initial dashboard load; interval cleared via `useEffect` cleanup on unmount or when status reaches `complete`/`failed`)
 - `ChatPanel`: collapsible side panel, message thread, input + send, calls `POST /chat`
 - If pending: full-width `RadarPulse` placeholder card
 
