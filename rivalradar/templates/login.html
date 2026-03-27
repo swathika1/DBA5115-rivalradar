@@ -1,23 +1,43 @@
 ﻿{% extends "base.html" %}
 {% block title %}Login - RivalRadar{% endblock %}
 {% block content %}
-<div class="min-h-screen flex items-center justify-center px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl w-full">
-        <div class="flex flex-col justify-center space-y-8 animate-slideInLeft">
-            <h1 class="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">Competitive Intelligence Powered by AI</h1>
-            <p class="text-xl text-gray-600 leading-relaxed">Understand your market. Predict competitor moves. Win the market.</p>
-        </div>
-        <div class="flex items-center animate-fadeIn">
-            <div class="card-premium w-full max-w-md">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-900">Welcome</h2>
-                    <p class="text-gray-600 mt-2">Sign in to your portfolio dashboard</p>
+<div class="min-h-[calc(100vh-80px)] px-4 py-14 sm:py-20">
+    <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+        <section class="relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-8 shadow-[0_30px_80px_rgba(8,12,28,0.45)] backdrop-blur-xl fade-in sm:p-10">
+            <div class="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-amber-300/30 blur-3xl"></div>
+            <div class="pointer-events-none absolute -right-20 -bottom-24 h-72 w-72 rounded-full bg-teal-300/25 blur-3xl"></div>
+
+            <div class="relative z-10">
+                <p class="text-xs uppercase tracking-[0.22em] text-amber-100/90">RivalRadar Platform</p>
+                <h1 class="mt-4 text-5xl font-extrabold leading-tight text-white sm:text-6xl">See competitor moves before they hit your board deck.</h1>
+                <p class="mt-5 max-w-xl text-base text-slate-100/90 sm:text-lg">Track threats, spot pricing shifts, and protect your portfolio with AI intelligence built for venture teams.</p>
+
+                <div class="mt-8 grid grid-cols-2 gap-3 sm:max-w-md">
+                    <div class="rounded-2xl border border-white/20 bg-white/10 p-4">
+                        <p class="text-xs uppercase tracking-widest text-slate-200/80">Coverage</p>
+                        <p class="mt-2 text-2xl font-extrabold text-white">40+ SaaS</p>
+                    </div>
+                    <div class="rounded-2xl border border-white/20 bg-white/10 p-4">
+                        <p class="text-xs uppercase tracking-widest text-slate-200/80">Live Alerts</p>
+                        <p class="mt-2 text-2xl font-extrabold text-white">Real-time</p>
+                    </div>
                 </div>
-                <button onclick="window.location.href='/vc-dashboard?name=Demo%20Partner&org=Accel%20Partners'" class="w-full button-primary mb-4">
-                    <i class="fas fa-sign-in-alt mr-2"></i>Enter Demo Dashboard
+            </div>
+        </section>
+
+        <div class="flex items-center justify-center slide-in-right">
+            <div class="card-premium w-full max-w-md">
+                <div class="mb-8 text-center">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Welcome Back</h2>
+                    <p class="mt-2 text-slate-600">Sign in and start from your current portfolio companies.</p>
+                </div>
+
+                <button onclick="window.location.href='/portfolio'" class="button-primary w-full mb-4">
+                    <i class="fas fa-briefcase mr-2"></i>Open Portfolio First
                 </button>
-                <button onclick="window.location.href='/dashboard'" class="w-full button-primary">
-                    <i class="fas fa-rocket mr-2"></i>Try Analysis Now
+
+                <button onclick="window.location.href='/dashboard'" class="button-secondary w-full">
+                    <i class="fas fa-chart-line mr-2"></i>Jump To Quick Analysis
                 </button>
             </div>
         </div>
