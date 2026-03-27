@@ -1,0 +1,42 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-12">
+    <h1 style="font-size: 48px; font-weight: 900;">{{ vc_name }} Dashboard</h1>
+    <p style="color: #4b5563; font-size: 18px;">{{ vc_org }}</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0;">
+        <div class="card-premium" style="text-align: center;">
+            <p style="font-size: 36px; font-weight: 900; color: #2563eb;">{{ portfolio_companies|length }}</p>
+            <p style="color: #4b5563;">Portfolio Cos.</p>
+        </div>
+        <div class="card-premium" style="text-align: center;">
+            <p style="font-size: 36px; font-weight: 900; color: #2563eb;">35</p>
+            <p style="color: #4b5563;">Competitors</p>
+        </div>
+        <div class="card-premium" style="text-align: center;">
+            <p style="font-size: 36px; font-weight: 900; color: #dc2626;">7</p>
+            <p style="color: #4b5563;">Threats</p>
+        </div>
+        <div class="card-premium" style="text-align: center;">
+            <p style="font-size: 18px; font-weight: 600;">Today</p>
+            <p style="color: #4b5563;">Last Analysis</p>
+        </div>
+    </div>
+    
+    <h2 style="font-size: 28px; font-weight: 700; margin: 32px 0 16px 0;">Portfolio Companies</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        {% for company in portfolio_companies %}
+        <div class="card-premium">
+            <h3 style="font-size: 20px; font-weight: 700;">{{ company.name }}</h3>
+            <p style="color: #4b5563;">{{ company.segment }}</p>
+            <button onclick="window.location.href=''/dashboard''" class="button-primary" style="width: 100%; margin-top: 16px;">Analyze</button>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="card-premium" style="text-align: center; padding: 48px; margin-top: 32px;">
+        <h3 style="font-size: 24px; font-weight: 700;">Start Competitive Analysis</h3>
+        <button onclick="window.location.href=''/dashboard''" class="button-primary" style="margin-top: 16px;">Analyze Now</button>
+    </div>
+</div>
+{% endblock %}

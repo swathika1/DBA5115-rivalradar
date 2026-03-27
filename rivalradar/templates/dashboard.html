@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - RivalRadar{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(12, 74, 110, 0.4) 100%);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 20px;
+        padding: 4rem 2rem;
+        margin-bottom: 3rem;
+        backdrop-filter: blur(10px);
+    }
+
+    .input-box {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(12, 17, 43, 0.9) 100%);
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        border-radius: 16px;
+        padding: 2rem;
+        backdrop-filter: blur(20px);
+    }
+    
+    .input-box:hover {
+        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
+    }
+    
+    textarea {
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(59, 130, 246, 0.4);
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    textarea:focus {
+        outline: none;
+        border-color: rgba(59, 130, 246, 1);
+        background: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.3), inset 0 0 20px rgba(59, 130, 246, 0.1);
+    }
+    
+    .company-grid-item {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(10, 18, 45, 0.7) 100%);
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        border-radius: 14px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .company-grid-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .company-grid-item:hover {
+        border-color: rgba(59, 130, 246, 0.8);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.8) 100%);
+    }
+
+    .company-grid-item:hover::before {
+        left: 100%;
+    }
+    
+    .run-btn {
+        background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        border: none;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        width: 100%;
+        letter-spacing: 0.5px;
+    }
+    
+    .run-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4);
+        background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+    }
+    
+    .run-btn:active {
+        transform: translateY(-1px);
+    }
+
+    .error-box {
+        background: rgba(220, 38, 38, 0.15);
+        border: 2px solid rgba(220, 38, 38, 0.4);
+        border-radius: 12px;
+        padding: 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .error-icon {
+        color: #ef4444;
+        flex-shrink: 0;
+        margin-top: 3px;
+    }
+
+    .error-text {
+        color: #fca5a5;
+        font-size: 14px;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-icon {
+        font-size: 24px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-80px)] py-12 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div class="max-w-7xl mx-auto">
+        <!-- Hero Section -->
+        <div class="hero-section fade-in mb-12">
+            <h1 class="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-200 via-cyan-300 to-blue-400 bg-clip-text text-transparent mb-4">
+                ⚡ Competitive Analysis
+            </h1>
+            <p class="text-xl text-gray-300">Enter any SaaS company name and get instant intelligence on vulnerabilities, pricing changes, and strategic opportunities</p>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Input Column -->
+            <div class="lg:col-span-1">
+                <div class="input-box sticky top-24">
+                    <div class="section-title">
+                        <i class="fas fa-search text-blue-400 section-icon"></i>
+                        <h3 class="text-2xl font-bold text-white">Analyze</h3>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-200 mb-3">Company Names</label>
+                        <textarea id="companyInput" 
+                                  placeholder="Notion, Linear, Google, Slack, HubSpot..."
+                                  class="w-full resize-none"
+                                  rows="5"></textarea>
+                        <p class="text-xs text-gray-400 mt-2 ml-1">💡 Tip: Enter multiple companies comma-separated</p>
+                    </div>
+
+                    <button onclick="runAnalysis()" class="run-btn mb-4">
+                        <i class="fas fa-bolt mr-2"></i> Run Analysis
+                    </button>
+
+                    <div id="inputError" class="hidden error-box">
+                        <i class="fas fa-exclamation-circle error-icon"></i>
+                        <span id="inputErrorText" class="error-text"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Companies Column -->
+            <div class="lg:col-span-2">
+                <div class="section-title">
+                    <i class="fas fa-building text-cyan-400 section-icon"></i>
+                    <h3 class="text-2xl font-bold text-white">Featured Companies</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {% for company in available_companies %}
+                    <div class="company-grid-item group" onclick="addCompany('{{ company.name }}')">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="relative z-10">
+                                <h4 class="font-bold text-lg text-white group-hover:text-cyan-300 transition">{{ company.name }}</h4>
+                                <p class="text-sm text-gray-400">{{ company.segment }}</p>
+                            </div>
+                            <i class="fas fa-chevron-right text-cyan-400 opacity-0 group-hover:opacity-100 transition transform group-hover:translate-x-1"></i>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function addCompany(name) {
+    const textarea = document.getElementById('companyInput');
+    const current = textarea.value.trim();
+    if (current) {
+        textarea.value = current + ', ' + name;
+    } else {
+        textarea.value = name;
+    }
+    textarea.focus();
+    
+    // Highlight animation
+    textarea.style.borderColor = 'rgba(59, 130, 246, 1)';
+    setTimeout(() => {
+        textarea.style.borderColor = '';
+    }, 500);
+}
+
+async function runAnalysis() {
+    const input = document.getElementById('companyInput').value.trim();
+    const errorDiv = document.getElementById('inputError');
+    const errorText = document.getElementById('inputErrorText');
+    
+    errorDiv.classList.add('hidden');
+    
+    if (!input) {
+        errorText.textContent = 'Please enter at least one company name';
+        errorDiv.classList.remove('hidden');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/check-companies?company_names=${encodeURIComponent(input)}`);
+        const data = await response.json();
+        
+        if (!response.ok) {
+            errorText.textContent = data.detail || 'Invalid companies';
+            errorDiv.classList.remove('hidden');
+            return;
+        }
+
+        const companyNames = data.companies.map(c => c.name).join(',');
+        window.location.href = `/running/${encodeURIComponent(companyNames)}`;
+        
+    } catch (error) {
+        errorText.textContent = 'Error: ' + error.message;
+        errorDiv.classList.remove('hidden');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('companyInput').addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'Enter') {
+            runAnalysis();
+        }
+    });
+});
+</script>
+{% endblock %}

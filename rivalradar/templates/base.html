@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RivalRadar - Competitive Intelligence{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <style>
+        /* Advanced Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Animation Classes */
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        .slide-in { animation: slideInLeft 0.6s ease-out; }
+        .slide-in-right { animation: slideInRight 0.6s ease-out; }
+        .pulse-glow { animation: pulse-glow 2s infinite; }
+        .shimmer { animation: shimmer 3s infinite; }
+        .float { animation: float 3s ease-in-out infinite; }
+        .spin-slow { animation: spin-slow 20s linear infinite; }
+        
+        /* Risk Level Styles */
+        .risk-critical { @apply bg-red-100 border-red-500 text-red-900; }
+        .risk-high { @apply bg-orange-100 border-orange-500 text-orange-900; }
+        .risk-medium { @apply bg-yellow-100 border-yellow-500 text-yellow-900; }
+        .risk-low { @apply bg-green-100 border-green-500 text-green-900; }
+        
+        /* Glassmorphism */
+        .glass { @apply backdrop-blur-xl bg-white bg-opacity-10 border border-white border-opacity-20; }
+        .glass-dark { @apply backdrop-blur-xl bg-black bg-opacity-30 border border-blue-500 border-opacity-20; }
+        
+        /* Card Hover Effects */
+        .card-hover {
+            @apply transition-all duration-300 cursor-pointer;
+        }
+        .card-hover:hover {
+            @apply transform -translate-y-2 shadow-2xl shadow-blue-500/20;
+        }
+        
+        /* Smooth Transitions */
+        * {
+            transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+        
+        /* VC Logo Gradient */
+        .vc-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+        }
+        
+        /* Score Badge Glow */
+        .score-glow {
+            @apply relative inline-block;
+        }
+        .score-glow::before {
+            @apply absolute inset-0 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300;
+            background: inherit;
+        }
+        
+        /* Advanced Loading */
+        .advanced-loader {
+            @apply relative w-12 h-12;
+        }
+        .advanced-loader::after {
+            content: '';
+            @apply absolute inset-0 rounded-full border-4 border-blue-500 border-t-cyan-400 border-r-cyan-400;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .app-bg {
+            background:
+                radial-gradient(circle at 12% 12%, rgba(6, 182, 212, 0.22), transparent 32%),
+                radial-gradient(circle at 88% 8%, rgba(16, 185, 129, 0.2), transparent 35%),
+                radial-gradient(circle at 50% 100%, rgba(250, 204, 21, 0.12), transparent 40%),
+                linear-gradient(120deg, #020617 0%, #0b1120 35%, #111827 70%, #0f172a 100%);
+            background-attachment: fixed;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="app-bg text-white min-h-screen font-sans">
+    <!-- Advanced Navbar -->
+    <nav class="sticky top-0 z-50 glass border-b border-blue-400 border-opacity-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3 group">
+                <div class="float">
+                    <i class="fas fa-radar text-transparent text-2xl vc-gradient bg-clip-text"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        RivalRadar
+                    </h1>
+                    <p class="text-xs text-gray-500">AI-Powered VC Intelligence</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="/dashboard" class="text-sm text-gray-400 hover:text-blue-400 transition">Dashboard</a>
+                <a href="/portfolio" class="text-sm text-gray-400 hover:text-blue-400 transition">Portfolio</a>
+                <div class="w-3 h-3 rounded-full bg-green-500 pulse-glow"></div>
+                <span class="text-xs text-gray-500">Live</span>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

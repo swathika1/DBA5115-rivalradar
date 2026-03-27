@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}Results - RivalRadar{% endblock %}
+
+{% block extra_css %}
+<style>
+    .results-bg {
+        background:
+            radial-gradient(circle at 0% 15%, rgba(14, 165, 233, 0.2), transparent 35%),
+            radial-gradient(circle at 85% 20%, rgba(16, 185, 129, 0.15), transparent 30%),
+            radial-gradient(circle at 65% 95%, rgba(234, 179, 8, 0.12), transparent 40%);
+    }
+
+    .big-nav-btn {
+        padding: 0.9rem 1.3rem;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 0.85rem;
+    }
+
+    .company-status-card {
+        border-radius: 0.9rem;
+        padding: 1rem;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        backdrop-filter: blur(8px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="results-bg min-h-[calc(100vh-80px)] py-12 px-4">
+    <div class="max-w-6xl mx-auto fade-in">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-4xl font-bold mb-2">Analysis Results</h2>
+                <p class="text-gray-400">Competitive intelligence for {{ companies|length }} companies</p>
+            </div>
+            <a href="/dashboard" class="big-nav-btn bg-gray-700 hover:bg-gray-600 text-white transition shadow-lg">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <!-- Companies Analyzed -->
+        <div class="bg-black bg-opacity-40 rounded-lg p-4 mb-8 border border-blue-400 border-opacity-20">
+            <div class="flex items-center gap-3 flex-wrap">
+                {% for company in companies %}
+                <span class="bg-blue-600 bg-opacity-50 border border-blue-400 text-white px-3 py-1 rounded-full text-sm">
+                    {{ company }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% set ns = namespace(vuln_count=0) %}
+
+        <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 flex items-center">
+                <i class="fas fa-list-check text-emerald-400 mr-2"></i> Company Outcome Summary
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for company in companies %}
+                {% set analysis = result.agent2_output.get(company) if result.agent2_output else None %}
+                {% set score = analysis.get('vulnerability_score', 0) if analysis else 0 %}
+                {% set risky = score >= 0.6 %}
+                {% if risky %}{% set ns.vuln_count = ns.vuln_count + 1 %}{% endif %}
+                <div class="company-status-card {% if risky %}bg-red-900 bg-opacity-30 border-red-400{% else %}bg-emerald-900 bg-opacity-30 border-emerald-400{% endif %}">
+                    <div class="flex items-start justify-between mb-2">
+                        <h4 class="font-bold text-lg">{{ company }}</h4>
+                        <span class="text-xs font-bold px-2 py-1 rounded-full {% if risky %}bg-red-600 text-white{% else %}bg-emerald-600 text-white{% endif %}">
+                            {% if risky %}AT RISK{% else %}STABLE{% endif %}
+                        </span>
+                    </div>
+                    <p class="text-xs text-gray-200 mb-2">
+                        {% if analysis %}
+                            {{ analysis.get('summary', 'Competitive analysis available.') }}
+                        {% else %}
+                            No major vulnerability signal was detected for this company in the current run.
+                        {% endif %}
+                    </p>
+                    <div class="w-full h-2 bg-black bg-opacity-40 rounded-full overflow-hidden">
+                        <div class="h-full {% if risky %}bg-red-500{% else %}bg-emerald-500{% endif %}" style="width: {{ (score * 100)|int }}%"></div>
+                    </div>
+                    <p class="text-xs mt-2 text-gray-300">Vulnerability score: {{ (score * 100)|int }}%</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Results Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Vulnerability Analysis Section -->
+            <div class="lg:col-span-2">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-shield-exclamation text-red-400 mr-2"></i> Vulnerability Analysis
+                </h3>
+                
+                {% if result.agent2_output %}
+                <div class="space-y-4">
+                    {% for company_name, analysis in result.agent2_output.items() %}
+                    {% set risk_level = analysis.get('risk_level', 'medium')|lower %}
+                    {% set risk_score = analysis.get('vulnerability_score', 0.5) %}
+                    
+                    <div class="bg-gradient-to-br {% if risk_level == 'critical' %}from-red-900 to-red-800{% elif risk_level == 'high' %}from-orange-900 to-orange-800{% elif risk_level == 'medium' %}from-yellow-900 to-yellow-800{% else %}from-green-900 to-green-800{% endif %} rounded-lg p-6 border {% if risk_level == 'critical' %}border-red-500{% elif risk_level == 'high' %}border-orange-500{% elif risk_level == 'medium' %}border-yellow-500{% else %}border-green-500{% endif %} border-opacity-50">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h4 class="font-bold text-xl">{{ company_name }}</h4>
+                                <p class="text-xs text-gray-400 mt-1">{{ analysis.get('summary', 'Competitive analysis') }}</p>
+                            </div>
+                            <span class="text-xs font-bold uppercase {% if risk_level == 'critical' %}bg-red-600 text-white{% elif risk_level == 'high' %}bg-orange-600 text-white{% elif risk_level == 'medium' %}bg-yellow-600 text-white{% else %}bg-green-600 text-white{% endif %} px-3 py-1 rounded-full whitespace-nowrap">
+                                {{ risk_level }} RISK
+                            </span>
+                        </div>
+                        
+                        <!-- Score Bar -->
+                        <div class="mb-5 pb-4 border-b border-white border-opacity-10">
+                            <div class="flex justify-between items-center text-xs mb-2">
+                                <span class="text-gray-300">Threat Level</span>
+                                <span class="font-bold">{{ (risk_score * 100)|int }}%</span>
+                            </div>
+                            <div class="bg-black bg-opacity-40 rounded-full h-3 overflow-hidden">
+                                <div class="{% if risk_level == 'critical' %}bg-red-500{% elif risk_level == 'high' %}bg-orange-500{% elif risk_level == 'medium' %}bg-yellow-500{% else %}bg-green-500{% endif %} h-full rounded-full transition-all" style="width: {{ (risk_score * 100)|int }}%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Key Findings with Reasoning -->
+                        {% if analysis.get('key_findings') %}
+                        <div class="space-y-3 mb-4">
+                            <p class="font-semibold text-gray-200 text-sm">🎯 Key Vulnerabilities:</p>
+                            <div class="space-y-2">
+                                {% for finding in analysis.get('key_findings', [])|list %}
+                                <div class="bg-black bg-opacity-30 rounded p-3 text-xs">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-triangle-exclamation text-orange-400 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span class="text-gray-200">{{ finding }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- AI Reasoning/Explanation -->
+                        {% if analysis.get('ai_reasoning') %}
+                        <div class="bg-black bg-opacity-50 rounded p-4 border border-blue-400 border-opacity-20">
+                            <p class="font-semibold text-blue-300 text-sm mb-2 flex items-center">
+                                <i class="fas fa-brain mr-2"></i> AI Reasoning
+                            </p>
+                            <p class="text-xs text-gray-300 leading-relaxed">{{ analysis.get('ai_reasoning') }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Pricing Predictions -->
+            <div>
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-chart-line text-green-400 mr-2"></i> Pricing Predictions
+                </h3>
+                
+                {% if result.agent3_output %}
+                <div class="space-y-4">
+                    {% for company_name, prediction in result.agent3_output.items() %}
+                    <div class="bg-black bg-opacity-40 border border-green-400 border-opacity-30 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-bold text-lg">{{ company_name }}</h4>
+                            {% if prediction.get('change_probability') and prediction.get('change_probability') > 0.6 %}
+                            <span class="text-xs font-bold bg-orange-600 text-white px-2 py-1 rounded">HIGH CHANGE LIKELY</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="space-y-3 text-sm text-gray-300 mb-3">
+                            {% if prediction.get('change_probability') %}
+                            <div class="flex justify-between items-center">
+                                <span>Probability of Change:</span>
+                                <span class="font-semibold text-green-400">{{ (prediction.get('change_probability', 0) * 100)|int }}%</span>
+                            </div>
+                            {% endif %}
+                            {% if prediction.get('predicted_timeline') %}
+                            <div class="flex justify-between items-center">
+                                <span>Predicted Timeline:</span>
+                                <span class="font-semibold text-yellow-400">{{ prediction.get('predicted_timeline', 'N/A') }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Pricing Reasoning -->
+                        {% if prediction.get('reasoning') %}
+                        <div class="bg-black bg-opacity-60 rounded p-3 border border-green-400 border-opacity-20">
+                            <p class="font-semibold text-green-300 text-xs mb-2 flex items-center">
+                                <i class="fas fa-lightbulb mr-2"></i> Why This Prediction?
+                            </p>
+                            <p class="text-xs text-gray-300 leading-relaxed">{{ prediction.get('reasoning') }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Action Recommendations -->
+            <div>
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-lightbulb text-yellow-400 mr-2"></i> VC Recommendations
+                </h3>
+                
+                {% if result.agent4_output %}
+                <div class="space-y-3 max-h-[600px] overflow-y-auto pr-2">
+                    {% for i, action in result.agent4_output.items() %}
+                    {% set priority = action.get('priority', 'P3') %}
+                    <div class="bg-black bg-opacity-40 border {% if 'P0' in priority %}border-red-500 border-opacity-70 bg-red-900 bg-opacity-20{% elif 'P1' in priority %}border-orange-500 border-opacity-70 bg-orange-900 bg-opacity-20{% elif 'P2' in priority %}border-yellow-500 border-opacity-50{% else %}border-green-500 border-opacity-40{% endif %} rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex-1">
+                                <h4 class="font-bold text-base">{{ action.get('action_title', 'Action') }}</h4>
+                                {% if action.get('description') %}
+                                <p class="text-xs text-gray-400 mt-1">{{ action.get('description') }}</p>
+                                {% endif %}
+                            </div>
+                            <span class="text-xs font-bold {% if 'P0' in priority %}bg-red-600{% elif 'P1' in priority %}bg-orange-600{% elif 'P2' in priority %}bg-yellow-600{% else %}bg-green-600{% endif %} text-white px-2.5 py-1 rounded-full whitespace-nowrap ml-2">
+                                {{ priority }}
+                            </span>
+                        </div>
+                        
+                        <div class="space-y-2 text-xs text-gray-300 mb-3">
+                            {% if action.get('owner') %}
+                            <div class="flex items-center">
+                                <i class="fas fa-user text-blue-400 mr-2 w-4"></i>
+                                <span><strong>Owner:</strong> {{ action.get('owner', 'N/A') }}</span>
+                            </div>
+                            {% endif %}
+                            {% if action.get('due_window') %}
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar text-purple-400 mr-2 w-4"></i>
+                                <span><strong>Timeline:</strong> {{ action.get('due_window', 'N/A') }}</span>
+                            </div>
+                            {% endif %}
+                            {% if action.get('impact') %}
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-bar text-green-400 mr-2 w-4"></i>
+                                <span><strong>Expected Impact:</strong> {{ action.get('impact', 'N/A') }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Action Reasoning -->
+                        {% if action.get('reasoning') %}
+                        <div class="bg-black bg-opacity-60 rounded p-3 border border-blue-400 border-opacity-20 text-xs">
+                            <p class="font-semibold text-blue-300 mb-1 flex items-center">
+                                <i class="fas fa-info-circle mr-2"></i> Reasoning
+                            </p>
+                            <p class="text-gray-300 leading-relaxed">{{ action.get('reasoning') }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-lg p-4 border border-blue-500 border-opacity-30">
+                <div class="text-3xl font-bold text-blue-400">{{ companies|length }}</div>
+                <div class="text-sm text-gray-400">Companies Analyzed</div>
+            </div>
+            <div class="bg-gradient-to-br from-red-900 to-red-800 rounded-lg p-4 border border-red-500 border-opacity-30">
+                <div class="text-3xl font-bold text-red-400">{{ ns.vuln_count }}</div>
+                <div class="text-sm text-gray-400">Vulnerabilities Found</div>
+            </div>
+            <div class="bg-gradient-to-br from-yellow-900 to-yellow-800 rounded-lg p-4 border border-yellow-500 border-opacity-30">
+                <div class="text-3xl font-bold text-yellow-400">{{ (result.agent3_output|length if result.agent3_output else 0) }}</div>
+                <div class="text-sm text-gray-400">Price Predictions</div>
+            </div>
+            <div class="bg-gradient-to-br from-green-900 to-green-800 rounded-lg p-4 border border-green-500 border-opacity-30">
+                <div class="text-3xl font-bold text-green-400">{{ (result.agent4_output|length if result.agent4_output else 0) }}</div>
+                <div class="text-sm text-gray-400">Action Items</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Custom scrollbar for results area */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.8);
+}
+</style>
+{% endblock %}

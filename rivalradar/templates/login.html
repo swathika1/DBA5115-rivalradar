@@ -1,0 +1,26 @@
+﻿{% extends "base.html" %}
+{% block title %}Login - RivalRadar{% endblock %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl w-full">
+        <div class="flex flex-col justify-center space-y-8 animate-slideInLeft">
+            <h1 class="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">Competitive Intelligence Powered by AI</h1>
+            <p class="text-xl text-gray-600 leading-relaxed">Understand your market. Predict competitor moves. Win the market.</p>
+        </div>
+        <div class="flex items-center animate-fadeIn">
+            <div class="card-premium w-full max-w-md">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900">Welcome</h2>
+                    <p class="text-gray-600 mt-2">Sign in to your portfolio dashboard</p>
+                </div>
+                <button onclick="window.location.href='/vc-dashboard?name=Demo%20Partner&org=Accel%20Partners'" class="w-full button-primary mb-4">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Enter Demo Dashboard
+                </button>
+                <button onclick="window.location.href='/dashboard'" class="w-full button-primary">
+                    <i class="fas fa-rocket mr-2"></i>Try Analysis Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

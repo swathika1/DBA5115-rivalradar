@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Running - RivalRadar{% endblock %}
+
+{% block extra_css %}
+<style>
+    .run-bg {
+        background:
+            radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.18), transparent 35%),
+            radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.2), transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.12), transparent 35%),
+            linear-gradient(135deg, #111827 0%, #0f172a 40%, #1f2937 100%);
+    }
+
+    .agent-step {
+        @apply mb-8 opacity-30 transition-all duration-500;
+    }
+    
+    .agent-step.active { @apply opacity-100; }
+    .agent-step.complete { @apply opacity-100; }
+    
+    .agent-card {
+        @apply glass-dark rounded-xl p-6 border-l-4;
+    }
+    
+    .agent-card.agent-1 { @apply border-l-blue-500; }
+    .agent-card.agent-2 { @apply border-l-orange-500; }
+    .agent-card.agent-3 { @apply border-l-purple-500; }
+    .agent-card.agent-4 { @apply border-l-green-500; }
+    
+    .agent-status {
+        @apply px-3 py-1 rounded-full text-xs font-semibold;
+    }
+    
+    .agent-status.pending { @apply bg-gray-600 text-gray-200; }
+    .agent-status.running { @apply bg-blue-600 text-blue-200 pulse-glow; }
+    .agent-status.complete { @apply bg-green-600 text-green-200; }
+    
+    .progress-bar {
+        @apply w-full bg-gray-700 rounded-full h-3 overflow-hidden;
+    }
+    
+    .progress-fill {
+        @apply h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 w-0 transition-all duration-1000;
+        box-shadow: 0 0 14px rgba(56, 189, 248, 0.7);
+    }
+    
+    .agent-icon {
+        @apply w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-lg;
+    }
+    
+    .agent-icon.agent-1 { @apply bg-gradient-to-r from-blue-500 to-cyan-500; }
+    .agent-icon.agent-2 { @apply bg-gradient-to-r from-orange-500 to-red-500; }
+    .agent-icon.agent-3 { @apply bg-gradient-to-r from-purple-500 to-pink-500; }
+    .agent-icon.agent-4 { @apply bg-gradient-to-r from-green-500 to-emerald-500; }
+
+    .overall-progress-wrap {
+        @apply glass-dark rounded-2xl p-6 border border-cyan-400 border-opacity-30 mb-8;
+    }
+
+    .overall-track {
+        @apply w-full h-4 rounded-full bg-slate-700 overflow-hidden;
+    }
+
+    .overall-fill {
+        @apply h-full rounded-full bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 transition-all duration-700;
+        width: 0%;
+        box-shadow: 0 0 16px rgba(34, 211, 238, 0.7);
+    }
+
+    .cta-btn {
+        @apply px-10 py-5 text-lg font-bold rounded-xl transition-all transform hover:scale-105 shadow-2xl;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="run-bg min-h-[calc(100vh-80px)] py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in">
+            <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+                <i class="fas fa-brain mr-3"></i>AI Analysis in Progress
+            </h1>
+            <p class="text-gray-400 text-lg">Deep-diving competitive threats for your portfolio...</p>
+        </div>
+
+        <div class="overall-progress-wrap fade-in" style="animation-delay: 60ms;">
+            <div class="flex items-center justify-between mb-3">
+                <p class="text-base font-semibold text-cyan-200">Overall Pipeline Progress</p>
+                <p class="text-base font-bold text-white" id="overall-percent">0%</p>
+            </div>
+            <div class="overall-track">
+                <div class="overall-fill" id="overall-fill"></div>
+            </div>
+            <p class="text-xs text-slate-300 mt-2" id="overall-status">Booting analysis agents...</p>
+        </div>
+
+        <!-- Company List -->
+        <div class="mb-12 fade-in" style="animation-delay: 100ms;">
+            <div class="glass-dark rounded-xl p-6 mb-8">
+                <h2 class="text-lg font-bold mb-4 flex items-center">
+                    <i class="fas fa-check-double text-cyan-400 mr-2"></i> Analyzing Companies
+                </h2>
+                <div class="flex flex-wrap gap-2">
+                    {% for company in company_names.split(',') %}
+                    <div class="px-4 py-2 bg-blue-900 bg-opacity-50 border border-blue-500 border-opacity-50 rounded-lg text-sm font-semibold">
+                        {{ company.strip() }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Progress -->
+        <div class="fade-in" style="animation-delay: 200ms;">
+            <!-- Agent 1 -->
+            <div class="agent-step" id="agent-1-step">
+                <div class="agent-card agent-1">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="agent-icon agent-1">1</div>
+                            <div>
+                                <p class="font-bold">Agent 1: Data Scraping</p>
+                                <p class="text-xs text-gray-500">Gathering competitive intelligence</p>
+                            </div>
+                        </div>
+                        <span class="agent-status pending" id="status-1">Pending</span>
+                    </div>
+                    <div class="progress-bar mb-2">
+                        <div class="progress-fill" id="progress-1"></div>
+                    </div>
+                    <p class="text-sm text-gray-400" id="message-1">Waiting to start...</p>
+                </div>
+            </div>
+
+            <!-- Agent 2 -->
+            <div class="agent-step" id="agent-2-step">
+                <div class="agent-card agent-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="agent-icon agent-2">2</div>
+                            <div>
+                                <p class="font-bold">Agent 2: Vulnerability Analysis</p>
+                                <p class="text-xs text-gray-500">Identifying market threats & risks</p>
+                            </div>
+                        </div>
+                        <span class="agent-status pending" id="status-2">Pending</span>
+                    </div>
+                    <div class="progress-bar mb-2">
+                        <div class="progress-fill" id="progress-2"></div>
+                    </div>
+                    <p class="text-sm text-gray-400" id="message-2">Waiting...</p>
+                </div>
+            </div>
+
+            <!-- Agent 3 -->
+            <div class="agent-step" id="agent-3-step">
+                <div class="agent-card agent-3">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="agent-icon agent-3">3</div>
+                            <div>
+                                <p class="font-bold">Agent 3: Pricing Prediction</p>
+                                <p class="text-xs text-gray-500">Forecasting market dynamics</p>
+                            </div>
+                        </div>
+                        <span class="agent-status pending" id="status-3">Pending</span>
+                    </div>
+                    <div class="progress-bar mb-2">
+                        <div class="progress-fill" id="progress-3"></div>
+                    </div>
+                    <p class="text-sm text-gray-400" id="message-3">Waiting...</p>
+                </div>
+            </div>
+
+            <!-- Agent 4 -->
+            <div class="agent-step" id="agent-4-step">
+                <div class="agent-card agent-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="agent-icon agent-4">4</div>
+                            <div>
+                                <p class="font-bold">Agent 4: VC Recommendations</p>
+                                <p class="text-xs text-gray-500">Strategic action planning</p>
+                            </div>
+                        </div>
+                        <span class="agent-status pending" id="status-4">Pending</span>
+                    </div>
+                    <div class="progress-bar mb-2">
+                        <div class="progress-fill" id="progress-4"></div>
+                    </div>
+                    <p class="text-sm text-gray-400" id="message-4">Waiting...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion -->
+        <div class="mt-12 hidden fade-in" id="completion-card">
+            <div class="glass-dark rounded-xl p-8 text-center">
+                <div class="mb-6">
+                    <i class="fas fa-check-circle text-6xl text-green-400 float"></i>
+                </div>
+                <h2 class="text-4xl font-bold mb-2">Analysis Complete</h2>
+                <p class="text-gray-400 mb-8">Your competitive intelligence report is ready!</p>
+                <button onclick="navigateToResults()" class="cta-btn bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white">
+                    <i class="fas fa-arrow-right mr-2"></i> View Full Report
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentSessionId = null;
+const companyNames = "{{ company_names }}";
+const completedAgents = new Set();
+
+function setOverallProgress(percent, label) {
+    const fill = document.getElementById('overall-fill');
+    const pct = document.getElementById('overall-percent');
+    const status = document.getElementById('overall-status');
+
+    fill.style.width = `${percent}%`;
+    pct.textContent = `${Math.round(percent)}%`;
+    status.textContent = label;
+}
+
+function refreshOverallFromAgents() {
+    const percent = (completedAgents.size / 4) * 100;
+    const labels = [
+        'Booting analysis agents...',
+        'Collecting competitor data...',
+        'Crunching vulnerability models...',
+        'Generating strategic output...',
+        'All analysis steps completed.'
+    ];
+    setOverallProgress(percent, labels[Math.min(completedAgents.size, 4)]);
+}
+
+function updateAgentStep(agent, message) {
+    const step = document.getElementById(`agent-${agent}-step`);
+    const status = document.getElementById(`status-${agent}`);
+    const progress = document.getElementById(`progress-${agent}`);
+    const messageEl = document.getElementById(`message-${agent}`);
+    
+    step.classList.add('active');
+    status.textContent = 'Running';
+    status.classList = 'agent-status running';
+    messageEl.textContent = message;
+    progress.style.width = '50%';
+}
+
+function completeAgentStep(agent) {
+    const step = document.getElementById(`agent-${agent}-step`);
+    const status = document.getElementById(`status-${agent}`);
+    const progress = document.getElementById(`progress-${agent}`);
+    
+    step.classList.add('complete');
+    status.textContent = 'Complete';
+    status.classList = 'agent-status complete';
+    progress.style.width = '100%';
+    completedAgents.add(agent);
+    refreshOverallFromAgents();
+}
+
+async function streamAnalysis() {
+    try {
+        const response = await fetch(`/stream/${encodeURIComponent(companyNames)}`);
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            const chunk = decoder.decode(value);
+            const lines = chunk.split('\n');
+            
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    try {
+                        const data = JSON.parse(line.slice(6));
+                        
+                        switch(data.stage) {
+                            case 'agent':
+                                if (/^\d+$/.test(String(data.agent))) {
+                                    const agentNum = Number(data.agent);
+                                    if (agentNum > 1) {
+                                        completeAgentStep(agentNum - 1);
+                                    }
+                                    updateAgentStep(agentNum, data.message);
+                                }
+                                break;
+                            case 'success':
+                                currentSessionId = data.session_id;
+                                for (let i = 1; i <= 4; i++) {
+                                    completeAgentStep(i);
+                                }
+                                setOverallProgress(100, 'All analysis steps completed. Redirect ready.');
+                                setTimeout(() => {
+                                    document.getElementById('completion-card').classList.remove('hidden');
+                                }, 500);
+                                break;
+                        }
+                    } catch (e) {
+                        console.error('Parse error:', e);
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Stream error:', error);
+    }
+}
+
+function navigateToResults() {
+    if (currentSessionId) {
+        window.location.href = `/results/${currentSessionId}`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', streamAnalysis);
+</script>
+{% endblock %}

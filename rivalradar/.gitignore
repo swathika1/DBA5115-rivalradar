@@ -1,5 +1,40 @@
 # Python virtual environments
 .venv/
 venv/
+.venv2/
+venv2/
+env/
+ENV/
 **/.venv/
 **/venv/
+**/venv2/
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Notebook artifacts
+.ipynb_checkpoints/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+
+# Generated pipeline output and crawl storage
+scraper_output/
+storage/

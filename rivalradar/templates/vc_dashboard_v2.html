@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}RivalRadar | VC Dashboard{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-zinc-900 p-8 shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
+  <div class="pointer-events-none absolute -top-24 -left-20 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-28 -right-24 h-96 w-96 rounded-full bg-orange-400/10 blur-3xl"></div>
+
+  <div class="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <p class="text-xs uppercase tracking-[0.24em] text-cyan-200/80">VC Command Center</p>
+      <h1 class="mt-2 text-4xl font-extrabold text-white">Welcome, {{ vc_name }}</h1>
+      <p class="mt-2 text-slate-300">{{ vc_org }} portfolio competitive intelligence in real time.</p>
+    </div>
+    <a href="/dashboard" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-400 to-teal-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/25 transition hover:scale-[1.02]">
+      Start New Analysis
+    </a>
+  </div>
+
+  <div class="mt-8 grid gap-4 sm:grid-cols-3">
+    <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+      <p class="text-xs uppercase tracking-[0.16em] text-slate-400">Portfolio Companies</p>
+      <p class="mt-2 text-3xl font-extrabold text-white">{{ portfolio_companies|length }}</p>
+    </div>
+    <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+      <p class="text-xs uppercase tracking-[0.16em] text-slate-400">Mapped Competitors</p>
+      <p class="mt-2 text-3xl font-extrabold text-white">{% set total = 0 %}{% for c in portfolio_companies %}{% set total = total + (competitor_map.get(c.name, [])|length) %}{% endfor %}{{ total }}</p>
+    </div>
+    <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+      <p class="text-xs uppercase tracking-[0.16em] text-slate-400">Status</p>
+      <p class="mt-2 text-3xl font-extrabold text-emerald-300">Live</p>
+    </div>
+  </div>
+
+  <div class="mt-8 grid gap-4 lg:grid-cols-3">
+    {% for company in portfolio_companies %}
+    <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-5">
+      <h3 class="text-xl font-bold text-white">{{ company.name }}</h3>
+      <p class="mt-1 text-sm text-cyan-200">{{ company.segment }}</p>
+      <p class="mt-4 text-xs uppercase tracking-[0.15em] text-slate-400">Top Competitors</p>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {% for comp in competitor_map.get(company.name, []) %}
+        <span class="rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-100">{{ comp }}</span>
+        {% endfor %}
+      </div>
+      <a href="/running/{{ company.name }}" class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-400 to-amber-300 px-4 py-2 text-sm font-bold text-slate-950 transition hover:scale-[1.01]">
+        Run Analysis
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
