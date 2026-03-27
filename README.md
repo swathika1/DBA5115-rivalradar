@@ -1,9 +1,11 @@
-# DBA5115-rivalradar
-founders project
+# 🚀 RivalRadar
+---
+## Setup Instructions
 
+Follow the steps below to run the application locally:
 
-
-commands:
+### Commands
+```bash
 
 python3 -m venv venv
 source venv/bin/activate
