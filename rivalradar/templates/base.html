@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}RivalRadar - Competitive Intelligence{% endblock %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -21,6 +18,19 @@
             --sky: #6ca8ff;
             --paper: #f4f7ff;
             --line-soft: rgba(255, 255, 255, 0.22);
+            --dunkin-orange: #FF671B;
+        }
+
+        /*
+         * Helvetica Neue everywhere — WITHOUT !important so Font Awesome's
+         * class-level selectors (.fas, .far etc.) can override for icons.
+         * body sets the base; * { inherit } propagates it; FA wins by specificity.
+         */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        * {
+            font-family: inherit;
         }
 
         /* Advanced Animations */
@@ -52,7 +62,7 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        
+
         /* Animation Classes */
         .fade-in { animation: fadeIn 0.6s ease-out; }
         .slide-in { animation: slideInLeft 0.6s ease-out; }
@@ -61,54 +71,33 @@
         .shimmer { animation: shimmer 3s infinite; }
         .float { animation: float 3s ease-in-out infinite; }
         .spin-slow { animation: spin-slow 20s linear infinite; }
-        
+
         /* Risk Level Styles */
         .risk-critical { @apply bg-red-100 border-red-500 text-red-900; }
         .risk-high { @apply bg-orange-100 border-orange-500 text-orange-900; }
         .risk-medium { @apply bg-yellow-100 border-yellow-500 text-yellow-900; }
         .risk-low { @apply bg-green-100 border-green-500 text-green-900; }
-        
+
         /* Glassmorphism */
         .glass { @apply backdrop-blur-xl bg-white bg-opacity-10 border border-white border-opacity-20; }
         .glass-dark { @apply backdrop-blur-xl bg-black bg-opacity-30 border border-blue-500 border-opacity-20; }
-        
+
         /* Card Hover Effects */
-        .card-hover {
-            @apply transition-all duration-300 cursor-pointer;
-        }
-        .card-hover:hover {
-            @apply transform -translate-y-2 shadow-2xl shadow-blue-500/20;
-        }
-        
+        .card-hover { @apply transition-all duration-300 cursor-pointer; }
+        .card-hover:hover { @apply transform -translate-y-2 shadow-2xl shadow-blue-500/20; }
+
         /* Smooth Transitions */
         * {
             transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 300ms;
         }
-        
-        /* VC Logo Gradient */
-        .vc-gradient {
-            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
-        }
-        
+
         /* Score Badge Glow */
-        .score-glow {
-            @apply relative inline-block;
-        }
+        .score-glow { @apply relative inline-block; }
         .score-glow::before {
             @apply absolute inset-0 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300;
             background: inherit;
-        }
-        
-        /* Advanced Loading */
-        .advanced-loader {
-            @apply relative w-12 h-12;
-        }
-        .advanced-loader::after {
-            content: '';
-            @apply absolute inset-0 rounded-full border-4 border-blue-500 border-t-cyan-400 border-r-cyan-400;
-            animation: spin 0.8s linear infinite;
         }
 
         .app-bg {
@@ -119,7 +108,6 @@
                 radial-gradient(circle at 78% 82%, rgba(107, 180, 255, 0.22), transparent 44%),
                 linear-gradient(128deg, #1c143d 0%, #25305c 40%, #14344f 72%, #1f3b46 100%);
             background-attachment: fixed;
-            font-family: 'Sora', sans-serif;
             position: relative;
         }
 
@@ -128,22 +116,27 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             mask-image: radial-gradient(circle at 50% 20%, black 18%, transparent 85%);
             z-index: -1;
         }
 
         .card-premium {
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(236, 244, 255, 0.87));
-            border: 1px solid rgba(255, 255, 255, 0.55);
+            background: linear-gradient(160deg, rgba(255,255,255,0.94), rgba(236,244,255,0.87));
+            border: 1px solid rgba(255,255,255,0.55);
             border-radius: 22px;
             padding: 2rem;
-            box-shadow: 0 24px 70px rgba(9, 14, 35, 0.42);
+            box-shadow: 0 24px 70px rgba(9,14,35,0.42);
             backdrop-filter: blur(14px);
         }
 
         .button-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: 0;
             border-radius: 999px;
             min-height: 58px;
@@ -153,16 +146,20 @@
             letter-spacing: 0.01em;
             color: #10233d;
             background: linear-gradient(115deg, #9af4ca 0%, #54ddd1 42%, #73b2ff 100%);
-            box-shadow: 0 12px 28px rgba(76, 178, 255, 0.35);
+            box-shadow: 0 12px 28px rgba(76,178,255,0.35);
+            cursor: pointer;
+            gap: 8px;
         }
-
         .button-primary:hover {
             transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 18px 36px rgba(76, 178, 255, 0.42);
+            box-shadow: 0 18px 36px rgba(76,178,255,0.42);
         }
 
         .button-secondary {
-            border: 1px solid rgba(190, 230, 255, 0.5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(190,230,255,0.5);
             border-radius: 999px;
             min-height: 58px;
             padding: 1rem 1.5rem;
@@ -170,63 +167,102 @@
             font-size: 1.02rem;
             letter-spacing: 0.01em;
             color: #f1fbff;
-            background: linear-gradient(135deg, rgba(40, 52, 99, 0.95), rgba(28, 120, 134, 0.85));
-            box-shadow: 0 10px 24px rgba(18, 37, 75, 0.38);
+            background: linear-gradient(135deg, rgba(40,52,99,0.95), rgba(28,120,134,0.85));
+            box-shadow: 0 10px 24px rgba(18,37,75,0.38);
+            cursor: pointer;
+            gap: 8px;
         }
-
         .button-secondary:hover {
             transform: translateY(-2px) scale(1.01);
-            border-color: rgba(214, 245, 255, 0.85);
-            box-shadow: 0 16px 32px rgba(31, 58, 106, 0.46);
+            border-color: rgba(214,245,255,0.85);
+            box-shadow: 0 16px 32px rgba(31,58,106,0.46);
         }
 
-        .nav-link {
-            color: rgba(232, 241, 255, 0.8);
-            font-size: 0.92rem;
-            font-weight: 600;
-            padding: 0.45rem 0.8rem;
-            border-radius: 999px;
-        }
-
-        .nav-link:hover {
-            color: #fef9e8;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
+        /* Dunkin Orange brand title */
         .brand-title {
-            background: linear-gradient(100deg, #ffd1bc, #ffe89a 35%, #6ee8df 70%, #96b9ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #FF671B;
+            text-shadow: 0 0 24px rgba(255,103,27,0.4);
+        }
+
+        /* Nav */
+        .nav-solid {
+            background: rgba(16, 10, 38, 0.97);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255,103,27,0.2);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            white-space: nowrap;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            color: rgba(220,235,255,0.85);
+            background: transparent;
+        }
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(255,255,255,0.14);
+            color: #fff;
+        }
+        .nav-btn-primary {
+            background: rgba(255,103,27,0.15);
+            border-color: rgba(255,103,27,0.4);
+            color: #ffb394;
+        }
+        .nav-btn-primary:hover {
+            background: rgba(255,103,27,0.25);
+            border-color: rgba(255,103,27,0.7);
+            color: #ffcfb8;
         }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
-<body class="app-bg text-white min-h-screen font-sans">
-    <!-- Advanced Navbar -->
-    <nav class="sticky top-0 z-50 glass border-b border-white/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3 group">
+<body class="app-bg text-white min-h-screen">
+
+    <!-- Fixed Navbar -->
+    <nav class="nav-solid fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2.5 flex-shrink-0" style="text-decoration:none;">
                 <div class="float">
-                    <i class="fas fa-radar text-transparent text-2xl vc-gradient bg-clip-text"></i>
+                    <i class="fas fa-bullseye text-xl" style="color:#FF671B;"></i>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-extrabold brand-title">
-                        RivalRadar
-                    </h1>
-                    <p class="text-xs text-blue-100/70">AI-Powered VC Intelligence</p>
+                    <div class="text-xl font-extrabold brand-title leading-tight">RivalRadar</div>
+                    <div class="text-[10px] leading-tight" style="color:rgba(255,170,130,0.7);">AI-Powered Portfolio Risk Intelligence for VC Firms</div>
                 </div>
+            </a>
+
+            <!-- Nav links -->
+            <div class="flex items-center gap-1">
+                <a href="/" class="nav-btn">
+                    <i class="fas fa-house text-xs"></i> Home
+                </a>
+                <a href="/portfolio" class="nav-btn">
+                    <i class="fas fa-briefcase text-xs"></i> Open Portfolio
+                </a>
+                <a href="/dashboard" class="nav-btn nav-btn-primary">
+                    <i class="fas fa-chart-line text-xs"></i> Run Quick Analysis
+                </a>
             </div>
-            <div class="flex items-center gap-4">
-                <a href="/dashboard" class="nav-link transition">Dashboard</a>
-                <a href="/portfolio" class="nav-link transition">Portfolio</a>
-                <div class="w-3 h-3 rounded-full bg-green-500 pulse-glow"></div>
-                <span class="text-xs text-blue-100/70">Live</span>
-            </div>
+
         </div>
     </nav>
 
-    {% block content %}{% endblock %}
+    <!-- Push content below fixed nav -->
+    <div class="pt-[72px]">{% block content %}{% endblock %}</div>
 
     {% block extra_js %}{% endblock %}
 </body>

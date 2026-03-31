@@ -1,192 +1,231 @@
 {% extends "base.html" %}
 
-{% block title %}Portfolio Analysis - RivalRadar{% endblock %}
+{% block title %}Portfolio Intelligence - RivalRadar{% endblock %}
 
 {% block extra_css %}
 <style>
-    /* Premium Portfolio Styling */
     .portfolio-hero {
-        @apply relative overflow-hidden rounded-3xl mb-12;
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        margin-bottom: 3rem;
         background: linear-gradient(135deg, rgba(22, 16, 54, 0.88) 0%, rgba(43, 26, 75, 0.88) 44%, rgba(17, 52, 76, 0.85) 100%);
         border: 1px solid rgba(255, 255, 255, 0.18);
     }
-    
+
     .portfolio-hero::before {
         content: '';
-        @apply absolute inset-0 opacity-50;
+        position: absolute;
+        inset: 0;
+        opacity: 0.5;
         background: radial-gradient(circle at 20% 50%, rgba(255, 123, 85, 0.22) 0%, transparent 50%);
     }
-    
+
     .portfolio-hero::after {
         content: '';
-        @apply absolute inset-0 opacity-30;
+        position: absolute;
+        inset: 0;
+        opacity: 0.3;
         background: radial-gradient(circle at 80% 80%, rgba(72, 210, 200, 0.22) 0%, transparent 50%);
     }
-    
+
     .company-card {
-        @apply relative group cursor-pointer;
+        position: relative;
+        cursor: pointer;
         background: linear-gradient(140deg, rgba(32, 23, 62, 0.72) 0%, rgba(17, 39, 65, 0.7) 100%);
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 16px;
         padding: 24px;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .company-card:hover {
         border-color: rgba(247, 184, 79, 0.85);
         box-shadow: 0 18px 44px rgba(255, 123, 85, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
         transform: translateY(-4px);
     }
-    
+
     .company-card.selected {
         background: linear-gradient(140deg, rgba(255, 123, 85, 0.28) 0%, rgba(247, 184, 79, 0.24) 100%);
         border-color: rgba(255, 212, 126, 0.95);
         box-shadow: 0 0 40px rgba(255, 123, 85, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
     }
-    
-    .checkbox-visual {
-        @apply w-5 h-5 rounded border-2 border-blue-500 transition-all duration-300;
+
+    .checkbox-custom {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        border: 2px solid rgba(100, 160, 255, 0.6);
+        flex-shrink: 0;
+        transition: all 0.3s;
+        position: relative;
+        background: rgba(0,0,0,0.2);
     }
-    
-    .company-card.selected .checkbox-visual {
-        @apply bg-gradient-to-r from-blue-500 to-cyan-500 border-cyan-400;
+
+    .company-card.selected .checkbox-custom {
+        background: linear-gradient(135deg, #3b82f6, #22d3ee);
+        border-color: #22d3ee;
     }
-    
+
+    .company-card.selected .checkbox-custom::after {
+        content: '✓';
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+        font-weight: 900;
+    }
+
+    /* Mode buttons — no overflow:hidden, text never clips */
     .mode-btn {
-        @apply px-10 py-4 rounded-full font-bold transition-all duration-300 flex items-center gap-2;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        white-space: nowrap;
+        gap: 8px;
+        padding: 0 28px;
+        height: 52px;
+        border-radius: 9999px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
         background: linear-gradient(135deg, rgba(18, 29, 56, 0.96) 0%, rgba(28, 37, 70, 0.96) 100%);
         border: 2px solid rgba(152, 188, 255, 0.42);
         color: rgba(235, 244, 255, 0.94);
-        min-height: 60px;
-        font-size: 1.05rem;
-        letter-spacing: 0.01em;
-        border-radius: 9999px !important;
-        overflow: hidden;
         box-shadow: 0 10px 20px rgba(8, 20, 54, 0.28);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
     }
-    
+
     .mode-btn:hover {
         background: linear-gradient(135deg, rgba(34, 47, 84, 0.98) 0%, rgba(34, 62, 92, 0.98) 100%);
         border-color: rgba(140, 236, 227, 0.85);
         transform: translateY(-1px) scale(1.01);
         box-shadow: 0 14px 28px rgba(20, 42, 88, 0.38);
     }
-    
+
     .mode-btn.active {
         background: linear-gradient(120deg, #7ee8dd 0%, #58a8ff 52%, #7b8cff 100%);
         border-color: rgba(184, 246, 255, 0.95);
         color: #0f1a40;
         box-shadow: 0 12px 30px rgba(88, 168, 255, 0.42), 0 0 0 2px rgba(172, 238, 255, 0.2) inset;
     }
-    
-    .stat-card {
-        @apply relative overflow-hidden rounded-xl p-6 backdrop-blur-xl;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
-        border: 1px solid rgba(59, 130, 246, 0.2);
-    }
-    
-    .stat-card:hover {
-        border-color: rgba(59, 130, 246, 0.4);
-        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
-    }
-    
+
     .action-btn {
-        @apply px-12 py-5 rounded-full font-extrabold transition-all duration-300 transform;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        padding: 0 48px;
+        height: 60px;
+        border-radius: 9999px;
+        font-weight: 800;
+        font-size: 1.05rem;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
         background: linear-gradient(120deg, #88f2c8 0%, #49d7d2 45%, #60a7ff 100%);
         border: 1px solid rgba(183, 245, 255, 0.5);
         color: #08203f;
         box-shadow: 0 12px 30px rgba(73, 170, 255, 0.34);
-        min-height: 64px;
-        font-size: 1.08rem;
-        letter-spacing: 0.01em;
-        border-radius: 9999px !important;
-        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s;
     }
-    
+
     .action-btn:hover {
         transform: translateY(-2px) scale(1.01);
         box-shadow: 0 16px 40px rgba(73, 170, 255, 0.42);
     }
-    
+
     .action-btn:active {
         transform: translateY(0);
     }
+
+    /* Risk badge colors */
+    .risk-low  { color: #4ade80; }
+    .risk-med  { color: #fb923c; }
+    .risk-high { color: #f87171; }
+    .risk-crit { color: #ef4444; font-weight: 900; }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="min-h-[calc(100vh-80px)] py-16 px-4">
+<div class="min-h-[calc(100vh-80px)] py-14 px-4">
     <div class="max-w-7xl mx-auto">
         <!-- Hero Header -->
-        <div class="portfolio-hero rounded-3xl p-12 mb-12 fade-in">
-            <div class="flex items-start justify-between">
-                <div class="relative z-10">
-                    <h1 class="text-6xl font-black bg-gradient-to-r from-orange-200 via-amber-200 to-teal-200 bg-clip-text text-transparent mb-3">
+        <div class="portfolio-hero p-10 mb-10 fade-in">
+            <div class="flex items-start justify-between relative z-10">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-orange-200/80 mb-2">Portfolio Intelligence</p>
+                    <h1 class="text-5xl font-black bg-gradient-to-r from-orange-200 via-amber-200 to-teal-200 bg-clip-text text-transparent mb-3 leading-tight">
                         Portfolio Intelligence
                     </h1>
-                    <p class="text-xl text-gray-300">Analyze your investments. Discover threats. Win the market.</p>
+                    <p class="text-base text-gray-300 max-w-lg">Analyze your investments. Discover threats. Defend your portfolio value.</p>
                 </div>
-                <div class="text-right relative z-10">
+                <div class="text-right flex-shrink-0 ml-8">
                     <div class="text-5xl font-black text-transparent bg-gradient-to-r from-orange-300 to-amber-300 bg-clip-text">{{ portfolio_count }}</div>
-                    <p class="text-gray-400 text-sm mt-2">Companies</p>
+                    <p class="text-gray-400 text-sm mt-1">Companies</p>
                 </div>
             </div>
         </div>
 
-        <!-- Mode Selector -->
-        <div class="mb-12 fade-in" style="animation-delay: 100ms;">
-            <div class="flex gap-4 mb-8 flex-wrap">
+        <!-- Mode Selector — buttons inline, no wrap -->
+        <div class="mb-10 fade-in" style="animation-delay: 100ms;">
+            <div class="flex gap-3 mb-8 flex-wrap">
                 <button onclick="switchMode('portfolio')" class="mode-btn active" id="btn-portfolio">
-                    <i class="fas fa-pie-chart mr-2"></i> Analyze Portfolio
+                    <i class="fas fa-chart-pie"></i> Analyze Portfolio
                 </button>
                 <button onclick="switchMode('competitors')" class="mode-btn" id="btn-competitors">
-                    <i class="fas fa-target mr-2"></i> vs Competitors
+                    <i class="fas fa-crosshairs"></i> Competitor Benchmarking
                 </button>
             </div>
         </div>
 
         <!-- Portfolio Mode -->
         <div id="mode-portfolio" class="fade-in" style="animation-delay: 150ms;">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold mb-2">Your Current Holdings</h2>
-                <p class="text-gray-400">Select companies to uncover competitive vulnerabilities</p>
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold mb-1">Your Portfolio Companies</h2>
+                <p class="text-gray-400 text-sm">Select companies to uncover competitive vulnerabilities</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+
+            {% set est_values  = ['$2.1B', '$850M', '$4.7B', '$1.3B', '$320M', '$8.9B', '$640M', '$3.2B', '$1.8B', '$5.5B'] %}
+            {% set growths     = ['+38%', '+12%', '+67%', '+22%', '-4%', '+91%', '+8%', '+44%', '+17%', '+55%'] %}
+            {% set growth_cls  = ['text-green-400','text-green-400','text-green-400','text-green-400','text-red-400','text-green-400','text-green-400','text-green-400','text-green-400','text-green-400'] %}
+            {% set risks       = ['LOW', 'HIGH', 'MED', 'LOW', 'HIGH', 'MED', 'LOW', 'HIGH', 'MED', 'LOW'] %}
+            {% set risk_cls    = ['risk-low','risk-high','risk-med','risk-low','risk-high','risk-med','risk-low','risk-high','risk-med','risk-low'] %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
                 {% for company in portfolio_companies %}
+                {% set i = loop.index0 % 10 %}
                 <div class="company-card" onclick="togglePortfolio('{{ company.name }}', this)">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-white">{{ company.name }}</h3>
-                            <p class="text-sm text-gray-400">{{ company.segment }}</p>
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-lg font-bold text-white truncate">{{ company.name }}</h3>
+                            <p class="text-xs text-gray-400">{{ company.segment }}</p>
                         </div>
-                        <div class="checkbox-custom"></div>
+                        <div class="checkbox-custom ml-3 flex-shrink-0"></div>
                     </div>
-                    <div class="grid grid-cols-3 gap-2 mt-4">
-                        <div class="bg-blue-900 bg-opacity-30 rounded-lg p-2 text-center">
-                            <p class="text-xs text-gray-400">Est. Value</p>
-                            <p class="text-sm font-bold">$25B</p>
+                    <div class="grid grid-cols-3 gap-2 mt-3">
+                        <div class="bg-blue-900/30 rounded-lg p-2 text-center">
+                            <p class="text-xs text-gray-400 mb-1">Est. Value</p>
+                            <p class="text-sm font-bold text-white">{{ est_values[i] }}</p>
                         </div>
-                        <div class="bg-green-900 bg-opacity-30 rounded-lg p-2 text-center">
-                            <p class="text-xs text-gray-400">Growth</p>
-                            <p class="text-sm font-bold text-green-400">+45%</p>
+                        <div class="bg-green-900/20 rounded-lg p-2 text-center">
+                            <p class="text-xs text-gray-400 mb-1">Growth</p>
+                            <p class="text-sm font-bold {{ growth_cls[i] }}">{{ growths[i] }}</p>
                         </div>
-                        <div class="bg-orange-900 bg-opacity-30 rounded-lg p-2 text-center">
-                            <p class="text-xs text-gray-400">Risk</p>
-                            <p class="text-sm font-bold text-orange-400">MED</p>
+                        <div class="bg-orange-900/20 rounded-lg p-2 text-center">
+                            <p class="text-xs text-gray-400 mb-1">Risk</p>
+                            <p class="text-sm font-bold {{ risk_cls[i] }}">{{ risks[i] }}</p>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
 
-            <div class="text-center">
+            <div class="text-center pt-2">
                 <button onclick="analyzeMode('portfolio')" class="action-btn">
                     <i class="fas fa-play mr-2"></i> Analyze Selected Companies
                 </button>
@@ -195,20 +234,20 @@
 
         <!-- Competitors Mode -->
         <div id="mode-competitors" class="hidden fade-in" style="animation-delay: 150ms;">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold mb-2">Competitive Landscape</h2>
-                <p class="text-gray-400">Select your holdings to auto-detect and analyze competitors</p>
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold mb-1">Competitive Landscape</h2>
+                <p class="text-gray-400 text-sm">Select your portfolio companies to auto-detect and analyze competitors</p>
             </div>
-            
+
             <div class="mb-8">
-                <h3 class="text-lg font-semibold mb-4 text-gray-300">Portfolio Companies</h3>
+                <h3 class="text-sm font-semibold mb-4 text-gray-300 uppercase tracking-wider">Portfolio Companies</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                     {% for company in portfolio_companies %}
                     <div class="company-card" onclick="toggleCompetitor('{{ company.name }}', this)">
                         <div class="flex items-center gap-3 relative z-10">
-                            <div class="checkbox-custom"></div>
-                            <div>
-                                <p class="font-semibold text-white">{{ company.name }}</p>
+                            <div class="checkbox-custom flex-shrink-0"></div>
+                            <div class="min-w-0">
+                                <p class="font-semibold text-white truncate">{{ company.name }}</p>
                                 <p class="text-xs text-gray-400">{{ company.segment }}</p>
                             </div>
                         </div>
@@ -217,16 +256,16 @@
                 </div>
             </div>
 
-            <div class="mb-8 bg-gradient-to-br from-blue-900 to-purple-900 rounded-2xl p-8 border border-blue-500 border-opacity-20">
-                <h3 class="text-lg font-semibold mb-4 text-gray-300">Detected Competitors</h3>
-                <div id="competitors-display" class="text-gray-400 text-center py-8">
+            <div class="mb-8 bg-gradient-to-br from-blue-900/60 to-purple-900/60 rounded-2xl p-8 border border-blue-500/20">
+                <h3 class="text-sm font-semibold mb-4 text-gray-300 uppercase tracking-wider">Detected Competitors</h3>
+                <div id="competitors-display" class="text-gray-400 text-center py-6">
                     Select portfolio companies to see their competitors
                 </div>
             </div>
 
-            <div class="text-center">
+            <div class="text-center pt-2">
                 <button onclick="analyzeMode('competitors')" class="action-btn">
-                    <i class="fas fa-lightning mr-2"></i> Analyze All Holdings + Competitors
+                    <i class="fas fa-bolt mr-2"></i> Analyze All + Competitors
                 </button>
             </div>
         </div>
@@ -234,7 +273,6 @@
 </div>
 
 <script>
-// Company competitor map - simple hardcoded data
 const competitorDatabase = {
     "Notion": ["Linear", "Asana", "Monday"],
     "Linear": ["Jira", "GitHub Projects", "Azure DevOps"],
@@ -249,7 +287,7 @@ function switchMode(mode) {
     const competitorsDiv = document.getElementById('mode-competitors');
     const btnPortfolio = document.getElementById('btn-portfolio');
     const btnCompetitors = document.getElementById('btn-competitors');
-    
+
     if (mode === 'portfolio') {
         portfolioDiv.classList.remove('hidden');
         competitorsDiv.classList.add('hidden');
@@ -285,44 +323,39 @@ function toggleCompetitor(company, element) {
 function updateCompetitorDisplay() {
     let competitors = [];
     selectedCompetitors.forEach(company => {
-        const comps = competitorDatabase[company] || [];
-        comps.forEach(comp => {
-            if (!competitors.includes(comp)) {
-                competitors.push(comp);
-            }
+        (competitorDatabase[company] || []).forEach(comp => {
+            if (!competitors.includes(comp)) competitors.push(comp);
         });
     });
-    
+
     const display = document.getElementById('competitors-display');
     if (competitors.length === 0) {
         display.innerHTML = '<p class="text-gray-400">Select portfolio companies to see their competitors</p>';
     } else {
-        display.innerHTML = competitors.map(c => `<div class="inline-block px-4 py-2 bg-orange-400/20 border border-amber-200/50 rounded-lg text-sm font-semibold text-amber-100 m-1">${c}</div>`).join('');
+        display.innerHTML = competitors.map(c =>
+            `<div class="inline-block px-4 py-2 bg-orange-400/20 border border-amber-200/50 rounded-lg text-sm font-semibold text-amber-100 m-1">${c}</div>`
+        ).join('');
     }
 }
 
 function analyzeMode(mode) {
     let companies = [];
-    
     if (mode === 'portfolio') {
         companies = selectedPortfolio;
     } else {
         companies = selectedCompetitors.slice();
         selectedCompetitors.forEach(company => {
-            const comps = competitorDatabase[company] || [];
-            comps.forEach(comp => {
-                if (!companies.includes(comp)) {
-                    companies.push(comp);
-                }
+            (competitorDatabase[company] || []).forEach(comp => {
+                if (!companies.includes(comp)) companies.push(comp);
             });
         });
     }
-    
+
     if (companies.length === 0) {
         alert('Please select at least one company');
         return;
     }
-    
+
     window.location.href = `/running/${encodeURIComponent(companies.join(','))}`;
 }
 </script>

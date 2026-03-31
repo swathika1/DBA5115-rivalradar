@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard - RivalRadar{% endblock %}
+{% block title %}Portfolio Risk Analysis - RivalRadar{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -8,8 +8,8 @@
         background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(12, 74, 110, 0.4) 100%);
         border: 1px solid rgba(59, 130, 246, 0.2);
         border-radius: 20px;
-        padding: 4rem 2rem;
-        margin-bottom: 3rem;
+        padding: 2.5rem 2.5rem;
+        margin-bottom: 2.5rem;
         backdrop-filter: blur(10px);
     }
 
@@ -20,12 +20,12 @@
         padding: 2rem;
         backdrop-filter: blur(20px);
     }
-    
+
     .input-box:hover {
         border-color: rgba(59, 130, 246, 0.5);
         box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
     }
-    
+
     textarea {
         background: rgba(0, 0, 0, 0.5);
         border: 2px solid rgba(59, 130, 246, 0.4);
@@ -34,16 +34,16 @@
         color: white;
         font-size: 15px;
         transition: all 0.3s ease;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-    
+
     textarea:focus {
         outline: none;
         border-color: rgba(59, 130, 246, 1);
         background: rgba(0, 0, 0, 0.7);
         box-shadow: 0 0 30px rgba(59, 130, 246, 0.3), inset 0 0 20px rgba(59, 130, 246, 0.1);
     }
-    
+
     .company-grid-item {
         background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(10, 18, 45, 0.7) 100%);
         border: 2px solid rgba(59, 130, 246, 0.3);
@@ -76,7 +76,7 @@
     .company-grid-item:hover::before {
         left: 100%;
     }
-    
+
     .run-btn {
         background: linear-gradient(115deg, #9af4ca 0%, #54ddd1 42%, #73b2ff 100%);
         border: none;
@@ -91,14 +91,15 @@
         width: 100%;
         min-height: 62px;
         letter-spacing: 0.6px;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-    
+
     .run-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 22px 62px rgba(73, 170, 255, 0.5);
         background: linear-gradient(115deg, #b1f8d8 0%, #66e7dc 44%, #89bdff 100%);
     }
-    
+
     .run-btn:active {
         transform: translateY(-1px);
     }
@@ -135,18 +136,64 @@
     .section-icon {
         font-size: 24px;
     }
+
+    /* Selected company chip */
+    .company-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px 4px 10px;
+        background: rgba(59, 130, 246, 0.25);
+        border: 1px solid rgba(59, 130, 246, 0.5);
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #bfdbfe;
+        margin: 2px;
+    }
+
+    .company-chip button {
+        background: none;
+        border: none;
+        color: #93c5fd;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+
+    #chips-area {
+        min-height: 36px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 6px 0 4px;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="min-h-[calc(100vh-80px)] py-12 px-4">
+<div class="min-h-[calc(100vh-80px)] py-10 px-4">
     <div class="max-w-7xl mx-auto">
-        <!-- Hero Section -->
-        <div class="hero-section fade-in mb-12">
-            <h1 class="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-200 via-cyan-300 to-blue-400 bg-clip-text text-transparent mb-4">
-                ⚡ Competitive Analysis
-            </h1>
-            <p class="text-xl text-gray-300">Enter any SaaS company name and get instant intelligence on vulnerabilities, pricing changes, and strategic opportunities</p>
+        <!-- Hero Section — tighter, well-proportioned -->
+        <div class="hero-section fade-in mb-10">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-300/80 mb-2">RivalRadar</p>
+                    <h1 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-200 via-cyan-300 to-blue-400 bg-clip-text text-transparent mb-3 leading-tight">
+                        Portfolio Risk Analysis
+                    </h1>
+                    <p class="text-base text-gray-300 max-w-xl">Select Companies from the list below</p>
+                </div>
+                <div class="flex-shrink-0 hidden sm:flex items-center gap-3">
+                    <div class="text-right">
+                        <div class="text-3xl font-black text-cyan-400">{{ available_companies|length }}</div>
+                        <p class="text-xs text-gray-400">Companies Available</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Main Layout -->
@@ -155,18 +202,21 @@
             <div class="lg:col-span-1">
                 <div class="input-box sticky top-24">
                     <div class="section-title">
-                        <i class="fas fa-search text-blue-400 section-icon"></i>
-                        <h3 class="text-2xl font-bold text-white">Analyze</h3>
+                        <i class="fas fa-crosshairs text-blue-400 section-icon"></i>
+                        <h3 class="text-xl font-bold text-white">Selected Companies</h3>
                     </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-sm font-semibold text-gray-200 mb-3">Company Names</label>
-                        <textarea id="companyInput" 
-                                  placeholder="Notion, Linear, Google, Slack, HubSpot..."
-                                  class="w-full resize-none"
-                                  rows="5"></textarea>
-                        <p class="text-xs text-gray-400 mt-2 ml-1">💡 Tip: Enter multiple companies comma-separated</p>
+
+                    <!-- Chip display area -->
+                    <div id="chips-area" class="mb-3">
+                        <span class="text-xs text-gray-500 italic">No companies selected yet</span>
                     </div>
+
+                    <!-- Hidden textarea keeps the comma-separated value -->
+                    <textarea id="companyInput" class="hidden" rows="1"></textarea>
+
+                    <p class="text-xs text-gray-400 mb-5">
+                        <i class="fas fa-hand-pointer mr-1 text-blue-400"></i>Click companies on the right to add them
+                    </p>
 
                     <button onclick="runAnalysis()" class="run-btn mb-4">
                         <i class="fas fa-bolt mr-2"></i> Run Analysis
@@ -185,16 +235,16 @@
                     <i class="fas fa-building text-cyan-400 section-icon"></i>
                     <h3 class="text-2xl font-bold text-white">Featured Companies</h3>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {% for company in available_companies %}
-                    <div class="company-grid-item group" onclick="addCompany('{{ company.name }}')">
+                    <div class="company-grid-item group" id="card-{{ company.name | replace(' ', '-') }}" onclick="addCompany('{{ company.name }}')">
                         <div class="flex items-start justify-between mb-2">
                             <div class="relative z-10">
-                                <h4 class="font-bold text-lg text-white group-hover:text-cyan-300 transition">{{ company.name }}</h4>
-                                <p class="text-sm text-gray-400">{{ company.segment }}</p>
+                                <h4 class="font-bold text-base text-white group-hover:text-cyan-300 transition">{{ company.name }}</h4>
+                                <p class="text-xs text-gray-400">{{ company.segment }}</p>
                             </div>
-                            <i class="fas fa-chevron-right text-cyan-400 opacity-0 group-hover:opacity-100 transition transform group-hover:translate-x-1"></i>
+                            <i class="fas fa-plus-circle text-cyan-400 opacity-0 group-hover:opacity-100 transition text-lg" id="icon-{{ company.name | replace(' ', '-') }}"></i>
                         </div>
                     </div>
                     {% endfor %}
@@ -205,32 +255,74 @@
 </div>
 
 <script>
+let selectedCompanies = [];
+
 function addCompany(name) {
-    const textarea = document.getElementById('companyInput');
-    const current = textarea.value.trim();
-    if (current) {
-        textarea.value = current + ', ' + name;
-    } else {
-        textarea.value = name;
+    if (selectedCompanies.includes(name)) {
+        removeCompany(name);
+        return;
     }
-    textarea.focus();
-    
-    // Highlight animation
-    textarea.style.borderColor = 'rgba(59, 130, 246, 1)';
-    setTimeout(() => {
-        textarea.style.borderColor = '';
-    }, 500);
+    selectedCompanies.push(name);
+    syncTextarea();
+    renderChips();
+    highlightCard(name, true);
+}
+
+function removeCompany(name) {
+    selectedCompanies = selectedCompanies.filter(c => c !== name);
+    syncTextarea();
+    renderChips();
+    highlightCard(name, false);
+}
+
+function highlightCard(name, selected) {
+    const id = name.replace(/ /g, '-');
+    const card = document.getElementById('card-' + id);
+    const icon = document.getElementById('icon-' + id);
+    if (card) {
+        if (selected) {
+            card.style.borderColor = 'rgba(59,130,246,0.9)';
+            card.style.background = 'linear-gradient(135deg,rgba(59,130,246,0.22) 0%,rgba(30,41,59,0.85) 100%)';
+            card.style.boxShadow = '0 0 20px rgba(59,130,246,0.3)';
+            if (icon) { icon.classList.remove('fa-plus-circle'); icon.classList.add('fa-check-circle'); icon.style.opacity = '1'; }
+        } else {
+            card.style.borderColor = '';
+            card.style.background = '';
+            card.style.boxShadow = '';
+            if (icon) { icon.classList.remove('fa-check-circle'); icon.classList.add('fa-plus-circle'); icon.style.opacity = ''; }
+        }
+    }
+}
+
+function syncTextarea() {
+    document.getElementById('companyInput').value = selectedCompanies.join(', ');
+}
+
+function renderChips() {
+    const area = document.getElementById('chips-area');
+    if (selectedCompanies.length === 0) {
+        area.innerHTML = '<span class="text-xs text-gray-500 italic">No companies selected yet</span>';
+        return;
+    }
+    area.innerHTML = selectedCompanies.map(name =>
+        `<span class="company-chip">
+            ${name}
+            <button onclick="event.stopPropagation(); removeCompany('${name}')" title="Remove">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </span>`
+    ).join('');
 }
 
 async function runAnalysis() {
     const input = document.getElementById('companyInput').value.trim();
     const errorDiv = document.getElementById('inputError');
     const errorText = document.getElementById('inputErrorText');
-    
+
     errorDiv.classList.add('hidden');
-    
+
     if (!input) {
-        errorText.textContent = 'Please enter at least one company name';
+        errorText.textContent = 'Please select at least one company from the list';
         errorDiv.classList.remove('hidden');
         return;
     }
@@ -238,7 +330,7 @@ async function runAnalysis() {
     try {
         const response = await fetch(`/api/check-companies?company_names=${encodeURIComponent(input)}`);
         const data = await response.json();
-        
+
         if (!response.ok) {
             errorText.textContent = data.detail || 'Invalid companies';
             errorDiv.classList.remove('hidden');
@@ -247,19 +339,11 @@ async function runAnalysis() {
 
         const companyNames = data.companies.map(c => c.name).join(',');
         window.location.href = `/running/${encodeURIComponent(companyNames)}`;
-        
+
     } catch (error) {
         errorText.textContent = 'Error: ' + error.message;
         errorDiv.classList.remove('hidden');
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('companyInput').addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.key === 'Enter') {
-            runAnalysis();
-        }
-    });
-});
 </script>
 {% endblock %}

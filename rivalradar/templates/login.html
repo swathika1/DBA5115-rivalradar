@@ -1,5 +1,6 @@
 ﻿{% extends "base.html" %}
 {% block title %}Login - RivalRadar{% endblock %}
+
 {% block content %}
 <div class="min-h-[calc(100vh-80px)] px-4 py-14 sm:py-20">
     <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
@@ -10,12 +11,12 @@
             <div class="relative z-10">
                 <p class="text-xs uppercase tracking-[0.22em] text-amber-100/90">RivalRadar Platform</p>
                 <h1 class="mt-4 text-5xl font-extrabold leading-tight text-white sm:text-6xl">See competitor moves before they hit your board deck.</h1>
-                <p class="mt-5 max-w-xl text-base text-slate-100/90 sm:text-lg">Track threats, spot pricing shifts, and protect your portfolio with AI intelligence built for venture teams.</p>
+                <p class="mt-5 max-w-xl text-base text-slate-100/90 sm:text-lg">Track threats, spot pricing shifts, and protect your portfolio — built for venture teams.</p>
 
                 <div class="mt-8 grid grid-cols-2 gap-3 sm:max-w-md">
                     <div class="rounded-2xl border border-white/20 bg-white/10 p-4">
                         <p class="text-xs uppercase tracking-widest text-slate-200/80">Coverage</p>
-                        <p class="mt-2 text-2xl font-extrabold text-white">40+ SaaS</p>
+                        <p class="mt-2 text-2xl font-extrabold text-white">40+ Companies</p>
                     </div>
                     <div class="rounded-2xl border border-white/20 bg-white/10 p-4">
                         <p class="text-xs uppercase tracking-widest text-slate-200/80">Live Alerts</p>
@@ -28,16 +29,16 @@
         <div class="flex items-center justify-center slide-in-right">
             <div class="card-premium w-full max-w-md">
                 <div class="mb-8 text-center">
-                    <h2 class="text-3xl font-extrabold text-slate-900">Welcome Back</h2>
-                    <p class="mt-2 text-slate-600">Sign in and start from your current portfolio companies.</p>
+                    <h2 class="text-3xl font-extrabold text-slate-900">Get Started</h2>
+                    <p class="mt-2 text-slate-600">Start from your portfolio or run a quick company analysis.</p>
                 </div>
 
                 <button onclick="window.location.href='/portfolio'" class="button-primary w-full mb-4">
-                    <i class="fas fa-briefcase mr-2"></i>Open Portfolio First
+                    <i class="fas fa-briefcase mr-2"></i>Open Portfolio
                 </button>
 
                 <button onclick="window.location.href='/dashboard'" class="button-secondary w-full">
-                    <i class="fas fa-chart-line mr-2"></i>Jump To Quick Analysis
+                    <i class="fas fa-chart-line mr-2"></i>Run Quick Analysis
                 </button>
             </div>
         </div>
