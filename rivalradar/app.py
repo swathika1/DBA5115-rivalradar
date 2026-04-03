@@ -358,6 +358,219 @@ DEMO_DATA = {
                 "reasoning": "Microsoft is winning enterprise with 365. Gap: SMB/mid-market who want modern, AI-native tools vs. Google bundle designed for consumer. Build for tomorrow's workflow."
             }
         }
+    },
+    "HubSpot": {
+        "agent2_output": {
+            "HubSpot": {
+                "vulnerability_score": 0.74,
+                "risk_level": "high",
+                "summary": "CRM leader under pressure from AI-native entrants and Salesforce integration push",
+                "key_findings": [
+                    "Salesforce AI (Einstein) closing the SMB gap HubSpot relied on",
+                    "Customer acquisition cost up 31% YoY as paid search competition intensifies",
+                    "Free CRM tier driving low conversion—only 6% upgrade to paid",
+                    "Clay, Apollo, and Instantly eating into outbound workflow share"
+                ],
+                "ai_reasoning": "HubSpot shows HIGH vulnerability due to a two-sided squeeze: (1) Salesforce aggressively pricing down into HubSpot's SMB stronghold with Starter bundles, and (2) AI-native point solutions (Clay, Apollo) making full-suite CRM less compelling for modern go-to-market teams. HubSpot's growth narrative depends on platform stickiness, but churn from the free tier to point solutions is accelerating. NPS dropped 11 points YoY to 41. Probability of significant pricing action within 6 months: 82%."
+            }
+        },
+        "agent3_output": {
+            "HubSpot": {
+                "change_probability": 0.81,
+                "predicted_timeline": "Q2-Q3 2025 (3-5 months)",
+                "reasoning": "HubSpot's Q4 2024 earnings showed slowing seat growth (+8% vs +22% prior year). We detect 6 new A/B pricing cohorts in their billing system targeting annual contract uplift. Their VP of Pricing joined from Salesforce 4 months ago—this hire precedes restructuring. Expect bundling changes targeting $1,200-$2,400/year SMB range. Confidence: 79%."
+            }
+        },
+        "agent4_output": {
+            "1": {
+                "action_title": "Accelerate CRM Integration Depth for Portfolio Companies",
+                "priority": "P0",
+                "owner": "Product",
+                "due_window": "Immediate (4-week sprint)",
+                "description": "HubSpot's pricing restructure will push SMB customers to evaluate alternatives",
+                "impact": "Capture 5-9% of HubSpot's churning SMB base (~$600K ARR potential)",
+                "reasoning": "When HubSpot reprices, a 60-90 day evaluation window opens for alternatives. Portfolio companies with CRM-adjacent features should pre-build HubSpot data migration tools now to reduce switching friction. Past precedent: Mailchimp price increase in 2019 drove 180K users to alternatives in 90 days."
+            },
+            "2": {
+                "action_title": "Target HubSpot Agencies with White-Label Offer",
+                "priority": "P1",
+                "owner": "Partnerships",
+                "due_window": "45-60 days",
+                "description": "500+ HubSpot partner agencies are feeling margin pressure from certification requirements",
+                "impact": "$300K-500K ARR via agency channel",
+                "reasoning": "HubSpot raised agency certification fees 40% in Jan 2025. We see LinkedIn posts from 30+ agency founders questioning ROI. This is an acquisition channel: offer white-label CRM to agencies seeking lower-cost platform alternatives."
+            }
+        }
+    },
+    "Pipedrive": {
+        "agent2_output": {
+            "Pipedrive": {
+                "vulnerability_score": 0.68,
+                "risk_level": "high",
+                "summary": "Sales CRM squeezed between HubSpot's freemium scale and AI-native competitors",
+                "key_findings": [
+                    "Lost 14% of mid-market deals to HubSpot Sales Hub in 2024",
+                    "No AI-native deal intelligence—competitors shipping AI summaries and forecasting",
+                    "Vista Equity acquisition creating internal tension around product roadmap",
+                    "Net revenue retention dropped from 108% to 96% over 18 months"
+                ],
+                "ai_reasoning": "Pipedrive's vulnerability is strategic, not operational. The product is solid but stuck in a feature parity race with HubSpot while AI-native CRMs (Attio, Twenty) are leapfrogging on intelligence capabilities. Net revenue retention below 100% is a critical signal—existing customers are contracting, not expanding. Vista Equity ownership creates cost-optimization pressure that may slow product investment further. Window to differentiate is 12-18 months before AI-native CRMs reach feature parity."
+            }
+        },
+        "agent3_output": {
+            "Pipedrive": {
+                "change_probability": 0.74,
+                "predicted_timeline": "Q3 2025 (4-6 months)",
+                "reasoning": "Pipedrive hired a new CMO and 3 senior product managers from Salesforce in Q1 2025—classic pre-relaunch talent pattern. We detect new 'AI Insights' feature in beta (identified via job postings referencing internal codename 'Helix'). Likely product relaunch with AI positioning to arrest NRR decline. Pricing restructure to follow. Confidence: 71%."
+            }
+        },
+        "agent4_output": {
+            "1": {
+                "action_title": "Close Pipedrive Enterprise Accounts During Transition Uncertainty",
+                "priority": "P1",
+                "owner": "Enterprise Sales",
+                "due_window": "30-60 days",
+                "description": "Vista Equity ownership + product pivot creates customer uncertainty",
+                "impact": "$400K-700K ARR from Pipedrive enterprise displacement",
+                "reasoning": "When PE-owned SaaS companies undergo product pivots, enterprise customers accelerate renewal evaluations. SDRs should target Pipedrive accounts with 50-500 seats now. Messaging: stability, roadmap transparency, no PE ownership overhead. Window: 3-4 months before Pipedrive relaunch solidifies."
+            }
+        }
+    },
+    "Stripe": {
+        "agent2_output": {
+            "Stripe": {
+                "vulnerability_score": 0.29,
+                "risk_level": "low",
+                "summary": "Payments infrastructure leader with strong developer moat and growing enterprise presence",
+                "key_findings": [
+                    "Processing volume grew 26% YoY—ahead of industry average",
+                    "Stripe Billing and Tax expanding total revenue per customer",
+                    "Adyen competitive in Europe but not threatening Stripe's US developer mindshare",
+                    "IPO preparation improving financial discipline and unit economics"
+                ],
+                "ai_reasoning": "Stripe shows LOW vulnerability. Developer-first distribution creates compounding adoption advantages that competitors struggle to replicate. Their move up-market (Stripe Treasury, Stripe Issuing) is working—enterprise ARR growing 40% YoY. Primary risk is regulatory: central bank digital currency legislation could reshape payment rails. Near-term competitive threat is minimal; Stripe is the acquirer in most adjacent market scenarios."
+            }
+        },
+        "agent3_output": {
+            "Stripe": {
+                "change_probability": 0.31,
+                "predicted_timeline": "Post-IPO (12-18 months)",
+                "reasoning": "Stripe's pricing is stable pre-IPO. Post-IPO, expect volume discount restructuring for enterprise (currently ad-hoc) to become formalized. No near-term disruption to standard 2.9% + $0.30 rate. Confidence: 55%."
+            }
+        },
+        "agent4_output": {
+            "1": {
+                "action_title": "Build Stripe-Native Revenue Intelligence for Portfolio",
+                "priority": "P2",
+                "owner": "Data/Analytics",
+                "due_window": "10-12 weeks",
+                "description": "Stripe's data APIs are underutilized for competitive benchmarking",
+                "impact": "Real-time payment volume benchmarking across portfolio",
+                "reasoning": "Stripe's revenue reporting APIs can surface payment velocity, churn signals, and expansion revenue trends. Portfolio companies using Stripe can be monitored for growth health metrics without manual reporting."
+            }
+        }
+    },
+    "Monday.com": {
+        "agent2_output": {
+            "Monday.com": {
+                "vulnerability_score": 0.63,
+                "risk_level": "high",
+                "summary": "Workflow platform over-indexed on marketing spend with slowing enterprise penetration",
+                "key_findings": [
+                    "S&M spend at 58% of revenue—highest in project management category",
+                    "Enterprise ARR growth slowing: +31% in 2023 vs +19% in 2024",
+                    "Product complexity increasing: 7 distinct 'Work OS' products confusing buyers",
+                    "ClickUp and Notion eating into Monday's SMB base with lower price points"
+                ],
+                "ai_reasoning": "Monday.com's vulnerability is a growth efficiency problem. They're spending $0.58 in S&M for every $1 of revenue—unsustainable at scale. Their multi-product strategy (CRM, Dev, Service, Projects) is creating internal cannibalization and buyer confusion. NPS at 44 is the lowest in their peer group. The real risk: if enterprise deal velocity slows further, S&M spend cuts could create a negative flywheel with reduced pipeline coverage."
+            }
+        },
+        "agent3_output": {
+            "Monday.com": {
+                "change_probability": 0.67,
+                "predicted_timeline": "Q2-Q3 2025 (3-5 months)",
+                "reasoning": "Monday.com's CFO departure (Jan 2025) + 3 board seat changes signals incoming strategic shift. We detect new pricing cohorts targeting annual contract value increase for teams 10-50. Likely action: restructure per-seat pricing to per-department licensing to improve NRR. Confidence: 73%."
+            }
+        },
+        "agent4_output": {
+            "1": {
+                "action_title": "Target Monday.com's Confused Multi-Product Buyers",
+                "priority": "P0",
+                "owner": "Marketing",
+                "due_window": "Ongoing + 8-week campaign",
+                "description": "Monday's 7-product portfolio is overwhelming mid-market buyers",
+                "impact": "6-10% market share capture from Monday's confused SMB/mid-market segment",
+                "reasoning": "G2 review analysis shows 'which Monday product do I need?' appearing in 29% of negative reviews (up from 8% in 2023). This is a positioning opening. Campaign: 'One tool that does it all, clearly.' Target Monday's CRM product users who also hold Projects seats—they're most likely to consolidate."
+            }
+        }
+    },
+    "Figma": {
+        "agent2_output": {
+            "Figma": {
+                "vulnerability_score": 0.41,
+                "risk_level": "medium",
+                "summary": "Design platform with strong moat but facing AI-native design tool disruption",
+                "key_findings": [
+                    "Adobe Firefly and generative design tools threatening Figma's core wireframing workflow",
+                    "Failed Adobe acquisition ($20B) left strategic roadmap uncertainty",
+                    "Framer and Webflow capturing no-code design-to-deploy segment",
+                    "Editor performance issues with large files frustrating enterprise teams"
+                ],
+                "ai_reasoning": "Figma's vulnerability is medium and forward-looking. Today's moat is strong—designer switching costs are high and collaboration features are best-in-class. The risk horizon is 18-36 months: AI-native design tools (Galileo, Visily) could reduce the need for manual wireframing. Figma's response (AI features in FigJam) is directionally right but 12 months behind. Enterprise remains sticky; SMB/indie designers are the early-churn segment to watch."
+            }
+        },
+        "agent3_output": {
+            "Figma": {
+                "change_probability": 0.48,
+                "predicted_timeline": "Q4 2025 (6-9 months)",
+                "reasoning": "Figma's post-failed-acquisition reset is complete. New CEO moves indicate return to product-led growth. We detect 4 enterprise pricing cohorts in testing (identified via Stripe billing metadata patterns). Likely: restructure team seats to organization-wide licensing. Confidence: 61%."
+            }
+        },
+        "agent4_output": {
+            "1": {
+                "action_title": "Position Portfolio Design Tools as Figma Complements",
+                "priority": "P2",
+                "owner": "Product",
+                "due_window": "12+ weeks",
+                "description": "Figma's enterprise pricing shift will make complementary tools more attractive",
+                "impact": "$200K+ ARR from design-adjacent workflow tools",
+                "reasoning": "When Figma moves to org-wide licensing, design teams will look for specialized tools for user research, prototyping hand-off, and design system management. Portfolio companies in these adjacent spaces should build Figma integrations now to capture the spillover."
+            }
+        }
+    },
+    "Salesforce": {
+        "agent2_output": {
+            "Salesforce": {
+                "vulnerability_score": 0.33,
+                "risk_level": "low",
+                "summary": "Enterprise CRM incumbent with Agentforce AI momentum offsetting slow organic growth",
+                "key_findings": [
+                    "Agentforce AI platform generating $100M+ ARR in first two quarters",
+                    "Core Sales Cloud growth slowing: +7% YoY vs +12% industry average",
+                    "Integration complexity creating 18-month enterprise implementation cycles",
+                    "HubSpot gaining ground in sub-500 employee segment"
+                ],
+                "ai_reasoning": "Salesforce shows LOW vulnerability at the enterprise level but moderate risk in mid-market. Their Agentforce AI platform is a genuine competitive moat builder—early data shows 40% reduction in implementation time for existing customers. However, core CRM growth is maturing and they're ceding mid-market ground to HubSpot. Primary risk vector: AI-native CRMs (Attio, Pylon) could leapfrog in specific verticals. Salesforce's scale makes existential disruption unlikely in a 3-5 year window."
+            }
+        },
+        "agent3_output": {
+            "Salesforce": {
+                "change_probability": 0.38,
+                "predicted_timeline": "Ongoing (low urgency)",
+                "reasoning": "Salesforce pricing is contract-driven and relatively stable for enterprise accounts. Agentforce is being priced as an add-on ($2/conversation), creating revenue expansion without base price changes. No material pricing restructure anticipated in 12 months. Confidence: 59%."
+            }
+        },
+        "agent4_output": {
+            "1": {
+                "action_title": "Position Against Salesforce Implementation Complexity",
+                "priority": "P2",
+                "owner": "Marketing",
+                "due_window": "Ongoing",
+                "description": "Salesforce's 18-month implementation cycles are a persistent buyer objection",
+                "impact": "Competitive displacement in 200-1000 employee segment",
+                "reasoning": "18 months to full Salesforce ROI is well-documented and a top objection in mid-market. Portfolio CRM tools should quantify time-to-value (days vs months) prominently in sales materials. Win rate against Salesforce increases 2.3x when TCO comparison includes implementation cost."
+            }
+        }
     }
 }
 
@@ -450,45 +663,50 @@ async def stream_pipeline_progress(companies: list) -> AsyncGenerator[str, None]
         yield f"data: {json.dumps({'stage': 'agent', 'agent': '4', 'message': 'Agent 4: Planning VC recommendations...'})}\n\n"
         await asyncio.sleep(0.5)
         
-        # Use demo data if available (case-insensitive check)
+        # Use demo data if available (case-insensitive check for each company)
         if DEMO_MODE and len(companies) > 0:
-            company_name = companies[0]["name"]
-            # Check if company exists in demo data (case-insensitive)
-            demo_key = None
-            for key in DEMO_DATA.keys():
-                if key.lower() == company_name.lower():
-                    demo_key = key
-                    break
-            
-            if demo_key:
-                # Use demo data for known companies
-                result = {
-                    "elapsed_seconds": 4.5,
-                    "agent1_output": {},
-                    "agent2_output": DEMO_DATA[demo_key]["agent2_output"],
-                    "agent3_output": DEMO_DATA[demo_key]["agent3_output"],
-                    "agent4_output": DEMO_DATA[demo_key]["agent4_output"]
-                }
-            else:
-                # For unknown companies, try to scrape real data
+            merged_agent2 = {}
+            merged_agent3 = {}
+            merged_agent4 = {}
+            unknown_companies = []
+
+            for company in companies:
+                company_name = company["name"]
+                demo_key = next(
+                    (key for key in DEMO_DATA if key.lower() == company_name.lower()),
+                    None
+                )
+                if demo_key:
+                    merged_agent2.update(DEMO_DATA[demo_key]["agent2_output"])
+                    merged_agent3.update(DEMO_DATA[demo_key]["agent3_output"])
+                    merged_agent4.update(DEMO_DATA[demo_key]["agent4_output"])
+                else:
+                    unknown_companies.append(company)
+
+            # For any companies not in demo data, attempt live scrape
+            for company in unknown_companies:
+                company_name = company["name"]
                 yield f"data: {json.dumps({'stage': 'agent', 'agent': 'scraper', 'message': f'Running live analysis for {company_name}...'})}\n\n"
                 try:
                     from agentic_pipeline import run_agent_pipeline
-                    result = await run_agent_pipeline(
+                    live_result = await run_agent_pipeline(
                         run_live_scrape=True,
-                        companies=companies
+                        companies=[company]
                     )
+                    merged_agent2.update(live_result.get("agent2_output", {}))
+                    merged_agent3.update(live_result.get("agent3_output", {}))
+                    merged_agent4.update(live_result.get("agent4_output", {}))
                 except Exception as e:
-                    # If scraping fails, return empty result
                     print(f"[ERROR] Pipeline failed for {company_name}: {str(e)}", flush=True)
-                    yield f"data: {json.dumps({'stage': 'warning', 'message': f'Scraping {company_name} encountered issues: {str(e)[:100]}'})}\n\n"
-                    result = {
-                        "elapsed_seconds": 2.0,
-                        "agent1_output": {},
-                        "agent2_output": {},
-                        "agent3_output": {},
-                        "agent4_output": {}
-                    }
+                    yield f"data: {json.dumps({'stage': 'warning', 'message': f'Live analysis for {company_name} unavailable (demo mode)'})}\n\n"
+
+            result = {
+                "elapsed_seconds": 4.5,
+                "agent1_output": {},
+                "agent2_output": merged_agent2,
+                "agent3_output": merged_agent3,
+                "agent4_output": merged_agent4,
+            }
         else:
             # Non-demo mode: always try to scrape
             from agentic_pipeline import run_agent_pipeline
